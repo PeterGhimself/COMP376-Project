@@ -23,7 +23,7 @@ public class RoomManager : MonoBehaviour
     public int rows = 7;
 
     public Count obstacles = new Count(5, 15);
-    public Count enemies = new Count(1, 5);
+    public Count enemies = new Count(1, 3);
 
     public GameObject[] obstacleTiles;
     public GameObject doorTile;
@@ -108,12 +108,11 @@ public class RoomManager : MonoBehaviour
         }
     }
 
-    public void SetupRoom(int roomNumber, int difficulty = 0)
+    public void SetupRoom(int roomNumber, int difficulty)
     {
         RoomSetup();
         InitializeList();
         PlaceObjectAtRandom(obstacleTiles, obstacles.minimum, obstacles.maximum);
-        int count = (int) Mathf.Log(difficulty, 2f);
-        PlaceObjectAtRandom(enemyTiles, enemies.minimum + count, enemies.maximum + count);
+        PlaceObjectAtRandom(enemyTiles, enemies.minimum * difficulty, enemies.maximum * difficulty);
     }
 }

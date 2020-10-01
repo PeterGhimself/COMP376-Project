@@ -6,7 +6,8 @@ public class FloorManager : MonoBehaviour
 {
     public RoomManager roomScript;
 
-    private int floor = 6;
+    [SerializeField]
+    int floor = 6;
     // Start is called before the first frame update
     void Awake()
     {
