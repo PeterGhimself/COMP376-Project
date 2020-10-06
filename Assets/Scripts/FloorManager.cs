@@ -8,7 +8,7 @@ public class FloorManager : MonoBehaviour
 
     [SerializeField]
     int floor = 6;
-    // Start is called before the first frame update
+
     void Awake()
     {
         roomScript = GetComponent<RoomManager>();
@@ -20,9 +20,9 @@ public class FloorManager : MonoBehaviour
         roomScript.SetupRoom(1,floor);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void InitFloor(FloorInfo floorInfo)
     {
-        
+        //called by game manager. to be expanded with floor generation
+        roomScript.SetupRoom(floorInfo.Room, floorInfo.Floor);
     }
 }
