@@ -33,6 +33,9 @@ public class PlayerController : MonoBehaviour
 
     private void UpdateCharacterStates()
     {
+        if (keyboard == null || mouse == null)
+            return;
+
         Walk();
         Attack();
     }
