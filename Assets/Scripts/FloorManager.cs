@@ -1,27 +1,348 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
+using Random = UnityEngine.Random;
 
 public class FloorManager : MonoBehaviour
 {
-    public RoomManager roomScript;
+    [SerializeField] int floor = 1;
 
-    [SerializeField]
-    int floor = 6;
+    private int[,] _map = new int [12, 12];
+    private int _roomBank;
 
-    void Awake()
+    private Queue<RoomSpot> incomplete = new Queue<RoomSpot>();
+    private List<RoomSpot> done = new List<RoomSpot>();
+    private int roomNumber = 0;
+
+    private class RoomSpot
     {
-        roomScript = GetComponent<RoomManager>();
+        private int _x;
+        private int _y;
+
+        public int X
+        {
+            get => _x;
+            set => _x = value;
+        }
+
+        public int Y
+        {
+            get => _y;
+            set => _y = value;
+        }
+
+        public RoomSpot(int y, int x)
+        {
+            _x = x;
+            _y = y;
+        }
     }
 
-    void InitFloor()
+    private int GetRoomNumber()
     {
-        roomScript.SetupRoom(1,floor);
+        roomNumber++;
+        return roomNumber;
     }
 
-    public void InitFloor(FloorInfo floorInfo)
+    void Start()
     {
-        //called by game manager. to be expanded with floor generation
-        roomScript.SetupRoom(floorInfo.Room, floorInfo.Floor);
+        if (floor <= 0)
+        {
+            floor = 1;
+        }
+
+        InitializeEmptyMap();
+        _roomBank = 7 + 3 * floor;
+        RoomSpot temp = new RoomSpot(5, 5);
+        incomplete.Enqueue(temp);
+        GenerateMap();
+        GenerateBossAndItemRoom();
+        // PrintMap();
+    }
+
+    private void GenerateBossAndItemRoom()
+    {
+        bool boss = false;
+        RoomSpot checker = done[done.Count - 1];
+        for (int i = done.Count - 1; i >= 0; i--)
+        {
+            var found = false;
+            var failed = false;
+            checker = done[i];
+            if (!boss)
+            {
+                if (checker.Y - 1 >= 0 && _map[checker.Y - 1, checker.X] > 0)
+                {
+                    if (found)
+                    {
+                        failed = true;
+                    }
+
+                    found = true;
+                }
+
+                if (checker.X - 1 >= 0 && _map[checker.Y, checker.X - 1] > 0)
+                {
+                    if (found)
+                    {
+                        failed = true;
+                    }
+
+                    found = true;
+                }
+
+                if (checker.X + 1 < _map.GetLength(1) && _map[checker.Y, checker.X + 1] > 0)
+                {
+                    if (found)
+                    {
+                        failed = true;
+                    }
+
+                    found = true;
+                }
+
+                if (checker.Y + 1 < _map.GetLength(0) && _map[checker.Y + 1, checker.X] > 0)
+                {
+                    if (found)
+                    {
+                        failed = true;
+                    }
+
+                    found = true;
+                }
+
+                if (!failed)
+                {
+                    boss = true;
+                    _map[checker.Y, checker.X] = -66;
+                }
+            }
+            else
+            {
+                if (checker.Y - 1 >= 0 && _map[checker.Y - 1, checker.X] > 0)
+                {
+                    if (found)
+                    {
+                        failed = true;
+                    }
+
+                    found = true;
+                }
+
+                if (checker.X - 1 >= 0 && _map[checker.Y, checker.X - 1] > 0)
+                {
+                    if (found)
+                    {
+                        failed = true;
+                    }
+
+                    found = true;
+                }
+
+                if (checker.X + 1 < _map.GetLength(1) && _map[checker.Y, checker.X + 1] > 0)
+                {
+                    if (found)
+                    {
+                        failed = true;
+                    }
+
+                    found = true;
+                }
+
+                if (checker.Y + 1 < _map.GetLength(0) && _map[checker.Y + 1, checker.X] > 0)
+                {
+                    if (found)
+                    {
+                        failed = true;
+                    }
+
+                    found = true;
+                }
+
+                if (!failed)
+                {
+                    _map[checker.Y, checker.X] = -420;
+                    break;
+                }
+            }
+        }
+    }
+
+    private void GenerateMap()
+    {
+        int totalRooms = _roomBank;
+        RoomSpot currentRoom = incomplete.Dequeue();
+
+        int[] alot = {2, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4};
+        int[] middle = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 3};
+        int[] low = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2};
+
+        int creating = alot[Random.Range(0, alot.Length - 1)];
+        GenerateAdjacent(currentRoom, creating);
+        _roomBank -= creating;
+
+        while (incomplete.Count > 0)
+        {
+            currentRoom = incomplete.Dequeue();
+            if (_roomBank > totalRooms * 3 / 4 && _roomBank >= 3)
+            {
+                creating = middle[Random.Range(0, middle.Length - 1)];
+                GenerateAdjacent(currentRoom, creating);
+                _roomBank -= creating;
+            }
+            else if (_roomBank > totalRooms / 4 && _roomBank >= 2)
+            {
+                creating = low[Random.Range(0, low.Length - 1)];
+                GenerateAdjacent(currentRoom, creating);
+                _roomBank -= creating;
+            }
+            else if (_roomBank > 0)
+            {
+                GenerateAdjacent(currentRoom, 1);
+                _roomBank -= 1;
+            }
+            else
+            {
+                done.Add(currentRoom);
+            }
+        }
+    }
+
+    private void InitializeEmptyMap()
+    {
+        for (var row = 0; row <= 11; row++)
+        {
+            for (var col = 0; col <= 11; col++)
+            {
+                if (row == 5 && col == 5)
+                {
+                    _map[row, col] = GetRoomNumber();
+                }
+                else
+                {
+                    _map[row, col] = 0;
+                }
+            }
+        }
+    }
+
+    public int[,] getMap()
+    {
+        return _map;
+    }
+
+    public int getMapSpot(int row, int col)
+    {
+        return _map[row, col];
+    }
+
+    public void SetMapSpot(int row, int col, int value)
+    {
+        _map[row, col] = value;
+    }
+
+    private void GenerateAdjacent(RoomSpot room, int rooms)
+    {
+        var row = room.Y;
+        var col = room.X;
+        int[] directions = new int[4] {0, 1, 2, 3};
+        for (int i = 0; i < 3; i++)
+        {
+            int swapping = Random.Range(i, 4);
+            int tempA = directions[i];
+            directions[i] = directions[swapping];
+            directions[swapping] = tempA;
+        }
+
+        RoomSpot newRoom;
+
+        foreach (var direction in directions)
+        {
+            if (direction == 0 && row - 1 >= 0 && _map[row - 1, col] == 0)
+            {
+                if (rooms > 0)
+                {
+                    newRoom = new RoomSpot(row - 1, col);
+                    incomplete.Enqueue(newRoom);
+                    _map[row - 1, col] = GetRoomNumber();
+                    rooms--;
+                }
+                else
+                {
+                    _map[row - 1, col] = -1;
+                }
+            }
+            else if (direction == 1 && col - 1 >= 0 && _map[row, col - 1] == 0)
+            {
+                if (rooms > 0)
+                {
+                    newRoom = new RoomSpot(row, col - 1);
+                    incomplete.Enqueue(newRoom);
+                    _map[row, col - 1] = GetRoomNumber();
+                    rooms--;
+                }
+                else
+                {
+                    _map[row, col - 1] = -1;
+                }
+            }
+            else if (direction == 2 && col + 1 < _map.GetLength(1) && _map[row, col + 1] == 0)
+            {
+                if (rooms > 0)
+                {
+                    newRoom = new RoomSpot(row, col + 1);
+                    incomplete.Enqueue(newRoom);
+                    _map[row, col + 1] = GetRoomNumber();
+                    rooms--;
+                }
+                else
+                {
+                    _map[row, col + 1] = -1;
+                }
+            }
+            else if (direction == 3 && row + 1 < _map.GetLength(0) && _map[row + 1, col] == 0)
+            {
+                if (rooms > 0)
+                {
+                    newRoom = new RoomSpot(row + 1, col);
+                    incomplete.Enqueue(newRoom);
+                    _map[row + 1, col] = GetRoomNumber();
+                    rooms--;
+                }
+                else
+                {
+                    _map[row + 1, col] = -1;
+                }
+            }
+        }
+
+        done.Add(room);
+    }
+
+    private void PrintMap()
+    {
+        string stringRow;
+        bool triggerd;
+        for (int row = 0; row < 12; row++)
+        {
+            stringRow = "";
+            triggerd = false;
+            for (int col = 0; col < 12; col++)
+            {
+                if (_map[row, col] != 0)
+                {
+                    triggerd = true;
+                }
+
+                stringRow += $"{_map[row, col]}\t";
+            }
+
+            if (triggerd)
+            {
+                Debug.Log(stringRow);
+            }
+        }
     }
 }

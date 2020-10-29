@@ -29,8 +29,13 @@ public class GameManager : MonoBehaviour
         m_onLevelComplete.AddListener(LevelComplete);
         m_onRestartLevel = new UnityEvent();
         m_onRestartLevel.AddListener(RestartLevel);
-
         //Todo: send events to floor manager (or something) so they can be called when dying or finishing level
+    }
+
+    void Start()
+    {
+        // LoadFirstLevel(); //should be moved to be called by the play button in the main menu
+        Instantiate(m_floorManager);
     }
 
     void OnDestroy()
@@ -48,7 +53,7 @@ public class GameManager : MonoBehaviour
         print("level loading started");
 
         //generate floor with m_levelInfos[m_currentLevel]
-        m_floorManager.InitFloor(m_floorInfos[m_currentLevel]);
+        // m_floorManager.InitFloor(m_floorInfos[m_currentLevel]);
         m_TitleScreen.SetActive(false);
 
         yield return new WaitForSeconds(0.25f);
