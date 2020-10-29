@@ -46,6 +46,7 @@ public class FloorManager : MonoBehaviour
 
             return type;
         }
+
         public int X
         {
             get => _x;
@@ -73,11 +74,6 @@ public class FloorManager : MonoBehaviour
 
     void Start()
     {
-        if (floor <= 0)
-        {
-            floor = 1;
-        }
-
         InitializeEmptyMap();
         _roomBank = 7 + 3 * floor;
         RoomSpot temp = new RoomSpot(5, 5);
@@ -91,13 +87,19 @@ public class FloorManager : MonoBehaviour
     private void InstantiateRooms()
     {
         float height = Camera.main.orthographicSize * 2;
-        float width = height * Screen.width/ Screen.height;
+        float width = height * Screen.width / Screen.height;
         foreach (var room in done)
         {
-            var created = Instantiate(rooms[room.GETRoomType(_map)], new Vector3((room.X-5)*width, (room.Y-5)*height), Quaternion.identity);
+            var created = Instantiate(rooms[room.GETRoomType(_map)],
+                new Vector3((room.X - 5) * width, (room.Y - 5) * height), Quaternion.identity);
             //done after rooms awake**
-            created.transform.localScale = new Vector3(width/10, height/10);
+            created.transform.localScale = new Vector3(width / 10, height / 10);
         }
+    }
+
+    public void setFloor(int num)
+    {
+        floor = num;
     }
 
     private void GenerateBossAndItemRoom()
@@ -212,8 +214,8 @@ public class FloorManager : MonoBehaviour
     {
         int totalRooms = _roomBank;
         RoomSpot currentRoom = incomplete.Dequeue();
-
-        int[] alot = { 4, 4, 4};
+        Debug.Log(totalRooms);
+        int[] alot = {2, 2, 3, 3, 3, 3, 3, 3, 4, 4, 4};
         int[] middle = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 3};
         int[] low = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2};
 

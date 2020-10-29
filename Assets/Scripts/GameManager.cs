@@ -35,7 +35,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         // LoadFirstLevel(); //should be moved to be called by the play button in the main menu
-        Instantiate(m_floorManager);
+        var man = Instantiate(m_floorManager);
+        man.setFloor(m_currentLevel);
     }
 
     void OnDestroy()
