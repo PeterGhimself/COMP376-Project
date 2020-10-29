@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 public class FloorManager : MonoBehaviour
 {
     [SerializeField] int floor = 1;
-
+    [SerializeField] private GameObject[] rooms;
     private int[,] _map = new int [12, 12];
     private int _roomBank;
 
@@ -21,6 +21,31 @@ public class FloorManager : MonoBehaviour
         private int _x;
         private int _y;
 
+        public int GETRoomType(int[,] map)
+        {
+            int type = 0;
+            if (_y - 1 >= 0 && map[_y - 1, _x] > 0)
+            {
+                type += 1;
+            }
+
+            if (_x - 1 >= 0 && map[_y, _x - 1] > 0)
+            {
+                type += 2;
+            }
+
+            if (_x + 1 < map.GetLength(1) && map[_y, _x + 1] > 0)
+            {
+                type += 8;
+            }
+
+            if (_y + 1 < map.GetLength(0) && map[_y + 1, _x] > 0)
+            {
+                type += 4;
+            }
+
+            return type;
+        }
         public int X
         {
             get => _x;
@@ -60,6 +85,19 @@ public class FloorManager : MonoBehaviour
         GenerateMap();
         GenerateBossAndItemRoom();
         // PrintMap();
+        InstantiateRooms();
+    }
+
+    private void InstantiateRooms()
+    {
+        float height = Camera.main.orthographicSize * 2;
+        float width = height * Screen.width/ Screen.height;
+        foreach (var room in done)
+        {
+            var created = Instantiate(rooms[room.GETRoomType(_map)], new Vector3((room.X-5)*width, (room.Y-5)*height), Quaternion.identity);
+            //done after rooms awake**
+            created.transform.localScale = new Vector3(width/10, height/10);
+        }
     }
 
     private void GenerateBossAndItemRoom()
@@ -116,7 +154,7 @@ public class FloorManager : MonoBehaviour
                 if (!failed)
                 {
                     boss = true;
-                    _map[checker.Y, checker.X] = -66;
+                    _map[checker.Y, checker.X] = 666;
                 }
             }
             else
@@ -163,7 +201,7 @@ public class FloorManager : MonoBehaviour
 
                 if (!failed)
                 {
-                    _map[checker.Y, checker.X] = -420;
+                    _map[checker.Y, checker.X] = 420;
                     break;
                 }
             }
@@ -175,7 +213,7 @@ public class FloorManager : MonoBehaviour
         int totalRooms = _roomBank;
         RoomSpot currentRoom = incomplete.Dequeue();
 
-        int[] alot = {2, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4};
+        int[] alot = { 4, 4, 4};
         int[] middle = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 3};
         int[] low = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2};
 
