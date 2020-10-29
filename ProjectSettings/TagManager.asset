@@ -16,12 +16,12 @@ TagManager:
   - 
   - 
   - Contact
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Target
+  - Blocker
+  - Player
+  - Enemy
+  - Obstacles
+  - Projectile
   - 
   - 
   - 
