@@ -12,7 +12,6 @@ public class FloorManager : MonoBehaviour
     void Awake()
     {
         roomScript = GetComponent<RoomManager>();
-        //InitFloor();
     }
 
     void InitFloor()
