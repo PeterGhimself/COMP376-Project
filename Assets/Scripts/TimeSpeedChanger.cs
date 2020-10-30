@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class TimeSpeedChanger : MonoBehaviour
 {
+    [Range(0.0f, 5.0f)]
     [SerializeField] float m_targetTimeSpeed = 1f;
+    [Range(0.0f, 1f)]
     [SerializeField] float m_timeSpeedRateOfChange = 1f;
 
     private float lastTargetTimeSpeed = 1f;
