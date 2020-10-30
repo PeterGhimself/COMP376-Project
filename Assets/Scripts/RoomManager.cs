@@ -28,20 +28,34 @@ public class RoomManager : MonoBehaviour
     public GameObject doorTile;
     public GameObject[] floorTiles;
     public GameObject[] enemyTiles;
-    public GameObject[] outerWallTiles;
-
+    private int floor;
     private Transform roomHolder;
+
+    private bool spawnpoint = false;
+
+    public bool Spawnpoint
+    {
+        get => spawnpoint;
+        set => spawnpoint = value;
+    }
 
     private List<Vector3> gridPosition = new List<Vector3>();
 
     private void Awake()
     {
-        SetupRoom(0, 1);
+        // Debug.Log(transform.parent.parent);
+        floor = 1;
+        SetupRoom(floor);
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        if (!spawnpoint)
+        {
+            PlaceObjectAtRandom(obstacleTiles, obstacles.minimum, obstacles.maximum);
+            PlaceObjectAtRandom(enemyTiles, enemies.minimum * floor, enemies.maximum * floor);
+        }
     }
 
     // Update is called once per frame
@@ -60,6 +74,11 @@ public class RoomManager : MonoBehaviour
             }
         }
     }
+    public int Floor
+    {
+        get => floor;
+        set => floor = value;
+    }
 
     void RoomSetup()
     {
@@ -68,7 +87,7 @@ public class RoomManager : MonoBehaviour
         {
             for (int j = -4; j <= 4; j++)
             {
-                var toInstantiate = floorTiles[Random.Range(0, floorTiles.Length)] ;
+                var toInstantiate = floorTiles[Random.Range(0, floorTiles.Length)];
                 var instance = Instantiate(toInstantiate, gameObject.transform, true);
                 instance.transform.localPosition = new Vector3(i, j, 0f);
             }
@@ -95,11 +114,9 @@ public class RoomManager : MonoBehaviour
         }
     }
 
-    public void SetupRoom(int roomNumber, int difficulty)
+    public void SetupRoom(int difficulty)
     {
         RoomSetup();
         InitializeList();
-        PlaceObjectAtRandom(obstacleTiles, obstacles.minimum, obstacles.maximum);
-        PlaceObjectAtRandom(enemyTiles, enemies.minimum * difficulty, enemies.maximum * difficulty);
     }
 }

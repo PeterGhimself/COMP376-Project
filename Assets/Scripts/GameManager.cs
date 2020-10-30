@@ -35,8 +35,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         // LoadFirstLevel(); //should be moved to be called by the play button in the main menu
-        var man = Instantiate(m_floorManager);
-        man.setFloor(m_currentLevel);
     }
 
     void OnDestroy()
@@ -53,8 +51,8 @@ public class GameManager : MonoBehaviour
         yield return null;
         print("level loading started");
 
-        //generate floor with m_levelInfos[m_currentLevel]
-        // m_floorManager.InitFloor(m_floorInfos[m_currentLevel]);
+        var man = Instantiate(m_floorManager);
+        man.Floor = m_currentLevel;
         m_TitleScreen.SetActive(false);
 
         yield return new WaitForSeconds(0.25f);

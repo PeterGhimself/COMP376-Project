@@ -80,26 +80,44 @@ public class FloorManager : MonoBehaviour
         incomplete.Enqueue(temp);
         GenerateMap();
         GenerateBossAndItemRoom();
-        // PrintMap();
         InstantiateRooms();
+        PrintMap();
     }
 
     private void InstantiateRooms()
     {
         float height = Camera.main.orthographicSize * 2;
         float width = height * Screen.width / Screen.height;
+        bool spawn = true;
         foreach (var room in done)
         {
-            var created = Instantiate(rooms[room.GETRoomType(_map)],
-                new Vector3((room.X - 5) * width, (room.Y - 5) * height), Quaternion.identity);
-            //done after rooms awake**
+            GameObject created;
+            if (_map[room.Y, room.X] == 666 || _map[room.Y, room.X] == 420)
+            {
+                created = Instantiate(rooms[0],
+                    new Vector3((room.X - 5) * width, (room.Y - 5) * height), Quaternion.identity);
+            }
+            else
+            {
+                created = Instantiate(rooms[room.GETRoomType(_map)],
+                    new Vector3((room.X - 5) * width, (room.Y - 5) * height), Quaternion.identity);
+                created.GetComponent<RoomManager>().Floor = floor;
+                if (spawn)
+                {
+                    spawn = !spawn;
+                    created.GetComponent<RoomManager>().Spawnpoint = true;
+                }
+
+            }
+        
             created.transform.localScale = new Vector3(width / 10, height / 10);
         }
     }
 
-    public void setFloor(int num)
+    public int Floor
     {
-        floor = num;
+        get => floor;
+        set => floor = value;
     }
 
     private void GenerateBossAndItemRoom()
@@ -214,8 +232,7 @@ public class FloorManager : MonoBehaviour
     {
         int totalRooms = _roomBank;
         RoomSpot currentRoom = incomplete.Dequeue();
-        Debug.Log(totalRooms);
-        int[] alot = {2, 2, 3, 3, 3, 3, 3, 3, 4, 4, 4};
+        int[] alot = {2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4};
         int[] middle = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 3};
         int[] low = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2};
 
@@ -365,7 +382,7 @@ public class FloorManager : MonoBehaviour
     {
         string stringRow;
         bool triggerd;
-        for (int row = 0; row < 12; row++)
+        for (int row = 11; row >= 0; row--)
         {
             stringRow = "";
             triggerd = false;

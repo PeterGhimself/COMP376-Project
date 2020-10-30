@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2047567727816361035}
   - component: {fileID: 5156500922010050231}
-  - component: {fileID: -6868395546522447531}
   m_Layer: 0
   m_Name: Floor
   m_TagString: Untagged
@@ -62,34 +61,3 @@ MonoBehaviour:
   - {fileID: 703223728055519080, guid: 385bd30f9ffb341508d57b88361b026a, type: 3}
   - {fileID: 7090660974733678037, guid: 927face8900254976ad8af93d3b96128, type: 3}
   - {fileID: 1273163722556531729, guid: ee4ee94dcf6c64233988e1cc1bf38ded, type: 3}
---- !u!114 &-6868395546522447531
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 389451132584759824}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8c400ba0f9614aaeb376031ca71237b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  columns: 6
-  rows: 6
-  obstacles:
-    maximum: 15
-    minimum: 5
-  enemies:
-    maximum: 3
-    minimum: 1
-  obstacleTiles:
-  - {fileID: 4255579195582350171, guid: 17fc105afc09a4924bbbe298bf8bda62, type: 3}
-  doorTile: {fileID: 5669132446526904921, guid: bdbf85c223a5d460f97177d3e35e16ed,
-    type: 3}
-  floorTiles:
-  - {fileID: 7696479844224944668, guid: a30aa5e14878241eda6c7bafeb920ff3, type: 3}
-  - {fileID: 1645888954612320925, guid: 797eb1cecc5e946d9a13807886b0643b, type: 3}
-  enemyTiles:
-  - {fileID: 139926042088861688, guid: c7449b4cfaac843678f6000de1046e7e, type: 3}
-  - {fileID: 2143974449275460686, guid: 2551b08addf474379a3c76d52ea99ac4, type: 3}
-  outerWallTiles: []
