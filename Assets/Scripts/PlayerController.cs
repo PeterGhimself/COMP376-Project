@@ -2,10 +2,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+
+    [Header("References")]
     [SerializeField] private float m_walkSpeed = 1f;
+    [SerializeField] private Image m_healthBar = default;
+
+    [Header("Player Attributes")]
+    [SerializeField] private float m_maxHealth = 5f;
+    [SerializeField] private float m_currentHealth = 5f;
 
     private Rigidbody2D m_rigidbody = default;
     private Animator m_animator = default;
@@ -25,6 +33,17 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         UpdateCharacterStates();
+        UpdatePlayerUI();
+    }
+
+    public void DamagePlayer(float damage)
+    {
+        m_currentHealth -= damage;
+    }
+
+    private void UpdatePlayerUI()
+    {
+        m_healthBar.fillAmount = m_currentHealth / m_maxHealth;
     }
 
     private void UpdateCharacterStates()
