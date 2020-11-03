@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] LoadingScreen m_loadingScreen = default;
     [SerializeField] GameObject m_TitleScreen = default;
     [SerializeField] FloorManager m_floorManager = default;
-    [SerializeField] int m_currentLevel = 0;
+    [SerializeField] int m_currentLevel = 1;
     [SerializeField] FloorInfo[] m_floorInfos = default;
 
     private UnityEvent m_onLevelComplete;
