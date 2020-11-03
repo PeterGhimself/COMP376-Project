@@ -19,9 +19,8 @@ public class RoomManager : MonoBehaviour
         }
     }
 
-    public int columns = 7;
-    public int rows = 7;
-
+    public int columns = 6;
+    public int rows = 6;
     public Count obstacles = new Count(5, 15);
     public Count enemies = new Count(1, 3);
 
@@ -29,16 +28,34 @@ public class RoomManager : MonoBehaviour
     public GameObject doorTile;
     public GameObject[] floorTiles;
     public GameObject[] enemyTiles;
-    public GameObject[] outerWallTiles;
-
+    private int floor;
     private Transform roomHolder;
+
+    private bool spawnpoint = false;
+
+    public bool Spawnpoint
+    {
+        get => spawnpoint;
+        set => spawnpoint = value;
+    }
 
     private List<Vector3> gridPosition = new List<Vector3>();
 
+    private void Awake()
+    {
+        // Debug.Log(transform.parent.parent);
+        floor = 1;
+        SetupRoom(floor);
+    }
 
     // Start is called before the first frame update
     void Start()
     {
+        if (!spawnpoint)
+        {
+            PlaceObjectAtRandom(obstacleTiles, obstacles.minimum, obstacles.maximum);
+            PlaceObjectAtRandom(enemyTiles, enemies.minimum * floor, enemies.maximum * floor);
+        }
     }
 
     // Update is called once per frame
@@ -49,42 +66,30 @@ public class RoomManager : MonoBehaviour
     void InitializeList()
     {
         gridPosition.Clear();
-        for (int i = 1; i <= rows - 1; i++)
+        for (int i = -3; i <= 3; i++)
         {
-            for (int j = 1; j <= columns - 1; j++)
+            for (int j = -3; j <= 3; j++)
             {
                 gridPosition.Add(new Vector3(i, j, 0f));
             }
         }
     }
+    public int Floor
+    {
+        get => floor;
+        set => floor = value;
+    }
 
     void RoomSetup()
     {
         roomHolder = new GameObject("Room").transform;
-        for (int i = -1; i <= rows + 1; i++)
+        for (int i = -4; i <= 4; i++)
         {
-            for (int j = -1; j <= columns + 1; j++)
+            for (int j = -4; j <= 4; j++)
             {
-                GameObject toInstantiate;
-                if (i == -1 || i == rows+1 || j == -1 || j == columns+1)
-                {
-                    if (j == columns/2 || i ==  rows/2  )
-                    {
-                        toInstantiate = doorTile;
-                    }
-                    else
-                    {
-                        toInstantiate = outerWallTiles[Random.Range(0, outerWallTiles.Length)];
-                    }
-                }
-                else
-                {
-                    toInstantiate = floorTiles[Random.Range(0, floorTiles.Length)];
-                }
-
-                GameObject instance =
-                    Instantiate(toInstantiate, new Vector3(i, j, 0f), Quaternion.identity) as GameObject;
-                instance.transform.SetParent(roomHolder);
+                var toInstantiate = floorTiles[Random.Range(0, floorTiles.Length)];
+                var instance = Instantiate(toInstantiate, gameObject.transform, true);
+                instance.transform.localPosition = new Vector3(i, j, 0f);
             }
         }
     }
@@ -104,15 +109,14 @@ public class RoomManager : MonoBehaviour
         {
             Vector3 position = RandomPosition();
             GameObject placing = placingArray[Random.Range(0, placingArray.Length)];
-            Instantiate(placing, position, Quaternion.identity);
+            var flr = Instantiate(placing, gameObject.transform, true);
+            flr.transform.localPosition = position;
         }
     }
 
-    public void SetupRoom(int roomNumber, int difficulty)
+    public void SetupRoom(int difficulty)
     {
         RoomSetup();
         InitializeList();
-        PlaceObjectAtRandom(obstacleTiles, obstacles.minimum, obstacles.maximum);
-        PlaceObjectAtRandom(enemyTiles, enemies.minimum * difficulty, enemies.maximum * difficulty);
     }
 }
