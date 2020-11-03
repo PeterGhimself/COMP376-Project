@@ -518,7 +518,7 @@ MonoBehaviour:
   m_TitleScreen: {fileID: 770954960}
   m_floorManager: {fileID: 5156500922010050231, guid: 3b21d98f3dca945b797a9838e3eb651e,
     type: 3}
-  m_currentLevel: 0
+  m_currentLevel: 1
   m_floorInfos:
   - Room: 1
     Floor: 6
