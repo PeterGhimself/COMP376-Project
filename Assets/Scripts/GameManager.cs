@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] LoadingScreen m_loadingScreen = default;
     [SerializeField] GameObject m_TitleScreen = default;
     [SerializeField] FloorManager m_floorManager = default;
-    [SerializeField] int m_currentLevel = 0;
+    [SerializeField] int m_currentLevel = 1;
     [SerializeField] FloorInfo[] m_floorInfos = default;
 
     private UnityEvent m_onLevelComplete;
@@ -29,8 +29,12 @@ public class GameManager : MonoBehaviour
         m_onLevelComplete.AddListener(LevelComplete);
         m_onRestartLevel = new UnityEvent();
         m_onRestartLevel.AddListener(RestartLevel);
-
         //Todo: send events to floor manager (or something) so they can be called when dying or finishing level
+    }
+
+    void Start()
+    {
+        // LoadFirstLevel(); //should be moved to be called by the play button in the main menu
     }
 
     void OnDestroy()
@@ -47,8 +51,8 @@ public class GameManager : MonoBehaviour
         yield return null;
         print("level loading started");
 
-        //generate floor with m_levelInfos[m_currentLevel]
-        m_floorManager.InitFloor(m_floorInfos[m_currentLevel]);
+        var man = Instantiate(m_floorManager);
+        man.Floor = m_currentLevel;
         m_TitleScreen.SetActive(false);
 
         yield return new WaitForSeconds(0.25f);
