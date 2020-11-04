@@ -17,7 +17,8 @@ public class CSEOwl : MonoBehaviour
     private float directionTimer; // holds timer before changing direction
 
     private Vector3 playerPosition;
-
+    private RoomManager _mRoomManager;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +27,7 @@ public class CSEOwl : MonoBehaviour
         projectileSpeed = 60f;
 
         owlRigidBody = GetComponent<Rigidbody2D>();
+        _mRoomManager = gameObject.transform.parent.GetComponent<RoomManager>();
         player = GameObject.FindWithTag("Player");
         moving = false;
         directionTimer = 3f;
@@ -38,42 +40,45 @@ public class CSEOwl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // rotate towards player
-        Vector3 relativePos = player.transform.position - transform.position;
-        Quaternion rotation = Quaternion.LookRotation(relativePos);
-        rotation.x = transform.rotation.x;
-        rotation.y = transform.rotation.y;
-        transform.rotation = rotation;
-
-        directionTimer -= Time.deltaTime;
-
-        if (moving == false)
+        if (_mRoomManager.currentRoom)
         {
-            playerPosition = player.transform.position; // store player's current position
-            // head towards that position
-            if (player.transform.position.x >= transform.position.x)
+            // rotate towards player
+            Vector3 relativePos = player.transform.position - transform.position;
+            Quaternion rotation = Quaternion.LookRotation(relativePos);
+            rotation.x = transform.rotation.x;
+            rotation.y = transform.rotation.y;
+            transform.rotation = rotation;
+
+            directionTimer -= Time.deltaTime;
+
+            if (moving == false)
             {
-                gameObject.GetComponent<Rigidbody2D>().AddForce(transform.right * moveSpeed);
+                playerPosition = player.transform.position; // store player's current position
+                // head towards that position
+                if (player.transform.position.x >= transform.position.x)
+                {
+                    gameObject.GetComponent<Rigidbody2D>().AddForce(transform.right * moveSpeed);
+                }
+                else
+                {
+                    gameObject.GetComponent<Rigidbody2D>().AddForce(-transform.right * moveSpeed);
+                }
+
+                moving = true; // change state to moving
             }
-            else
+
+            if (directionTimer < 0 && moving)
             {
-                gameObject.GetComponent<Rigidbody2D>().AddForce(-transform.right * moveSpeed);
+                // nullify the current forces
+                owlRigidBody.velocity = Vector2.zero;
+                owlRigidBody.angularVelocity = 0;
+
+                explodeProjectiles();
+
+                directionTimer = Random.Range(2, 5); // generate a random idleTimer for the next
+
+                moving = false;
             }
-
-            moving = true; // change state to moving
-        }
-
-        if (directionTimer < 0 && moving)
-        {
-            // nullify the current forces
-            owlRigidBody.velocity = Vector2.zero;
-            owlRigidBody.angularVelocity = 0;
-
-            explodeProjectiles();
-
-            directionTimer = Random.Range(2, 5); // generate a random idleTimer for the next
-
-            moving = false;
         }
     }
 
