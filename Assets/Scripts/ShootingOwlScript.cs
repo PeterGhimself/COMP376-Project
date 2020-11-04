@@ -19,6 +19,7 @@ public class ShootingOwlScript : MonoBehaviour
     private float directionTimer; // holds timer before changing direction
     private float shootTimer;
 
+    private RoomManager _mRoomManager;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +31,7 @@ public class ShootingOwlScript : MonoBehaviour
         originalShootTimer = 1f;
 
         owlRigidBody = GetComponent<Rigidbody2D>();
+        _mRoomManager = gameObject.transform.parent.GetComponent<RoomManager>();
         player = GameObject.FindWithTag("Player");
 
         directionTimer = 0f;
@@ -43,37 +45,42 @@ public class ShootingOwlScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // rotate the enemy towards the player
-        Vector3 relativePos = player.transform.position - transform.position;
-        Quaternion rotation = Quaternion.LookRotation(relativePos);
-        rotation.x = transform.rotation.x;
-        rotation.y = transform.rotation.y;
-        transform.rotation = rotation;
-
-        directionTimer -= Time.deltaTime;
-
-        // if directionTimer runs out, call applyRandomDirection() and reset direction timer;
-        if (directionTimer < 0)
+        if (_mRoomManager.currentRoom)
         {
-            applyRandomDirection();
-            directionTimer = originalDirectionTimer;
-        }
+            // rotate the enemy towards the player
+            Vector3 relativePos = player.transform.position - transform.position;
+            Quaternion rotation = Quaternion.LookRotation(relativePos);
+            rotation.x = transform.rotation.x;
+            rotation.y = transform.rotation.y;
+            transform.rotation = rotation;
 
-        shootTimer -= Time.deltaTime;
-        
-        // if shootTimer runs out, shoot a projectile towards the player
-        if(shootTimer < 0)
-        {
-            GameObject bullet = Instantiate(projectilePrefab, transform.position, Quaternion.identity) as GameObject;
-            if(player.transform.position.x >= transform.position.x)
+            directionTimer -= Time.deltaTime;
+
+            // if directionTimer runs out, call applyRandomDirection() and reset direction timer;
+            if (directionTimer < 0)
             {
-                bullet.GetComponent<Rigidbody2D>().AddForce(transform.right * projectileSpeed);
+                applyRandomDirection();
+                directionTimer = originalDirectionTimer;
             }
-            else
+
+            shootTimer -= Time.deltaTime;
+
+            // if shootTimer runs out, shoot a projectile towards the player
+            if (shootTimer < 0)
             {
-                bullet.GetComponent<Rigidbody2D>().AddForce(-transform.right * projectileSpeed);
+                GameObject bullet =
+                    Instantiate(projectilePrefab, transform.position, Quaternion.identity) as GameObject;
+                if (player.transform.position.x >= transform.position.x)
+                {
+                    bullet.GetComponent<Rigidbody2D>().AddForce(transform.right * projectileSpeed);
+                }
+                else
+                {
+                    bullet.GetComponent<Rigidbody2D>().AddForce(-transform.right * projectileSpeed);
+                }
+
+                shootTimer = originalShootTimer;
             }
-            shootTimer = originalShootTimer;
         }
     }
 

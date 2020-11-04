@@ -14,6 +14,7 @@ public class SpikeyOwlAI : MonoBehaviour
 
     private float directionTimer; // holds timer before changing direction
 
+    private RoomManager _mRoomManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +23,8 @@ public class SpikeyOwlAI : MonoBehaviour
         originalDirectionTimer = 1f;
 
         owlRigidBody = GetComponent<Rigidbody2D>();
+        _mRoomManager = gameObject.transform.parent.GetComponent<RoomManager>();
+
         player = GameObject.FindWithTag("Player");
 
         directionTimer = 0f;
@@ -34,32 +37,37 @@ public class SpikeyOwlAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // rotate the enemy towards player
-        Vector3 relativePos = player.transform.position - transform.position;
-        Quaternion rotation = Quaternion.LookRotation(relativePos);
-        rotation.x = transform.rotation.x;
-        rotation.y = transform.rotation.y;
-        transform.rotation = rotation;
-
-        directionTimer -= Time.deltaTime;
-
-        // charge towards player location after the direction timer runs out
-        if (directionTimer < 0)
+        if (_mRoomManager.currentRoom)
         {
-            // nullify previous forces
-            owlRigidBody.velocity = Vector2.zero;
-            owlRigidBody.angularVelocity = 0;
 
-            // apply new force towards player
-            if (player.transform.position.x >= transform.position.x)
+            // rotate the enemy towards player
+            Vector3 relativePos = player.transform.position - transform.position;
+            Quaternion rotation = Quaternion.LookRotation(relativePos);
+            rotation.x = transform.rotation.x;
+            rotation.y = transform.rotation.y;
+            transform.rotation = rotation;
+
+            directionTimer -= Time.deltaTime;
+
+            // charge towards player location after the direction timer runs out
+            if (directionTimer < 0)
             {
-                gameObject.GetComponent<Rigidbody2D>().AddForce(transform.right * moveSpeed);
+                // nullify previous forces
+                owlRigidBody.velocity = Vector2.zero;
+                owlRigidBody.angularVelocity = 0;
+
+                // apply new force towards player
+                if (player.transform.position.x >= transform.position.x)
+                {
+                    gameObject.GetComponent<Rigidbody2D>().AddForce(transform.right * moveSpeed);
+                }
+                else
+                {
+                    gameObject.GetComponent<Rigidbody2D>().AddForce(-transform.right * moveSpeed);
+                }
+
+                directionTimer = originalDirectionTimer;
             }
-            else
-            {
-                gameObject.GetComponent<Rigidbody2D>().AddForce(-transform.right * moveSpeed);
-            }
-            directionTimer = originalDirectionTimer;
         }
     }
 
