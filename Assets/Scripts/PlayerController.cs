@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float m_walkSpeed = 1f;
+    [SerializeField] private float m_walkSpeed = 1f; // why won't this increase the speed for the penguino?
 
     private Rigidbody2D m_rigidbody = default;
     private Animator m_animator = default;
