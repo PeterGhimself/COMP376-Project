@@ -24,13 +24,19 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float m_maxHealth = 5f;
     [SerializeField] private float m_currentHealth = 5f;
     [SerializeField] private float m_walkSpeed = 1f;
+    [SerializeField] private float m_dashForce = 5f;
+    [SerializeField] private float m_dashCooldown = 2f;
+    [SerializeField] private float m_dashInvincibilityTime = 0.5f;
     [SerializeField] private float m_invincibilityCooldown = 0.5f;
 
     private Rigidbody2D m_rigidbody = default;
     private Animator m_animator = default;
     private PlayerWeapon m_weapon = default;
-    private float invincibilityTime = 1;
+    private float invincibilityTime = 0;
     private float attackCooldownTime = 0;
+    private float dashCooldownTime = 0;
+    private bool dashInvincible = false;
+    private float dashInvincibleTime = 0.5f;
     private UnityEvent restartEvent = default;
 
     //Animation const strings
@@ -45,7 +51,6 @@ public class PlayerController : MonoBehaviour
     public void Initialize(Weapon choice, UnityEvent restart)
     {
         m_chosenWeapon = choice;
-        m_weapons[(int)choice].gameObject.SetActive(true);
         m_weapon = m_weapons[(int)choice];
         m_rigidbody = GetComponent<Rigidbody2D>();
         m_animator = GetComponent<Animator>();
@@ -78,19 +83,47 @@ public class PlayerController : MonoBehaviour
 
         if (attackCooldownTime > 0)
             attackCooldownTime -= Time.deltaTime;
+
+        if (dashCooldownTime > 0)
+            dashCooldownTime -= Time.deltaTime;
+
+
+        if (dashInvincibleTime > 0)
+            dashInvincibleTime -= Time.deltaTime;
     }
 
     private void Walk()
     {
         Vector2 walkVector = new Vector2(Input.GetAxisRaw(k_horizontalAxis), Input.GetAxisRaw(k_verticalAxis));
-        float horizontalSpeed = Input.GetAxisRaw("Horizontal");
 
-        if (walkVector.magnitude > 1)
+        if (Mathf.Abs(walkVector.magnitude) > 1)
+        {
             walkVector = walkVector.normalized;
+        }
+
+        if(dashInvincibleTime < 0)
+        {
+            dashInvincible = false;
+        }
+
+        if (Mathf.Abs(walkVector.magnitude) > 0)
+        {
+            if (Input.GetButtonDown("Dash") && dashCooldownTime <= 0)
+            {
+                dashInvincible = true;
+                dashInvincibleTime = m_dashInvincibilityTime;
+                dashCooldownTime = m_dashCooldown;
+                m_rigidbody.AddForce(walkVector * m_dashForce, ForceMode2D.Impulse);
+            }
+        }
 
         transform.Translate(walkVector * m_walkSpeed * Time.deltaTime);
-        
+
+        float horizontalSpeed = walkVector.x;
+        float verticalSpeed = walkVector.y;
+
         m_animator.SetFloat("HorizontalSpeed", Mathf.Abs(horizontalSpeed));
+        m_animator.SetFloat("VerticalSpeed", Mathf.Abs(verticalSpeed));
 
         Vector3 theScale = transform.localScale;
         if (horizontalSpeed < 0) {
@@ -112,11 +145,8 @@ public class PlayerController : MonoBehaviour
     {
         if (attackCooldownTime > 0)
         {
-            m_weapon.gameObject.SetActive(true);
             return;
         }
-
-        m_weapon.gameObject.SetActive(false);
 
         if (Input.GetButton(k_fireButton))
         {
@@ -135,7 +165,7 @@ public class PlayerController : MonoBehaviour
 
     public void DamagePlayer(float damage)
     {
-        if (invincibilityTime > 0)
+        if (invincibilityTime > 0 || dashInvincible)
             return;
 
         invincibilityTime = m_invincibilityCooldown;
