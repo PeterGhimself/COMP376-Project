@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StationaryOwlAI : MonoBehaviour
+public class StationaryOwlAI : Owl
 {
+    [Header("StationaryOwl")]
     // customizable variables
-    public float hitPoints;
     public float range;
     public float visionAngle;
     public float rotationSpeed;

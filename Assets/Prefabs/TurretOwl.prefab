@@ -150,6 +150,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitPoints: 0
+  moveSpeed: 0
+  touchDamage: 1
   range: -3.09
   visionAngle: 0
   rotationSpeed: 0

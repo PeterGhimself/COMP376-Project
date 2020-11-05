@@ -2,20 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShootingOwlScript : MonoBehaviour
+public class ShootingOwlScript : Owl
 {
+    [Header("ShootingOwl")]
     public GameObject projectilePrefab;
 
     // atomic parameters
-    public float hitPoints;
+
     public float projectileDamage;
     public float projectileSpeed;
-    public float moveSpeed;
+
     public float originalDirectionTimer; // change direction rate (set in seconds)
     public float originalShootTimer; // shoot rate (set in seconds)
 
     private Rigidbody2D owlRigidBody;
-    private GameObject player;
 
     private float directionTimer; // holds timer before changing direction
     private float shootTimer;
@@ -24,11 +24,6 @@ public class ShootingOwlScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        hitPoints = 10f;
-        projectileDamage = 5f;
-        projectileSpeed = 60f;
-        moveSpeed = 0.5f;
-
         originalDirectionTimer = 2f;
         originalShootTimer = 1f;
 

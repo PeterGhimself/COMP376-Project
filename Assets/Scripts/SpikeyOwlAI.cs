@@ -2,26 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpikeyOwlAI : MonoBehaviour
+public class SpikeyOwlAI : Owl
 {
+    [Header("SpikeyOwl")]
     // atomic parameters
-    public float hitPoints;
-    public float moveSpeed;
-    public float touchDamage;
-
     public float originalDirectionTimer;
 
     private Rigidbody2D owlRigidBody;
-    private GameObject player;
 
     private float directionTimer; // holds timer before changing direction
 
     // Start is called before the first frame update
     void Start()
     {
-        hitPoints = 10f;
-        moveSpeed = 25f;
-        touchDamage = 5f;
         originalDirectionTimer = 1f;
 
         owlRigidBody = GetComponent<Rigidbody2D>();

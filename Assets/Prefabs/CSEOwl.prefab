@@ -197,8 +197,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23a6e8fb91632214e92b4f4babdac701, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitPoints: 10
+  moveSpeed: 25
+  touchDamage: 1
   projectilePrefab: {fileID: 1457095803886979826, guid: 6fb41aedf16ac12499f50f3d0a2c223f,
     type: 3}
-  hitPoints: 0
-  moveSpeed: 0
-  projectileSpeed: 0
+  projectileDamage: 1
+  projectileSpeed: 60

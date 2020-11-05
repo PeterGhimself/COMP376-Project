@@ -2,17 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CSEOwl : MonoBehaviour
+public class CSEOwl : Owl
 {
+    [Header("StationaryOwl")]
     public GameObject projectilePrefab;
 
     // atomic parameters
-    public float hitPoints;
-    public float moveSpeed;
     public float projectileDamage;
     public float projectileSpeed;
     private Rigidbody2D owlRigidBody;
-    private GameObject player;
     private bool moving;
     private float directionTimer; // holds timer before changing direction
 
@@ -21,11 +19,6 @@ public class CSEOwl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        hitPoints = 10f;
-        moveSpeed = 25f;
-        projectileDamage = 5f;
-        projectileSpeed = 60f;
-
         owlRigidBody = GetComponent<Rigidbody2D>();
         player = GameObject.FindWithTag("Player");
         moving = false;
