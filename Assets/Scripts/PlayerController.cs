@@ -83,11 +83,29 @@ public class PlayerController : MonoBehaviour
     private void Walk()
     {
         Vector2 walkVector = new Vector2(Input.GetAxisRaw(k_horizontalAxis), Input.GetAxisRaw(k_verticalAxis));
+        float horizontalSpeed = Input.GetAxisRaw("Horizontal");
 
         if (walkVector.magnitude > 1)
             walkVector = walkVector.normalized;
 
         transform.Translate(walkVector * m_walkSpeed * Time.deltaTime);
+        
+        m_animator.SetFloat("Speed", Mathf.Abs(horizontalSpeed));
+
+        Vector3 theScale = transform.localScale;
+        if (horizontalSpeed < 0) {
+		    // Multiply the player's x local scale by -1.
+            if (theScale.x > 0) {  // only rotate if necessary
+		        theScale.x *= -1;
+		        transform.localScale = theScale;
+            }
+        } else if (horizontalSpeed > 0) {
+            // Multiply the player's x local scale by -1.
+            if (theScale.x < 0) { // only rotate if necessary
+		        theScale.x *= -1;
+		        transform.localScale = theScale;
+            }
+        }
     }
 
     private void Attack()
