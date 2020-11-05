@@ -156,9 +156,12 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 512
+  laserDamage: 1
   range: -3.09
-  visionAngle: 0
-  rotationSpeed: 0
+  visionAngle: 45
+  rotationSpeed: 5
+  chargeTime: 1
+  laserCooldown: 1
   aimPoint: {fileID: 2744502992597470707}
 --- !u!120 &2744502993293896198
 LineRenderer:
