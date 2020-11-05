@@ -89,7 +89,6 @@ MonoBehaviour:
     minimum: 1
   obstacleTiles:
   - {fileID: 5929865147131231399, guid: 4538e7638fe114616820ee581a0c006d, type: 3}
-  - {fileID: 4255579195582350171, guid: 17fc105afc09a4924bbbe298bf8bda62, type: 3}
   doorTile: {fileID: 5669132446526904921, guid: bdbf85c223a5d460f97177d3e35e16ed,
     type: 3}
   floorTiles:

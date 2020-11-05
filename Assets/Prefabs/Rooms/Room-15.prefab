@@ -727,8 +727,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   columns: 6
   rows: 6
-  screen_height: 0
-  screen_width: 0
   obstacles:
     maximum: 10
     minimum: 2
@@ -746,8 +744,6 @@ MonoBehaviour:
   enemyTiles:
   - {fileID: 2143974449275460686, guid: 2551b08addf474379a3c76d52ea99ac4, type: 3}
   - {fileID: 139926042088861688, guid: c7449b4cfaac843678f6000de1046e7e, type: 3}
-  outerWallTiles:
-  - {fileID: 3990367613507956551, guid: 1183c4afc95424ffab6d8eeabea5f2bb, type: 3}
 --- !u!1 &1752845713393513500
 GameObject:
   m_ObjectHideFlags: 0
