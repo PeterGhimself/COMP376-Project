@@ -28,6 +28,16 @@ PrefabInstance:
       propertyPath: m_Color.b
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 241040264177624692, guid: 1183c4afc95424ffab6d8eeabea5f2bb,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 702029219
+      objectReference: {fileID: 0}
+    - target: {fileID: 241040264177624692, guid: 1183c4afc95424ffab6d8eeabea5f2bb,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 849075581395863606, guid: 1183c4afc95424ffab6d8eeabea5f2bb,
         type: 3}
       propertyPath: m_Offset.y

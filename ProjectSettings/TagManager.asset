@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Enemy
   - Door
+  - SpawnPoint
+  - Rooms
   layers:
   - Default
   - TransparentFX
@@ -16,9 +18,9 @@ TagManager:
   - 
   - 
   - Contact
-  - 
-  - 
-  - 
+  - Player
+  - Enemy
+  - Projectile
   - 
   - 
   - 
@@ -45,4 +47,7 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Foreground
+    uniqueID: 702029219
     locked: 0
