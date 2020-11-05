@@ -8,6 +8,7 @@ public class ShootingOwlScript : MonoBehaviour
 
     // atomic parameters
     public float hitPoints;
+    public float projectileDamage;
     public float projectileSpeed;
     public float moveSpeed;
     public float originalDirectionTimer; // change direction rate (set in seconds)
@@ -24,8 +25,10 @@ public class ShootingOwlScript : MonoBehaviour
     void Start()
     {
         hitPoints = 10f;
+        projectileDamage = 5f;
         projectileSpeed = 60f;
         moveSpeed = 0.5f;
+
         originalDirectionTimer = 2f;
         originalShootTimer = 1f;
 
@@ -43,13 +46,6 @@ public class ShootingOwlScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // rotate the enemy towards the player
-        Vector3 relativePos = player.transform.position - transform.position;
-        Quaternion rotation = Quaternion.LookRotation(relativePos);
-        rotation.x = transform.rotation.x;
-        rotation.y = transform.rotation.y;
-        transform.rotation = rotation;
-
         directionTimer -= Time.deltaTime;
 
         // if directionTimer runs out, call applyRandomDirection() and reset direction timer;
@@ -65,14 +61,10 @@ public class ShootingOwlScript : MonoBehaviour
         if(shootTimer < 0)
         {
             GameObject bullet = Instantiate(projectilePrefab, transform.position, Quaternion.identity) as GameObject;
-            if(player.transform.position.x >= transform.position.x)
-            {
-                bullet.GetComponent<Rigidbody2D>().AddForce(transform.right * projectileSpeed);
-            }
-            else
-            {
-                bullet.GetComponent<Rigidbody2D>().AddForce(-transform.right * projectileSpeed);
-            }
+            bullet.GetComponent<ProjectileScript>().damage = projectileDamage;
+
+            bullet.GetComponent<Rigidbody2D>().AddForce((player.transform.position - transform.position).normalized * projectileSpeed);
+
             shootTimer = originalShootTimer;
         }
     }

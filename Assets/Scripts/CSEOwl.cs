@@ -9,8 +9,8 @@ public class CSEOwl : MonoBehaviour
     // atomic parameters
     public float hitPoints;
     public float moveSpeed;
+    public float projectileDamage;
     public float projectileSpeed;
-
     private Rigidbody2D owlRigidBody;
     private GameObject player;
     private bool moving;
@@ -23,6 +23,7 @@ public class CSEOwl : MonoBehaviour
     {
         hitPoints = 10f;
         moveSpeed = 25f;
+        projectileDamage = 5f;
         projectileSpeed = 60f;
 
         owlRigidBody = GetComponent<Rigidbody2D>();
@@ -38,27 +39,14 @@ public class CSEOwl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // rotate towards player
-        Vector3 relativePos = player.transform.position - transform.position;
-        Quaternion rotation = Quaternion.LookRotation(relativePos);
-        rotation.x = transform.rotation.x;
-        rotation.y = transform.rotation.y;
-        transform.rotation = rotation;
-
         directionTimer -= Time.deltaTime;
 
         if (moving == false)
         {
             playerPosition = player.transform.position; // store player's current position
             // head towards that position
-            if (player.transform.position.x >= transform.position.x)
-            {
-                gameObject.GetComponent<Rigidbody2D>().AddForce(transform.right * moveSpeed);
-            }
-            else
-            {
-                gameObject.GetComponent<Rigidbody2D>().AddForce(-transform.right * moveSpeed);
-            }
+
+            gameObject.GetComponent<Rigidbody2D>().AddForce((player.transform.position - transform.position).normalized * moveSpeed);
 
             moving = true; // change state to moving
         }
@@ -100,6 +88,15 @@ public class CSEOwl : MonoBehaviour
         sixthProjectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(-1, -1).normalized * projectileSpeed);
         seventhProjectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, -1) * projectileSpeed);
         eighthProjectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(1, -1).normalized * projectileSpeed);
+
+        firstProjectile.GetComponent<ProjectileScript>().damage = projectileDamage;
+        secondProjectile.GetComponent<ProjectileScript>().damage = projectileDamage;
+        thirdProjectile.GetComponent<ProjectileScript>().damage = projectileDamage;
+        fourthProjectile.GetComponent<ProjectileScript>().damage = projectileDamage;
+        fifthProjectile.GetComponent<ProjectileScript>().damage = projectileDamage;
+        sixthProjectile.GetComponent<ProjectileScript>().damage = projectileDamage;
+        seventhProjectile.GetComponent<ProjectileScript>().damage = projectileDamage;
+        eighthProjectile.GetComponent<ProjectileScript>().damage = projectileDamage;
     }
 
 }

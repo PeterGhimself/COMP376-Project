@@ -7,6 +7,8 @@ public class SpikeyOwlAI : MonoBehaviour
     // atomic parameters
     public float hitPoints;
     public float moveSpeed;
+    public float touchDamage;
+
     public float originalDirectionTimer;
 
     private Rigidbody2D owlRigidBody;
@@ -19,6 +21,7 @@ public class SpikeyOwlAI : MonoBehaviour
     {
         hitPoints = 10f;
         moveSpeed = 25f;
+        touchDamage = 5f;
         originalDirectionTimer = 1f;
 
         owlRigidBody = GetComponent<Rigidbody2D>();
@@ -27,19 +30,13 @@ public class SpikeyOwlAI : MonoBehaviour
         directionTimer = 0f;
 
         Physics2D.IgnoreLayerCollision(10, 10); // removes collision between enemies
-        Physics2D.IgnoreLayerCollision(10, 11); // removes collision between enemies
-        Physics2D.IgnoreLayerCollision(11, 11); // removes collision between enemies and their projectiles
+        Physics2D.IgnoreLayerCollision(10, 11); // removes collision between enemies and their projectiles
+        Physics2D.IgnoreLayerCollision(11, 11); // removes collision between projectiles
     }
 
     // Update is called once per frame
     void Update()
     {
-        // rotate the enemy towards player
-        Vector3 relativePos = player.transform.position - transform.position;
-        Quaternion rotation = Quaternion.LookRotation(relativePos);
-        rotation.x = transform.rotation.x;
-        rotation.y = transform.rotation.y;
-        transform.rotation = rotation;
 
         directionTimer -= Time.deltaTime;
 
@@ -51,14 +48,9 @@ public class SpikeyOwlAI : MonoBehaviour
             owlRigidBody.angularVelocity = 0;
 
             // apply new force towards player
-            if (player.transform.position.x >= transform.position.x)
-            {
-                gameObject.GetComponent<Rigidbody2D>().AddForce(transform.right * moveSpeed);
-            }
-            else
-            {
-                gameObject.GetComponent<Rigidbody2D>().AddForce(-transform.right * moveSpeed);
-            }
+            gameObject.GetComponent<Rigidbody2D>().AddForce((player.transform.position - transform.position).normalized * moveSpeed);
+
+
             directionTimer = originalDirectionTimer;
         }
     }
