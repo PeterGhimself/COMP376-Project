@@ -9,25 +9,24 @@ public class CSEOwl : MonoBehaviour
     // atomic parameters
     public float hitPoints;
     public float moveSpeed;
+    public float projectileDamage;
     public float projectileSpeed;
-
     private Rigidbody2D owlRigidBody;
     private GameObject player;
     private bool moving;
     private float directionTimer; // holds timer before changing direction
 
     private Vector3 playerPosition;
-    private RoomManager _mRoomManager;
-    
+
     // Start is called before the first frame update
     void Start()
     {
         hitPoints = 10f;
         moveSpeed = 25f;
+        projectileDamage = 5f;
         projectileSpeed = 60f;
 
         owlRigidBody = GetComponent<Rigidbody2D>();
-        _mRoomManager = gameObject.transform.parent.GetComponent<RoomManager>();
         player = GameObject.FindWithTag("Player");
         moving = false;
         directionTimer = 3f;
@@ -40,45 +39,29 @@ public class CSEOwl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_mRoomManager.currentRoom)
+        directionTimer -= Time.deltaTime;
+
+        if (moving == false)
         {
-            // rotate towards player
-            Vector3 relativePos = player.transform.position - transform.position;
-            Quaternion rotation = Quaternion.LookRotation(relativePos);
-            rotation.x = transform.rotation.x;
-            rotation.y = transform.rotation.y;
-            transform.rotation = rotation;
+            playerPosition = player.transform.position; // store player's current position
+            // head towards that position
 
-            directionTimer -= Time.deltaTime;
+            gameObject.GetComponent<Rigidbody2D>().AddForce((player.transform.position - transform.position).normalized * moveSpeed);
 
-            if (moving == false)
-            {
-                playerPosition = player.transform.position; // store player's current position
-                // head towards that position
-                if (player.transform.position.x >= transform.position.x)
-                {
-                    gameObject.GetComponent<Rigidbody2D>().AddForce(transform.right * moveSpeed);
-                }
-                else
-                {
-                    gameObject.GetComponent<Rigidbody2D>().AddForce(-transform.right * moveSpeed);
-                }
+            moving = true; // change state to moving
+        }
 
-                moving = true; // change state to moving
-            }
+        if (directionTimer < 0 && moving)
+        {
+            // nullify the current forces
+            owlRigidBody.velocity = Vector2.zero;
+            owlRigidBody.angularVelocity = 0;
 
-            if (directionTimer < 0 && moving)
-            {
-                // nullify the current forces
-                owlRigidBody.velocity = Vector2.zero;
-                owlRigidBody.angularVelocity = 0;
+            explodeProjectiles();
 
-                explodeProjectiles();
+            directionTimer = Random.Range(2, 5); // generate a random idleTimer for the next
 
-                directionTimer = Random.Range(2, 5); // generate a random idleTimer for the next
-
-                moving = false;
-            }
+            moving = false;
         }
     }
 
@@ -105,6 +88,15 @@ public class CSEOwl : MonoBehaviour
         sixthProjectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(-1, -1).normalized * projectileSpeed);
         seventhProjectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, -1) * projectileSpeed);
         eighthProjectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(1, -1).normalized * projectileSpeed);
+
+        firstProjectile.GetComponent<ProjectileScript>().damage = projectileDamage;
+        secondProjectile.GetComponent<ProjectileScript>().damage = projectileDamage;
+        thirdProjectile.GetComponent<ProjectileScript>().damage = projectileDamage;
+        fourthProjectile.GetComponent<ProjectileScript>().damage = projectileDamage;
+        fifthProjectile.GetComponent<ProjectileScript>().damage = projectileDamage;
+        sixthProjectile.GetComponent<ProjectileScript>().damage = projectileDamage;
+        seventhProjectile.GetComponent<ProjectileScript>().damage = projectileDamage;
+        eighthProjectile.GetComponent<ProjectileScript>().damage = projectileDamage;
     }
 
 }
