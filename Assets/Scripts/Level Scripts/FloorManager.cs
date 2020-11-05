@@ -82,6 +82,8 @@ public class FloorManager : MonoBehaviour
         GenerateBossAndItemRoom();
         InstantiateRooms();
         // PrintMap();
+
+        Camera.main.GetComponent<MoveCameraScript>().SetDesiredPosition(0,0);
     }
 
     private void InstantiateRooms()
@@ -95,12 +97,12 @@ public class FloorManager : MonoBehaviour
             if (_map[room.Y, room.X] == 666 || _map[room.Y, room.X] == 420)
             {
                 created = Instantiate(rooms[0],
-                    new Vector3((room.X - 5) * width, (room.Y - 5) * height), Quaternion.identity);
+                    new Vector3((room.X - 5) * width, (room.Y - 5) * height), Quaternion.identity, transform);
             }
             else
             {
                 created = Instantiate(rooms[room.GETRoomType(_map)],
-                    new Vector3((room.X - 5) * width, (room.Y - 5) * height), Quaternion.identity);
+                    new Vector3((room.X - 5) * width, (room.Y - 5) * height), Quaternion.identity, transform);
                 created.GetComponent<RoomManager>().Floor = floor;
                 if (spawn)
                 {

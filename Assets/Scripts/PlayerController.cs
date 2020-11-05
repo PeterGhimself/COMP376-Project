@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour
 {
@@ -30,6 +31,7 @@ public class PlayerController : MonoBehaviour
     private PlayerWeapon m_weapon = default;
     private float invincibilityTime = 1;
     private float attackCooldownTime = 0;
+    private UnityEvent restartEvent = default;
 
     //Animation const strings
     private const string k_attackAnim = "Attack";
@@ -40,19 +42,16 @@ public class PlayerController : MonoBehaviour
     private const string k_horizontalAxis = "Horizontal";
     private const string k_verticalAxis = "Vertical";
 
-    private void Start()
-    {
-        //TODO move this to somewhere else
-        Initialize(Weapon.Dagger);
-    }
-
-    public void Initialize(Weapon choice)
+    public void Initialize(Weapon choice, UnityEvent restart)
     {
         m_chosenWeapon = choice;
         m_weapons[(int)choice].gameObject.SetActive(true);
         m_weapon = m_weapons[(int)choice];
         m_rigidbody = GetComponent<Rigidbody2D>();
         m_animator = GetComponent<Animator>();
+        restartEvent = restart;
+
+        m_currentHealth = m_maxHealth;
     }
 
 #region Updates
@@ -118,12 +117,16 @@ public class PlayerController : MonoBehaviour
 
     public void DamagePlayer(float damage)
     {
-        print("hit");
         if (invincibilityTime > 0)
             return;
 
         invincibilityTime = m_invincibilityCooldown;
         m_currentHealth -= damage;
+
+        if(m_currentHealth <= 0)
+        {
+            restartEvent?.Invoke();
+        }
     }
 
     void OnCollisionEnter2D(Collision2D collision)

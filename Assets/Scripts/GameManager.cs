@@ -13,14 +13,17 @@ public class FloorInfo
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] LoadingScreen m_loadingScreen = default;
-    [SerializeField] GameObject m_TitleScreen = default;
-    [SerializeField] FloorManager m_floorManager = default;
-    [SerializeField] int m_currentLevel = 1;
-    [SerializeField] FloorInfo[] m_floorInfos = default;
+    [SerializeField] private LoadingScreen m_loadingScreen = default;
+    [SerializeField] private GameObject m_TitleScreen = default;
+    [SerializeField] private FloorManager m_floorManager = default;
+    [SerializeField] private int m_currentLevel = 1;
+    [SerializeField] private FloorInfo[] m_floorInfos = default;
+    [SerializeField] private PlayerController m_player = default;
 
     private UnityEvent m_onLevelComplete;
     private UnityEvent m_onRestartLevel;
+    private FloorManager m_currentFloor = default;
+    private Vector2 m_playerInitPosition = Vector2.zero;
 
     private void Awake()
     {
@@ -51,9 +54,16 @@ public class GameManager : MonoBehaviour
         yield return null;
         print("level loading started");
 
-        var man = Instantiate(m_floorManager);
-        man.Floor = m_currentLevel;
+        if (m_currentFloor)
+            Destroy(m_currentFloor.gameObject);
+
+        m_currentFloor = Instantiate(m_floorManager);
+        m_currentFloor.Floor = m_currentLevel;
+
         m_TitleScreen.SetActive(false);
+        m_player.transform.position = m_playerInitPosition;
+        m_player.Initialize(PlayerController.Weapon.Dagger, m_onRestartLevel); //todo add weapon choice
+        m_player.gameObject.SetActive(true);
 
         yield return new WaitForSeconds(0.25f);
 

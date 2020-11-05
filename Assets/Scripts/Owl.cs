@@ -38,6 +38,7 @@ public class Owl : MonoBehaviour
     {
         if (playerLayer == (playerLayer | (1 << collision.gameObject.layer)))
         {
+            print(collision.gameObject.name);
             PlayerController playerCtrl = collision.gameObject.GetComponent<PlayerController>();
             if (playerCtrl)
             {

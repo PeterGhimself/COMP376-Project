@@ -9,11 +9,11 @@ public class PlayerWeapon : MonoBehaviour
     public float Cooldown;
     [SerializeField] private LayerMask m_owlLayers = default;
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnTriggerEnter2D(Collider2D collider)
     {
-        if (m_owlLayers == (m_owlLayers | (1 << collision.gameObject.layer)))
+        if (m_owlLayers == (m_owlLayers | (1 << collider.gameObject.layer)))
         {
-            Owl owl = collision.gameObject.GetComponent<Owl>();
+            Owl owl = collider.gameObject.GetComponent<Owl>();
             if (owl)
             {
                 owl.ApplyDamage(Damage);

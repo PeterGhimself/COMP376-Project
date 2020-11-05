@@ -198,7 +198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3887ae6e4cabd247bc9a979265d1cce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitPoints: 10
+  hitPoints: 3
   moveSpeed: 1
   touchDamage: 1
   playerLayer:
