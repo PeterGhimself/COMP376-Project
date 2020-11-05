@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 2744502993293896195}
   - component: {fileID: 2744502993293896198}
   - component: {fileID: 2744502993293896194}
+  - component: {fileID: 1587550693209976838}
   m_Layer: 10
   m_Name: TurretOwl
   m_TagString: Enemy
@@ -333,3 +334,22 @@ PolygonCollider2D:
       - {x: 1.645, y: -6.125}
       - {x: 1.675, y: -5.855}
       - {x: 1.135, y: -5.575}
+--- !u!95 &1587550693209976838
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2744502993293896220}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0d4f2c7aa8ef64077a69308cd23fb49d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

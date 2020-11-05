@@ -11,9 +11,26 @@ public class Owl : MonoBehaviour
 
     protected GameObject player = default;
 
+    private Animator animator = default;
+
+    private const string k_owlHitAnim = "OwlHit";
+
     private void Awake()
     {
         player = GameObject.FindWithTag("Player");
+        animator = GetComponent<Animator>();
+    }
+
+    public void ApplyDamage(float damage)
+    {
+        hitPoints -= damage;
+
+        if (hitPoints <= 0)
+        {
+            Destroy(gameObject);
+        }
+
+        animator.SetTrigger(k_owlHitAnim);
     }
 
     void OnCollisionEnter2D(Collision2D collision)

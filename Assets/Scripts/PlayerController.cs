@@ -6,11 +6,20 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    public enum Weapon
+    {
+        Dagger = 0,
+        Sword = 1,
+        Hammer = 2
+    }
+
     [Header("References")]
     [SerializeField] private Image m_healthBar = default;
     [SerializeField] private LayerMask m_enemyProjectiles = default;
+    [SerializeField] private PlayerWeapon[] m_weapons = default;
 
     [Header("Player Attributes")]
+    [SerializeField] private Weapon m_chosenWeapon = default;
     [SerializeField] private float m_maxHealth = 5f;
     [SerializeField] private float m_currentHealth = 5f;
     [SerializeField] private float m_walkSpeed = 1f;
@@ -18,7 +27,9 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D m_rigidbody = default;
     private Animator m_animator = default;
-    private float invicibilityTime = 1;
+    private PlayerWeapon m_weapon = default;
+    private float invincibilityTime = 1;
+    private float attackCooldownTime = 0;
 
     //Animation const strings
     private const string k_attackAnim = "Attack";
@@ -29,8 +40,17 @@ public class PlayerController : MonoBehaviour
     private const string k_horizontalAxis = "Horizontal";
     private const string k_verticalAxis = "Vertical";
 
-    void Start()
+    private void Start()
     {
+        //TODO move this to somewhere else
+        Initialize(Weapon.Dagger);
+    }
+
+    public void Initialize(Weapon choice)
+    {
+        m_chosenWeapon = choice;
+        m_weapons[(int)choice].gameObject.SetActive(true);
+        m_weapon = m_weapons[(int)choice];
         m_rigidbody = GetComponent<Rigidbody2D>();
         m_animator = GetComponent<Animator>();
     }
@@ -54,8 +74,11 @@ public class PlayerController : MonoBehaviour
         Walk();
         Attack();
 
-        if (invicibilityTime > 0)
-            invicibilityTime -= Time.deltaTime;
+        if (invincibilityTime > 0)
+            invincibilityTime -= Time.deltaTime;
+
+        if (attackCooldownTime > 0)
+            attackCooldownTime -= Time.deltaTime;
     }
 
     private void Walk()
@@ -70,27 +93,37 @@ public class PlayerController : MonoBehaviour
 
     private void Attack()
     {
+        if (attackCooldownTime > 0)
+        {
+            m_weapon.gameObject.SetActive(true);
+            return;
+        }
+
+        m_weapon.gameObject.SetActive(false);
+
         if (Input.GetButton(k_fireButton))
         {
             m_animator.SetTrigger(k_attackAnim);
+            attackCooldownTime = m_weapon.Cooldown;
+            //todo set swing speed
         }
     }
 
     private void UpdateAnimations()
     {
-        m_animator.SetBool(m_playerHitAnim, invicibilityTime > 0);
+        m_animator.SetBool(m_playerHitAnim, invincibilityTime > 0);
     }
 
 #endregion
 
     public void DamagePlayer(float damage)
     {
-        if (invicibilityTime > 0)
+        print("hit");
+        if (invincibilityTime > 0)
             return;
 
-        invicibilityTime = m_invincibilityCooldown;
+        invincibilityTime = m_invincibilityCooldown;
         m_currentHealth -= damage;
-        print(damage);
     }
 
     void OnCollisionEnter2D(Collision2D collision)
