@@ -61,7 +61,7 @@ Transform:
   m_GameObject: {fileID: 2744502993293896220}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.06406689, y: 0.06662822, z: 3.0457528}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 2744502992597470706}
   m_Father: {fileID: 0}
@@ -153,9 +153,12 @@ MonoBehaviour:
   hitPoints: 0
   moveSpeed: 0
   touchDamage: 1
+  laserDamage: 1
   range: -3.09
-  visionAngle: 0
-  rotationSpeed: 0
+  visionAngle: 45
+  rotationSpeed: 5
+  chargeTime: 1
+  laserCooldown: 1
   aimPoint: {fileID: 2744502992597470707}
 --- !u!120 &2744502993293896198
 LineRenderer:
