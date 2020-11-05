@@ -8,6 +8,7 @@ public class Owl : MonoBehaviour
     public float hitPoints;
     public float moveSpeed;
     public float touchDamage;
+    public LayerMask playerLayer;
 
     protected GameObject player = default;
 
@@ -35,7 +36,7 @@ public class Owl : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject == player)
+        if (playerLayer == (playerLayer | (1 << collision.gameObject.layer)))
         {
             PlayerController playerCtrl = collision.gameObject.GetComponent<PlayerController>();
             if (playerCtrl)

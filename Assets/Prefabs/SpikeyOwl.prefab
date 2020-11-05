@@ -201,6 +201,9 @@ MonoBehaviour:
   hitPoints: 10
   moveSpeed: 25
   touchDamage: 1
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 512
   originalDirectionTimer: 0
 --- !u!95 &-4985736390225924234
 Animator:

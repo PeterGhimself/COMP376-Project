@@ -153,6 +153,9 @@ MonoBehaviour:
   hitPoints: 0
   moveSpeed: 0
   touchDamage: 1
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 512
   range: -3.09
   visionAngle: 0
   rotationSpeed: 0
