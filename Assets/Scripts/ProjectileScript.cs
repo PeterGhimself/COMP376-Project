@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class ProjectileScript : MonoBehaviour
 {
+    public float damage;
+
     void Start()
     {
         Physics2D.IgnoreLayerCollision(14, 14); // projectiles ignore collision with each other
