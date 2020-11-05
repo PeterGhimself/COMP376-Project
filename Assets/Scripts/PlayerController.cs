@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
 
         transform.Translate(walkVector * m_walkSpeed * Time.deltaTime);
         
-        m_animator.SetFloat("Speed", Mathf.Abs(horizontalSpeed));
+        m_animator.SetFloat("HorizontalSpeed", Mathf.Abs(horizontalSpeed));
 
         Vector3 theScale = transform.localScale;
         if (horizontalSpeed < 0) {
