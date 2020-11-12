@@ -54,6 +54,12 @@ public class StationaryOwlAI : Owl
     // Update is called once per frame
     void Update()
     {
+        //If not in active room. don't do anything
+        if (!base.IsActive())
+        {
+            return;
+        }
+        
         if (!rotating && !chargingLaser)
         {
             //generate random angle based on the vision angle

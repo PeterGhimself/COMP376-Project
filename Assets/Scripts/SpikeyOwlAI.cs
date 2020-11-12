@@ -30,7 +30,12 @@ public class SpikeyOwlAI : Owl
     // Update is called once per frame
     void Update()
     {
-
+        //If not in active room. don't do anything
+        if (!base.IsActive())
+        {
+            return;
+        }
+        
         directionTimer -= Time.deltaTime;
 
         // charge towards player location after the direction timer runs out

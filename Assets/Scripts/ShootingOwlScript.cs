@@ -41,6 +41,12 @@ public class ShootingOwlScript : Owl
     // Update is called once per frame
     void Update()
     {
+        //If not in active room. don't do anything
+        if (!base.IsActive())
+        {
+            return;
+        }
+        
         directionTimer -= Time.deltaTime;
 
         // if directionTimer runs out, call applyRandomDirection() and reset direction timer;

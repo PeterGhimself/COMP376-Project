@@ -15,11 +15,14 @@ public class Owl : MonoBehaviour
     private Animator animator = default;
 
     private const string k_owlHitAnim = "OwlHit";
+    
+    private RoomManager _mRoomManager;
 
     private void Awake()
     {
         player = GameObject.FindWithTag("Player");
         animator = GetComponent<Animator>();
+        _mRoomManager = gameObject.transform.parent.GetComponent<RoomManager>();
     }
 
     public void ApplyDamage(float damage)
@@ -48,5 +51,10 @@ public class Owl : MonoBehaviour
                 Debug.LogError("No playercontroller script on " + player.name);
             }
         }
+    }
+
+    public bool IsActive()
+    {
+        return _mRoomManager.currentRoom;
     }
 }
