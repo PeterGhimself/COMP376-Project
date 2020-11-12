@@ -23,10 +23,7 @@ public class CSEOwl : Owl
         player = GameObject.FindWithTag("Player");
         moving = false;
         directionTimer = 3f;
-
-        Physics2D.IgnoreLayerCollision(10, 10); // removes collision between enemies
-        Physics2D.IgnoreLayerCollision(10, 11); // removes collision between enemies
-        Physics2D.IgnoreLayerCollision(11, 11); // removes collision between enemies and their projectiles
+        base.Start();
     }
 
     // Update is called once per frame

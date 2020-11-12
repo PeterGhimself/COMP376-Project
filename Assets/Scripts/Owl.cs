@@ -25,6 +25,13 @@ public class Owl : MonoBehaviour
         _mRoomManager = gameObject.transform.parent.GetComponent<RoomManager>();
     }
 
+    protected void Start()
+    {
+        Physics2D.IgnoreLayerCollision(10, 10); // removes collision between enemies
+        Physics2D.IgnoreLayerCollision(10, 11); // removes collision between enemies
+        Physics2D.IgnoreLayerCollision(11, 11); // removes collision between enemies and their projectiles
+    }
+
     public void ApplyDamage(float damage)
     {
         hitPoints -= damage;

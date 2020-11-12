@@ -22,9 +22,7 @@ public class SpikeyOwlAI : Owl
 
         directionTimer = 0f;
 
-        Physics2D.IgnoreLayerCollision(10, 10); // removes collision between enemies
-        Physics2D.IgnoreLayerCollision(10, 11); // removes collision between enemies and their projectiles
-        Physics2D.IgnoreLayerCollision(11, 11); // removes collision between projectiles
+        base.Start();
     }
 
     // Update is called once per frame
