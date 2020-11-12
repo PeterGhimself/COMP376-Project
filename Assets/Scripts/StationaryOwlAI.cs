@@ -27,9 +27,7 @@ public class StationaryOwlAI : Owl
     private Vector3 aimDirection; // holds the difference between the aimer's position adn the player's position
 
     private LineRenderer lineRenderer; // used to draw a line when an enemy spots a player
-
-    private RoomManager _mRoomManager;
-
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -44,7 +42,6 @@ public class StationaryOwlAI : Owl
         range = Vector3.Distance(transform.position, aimPoint.transform.position); // default range will be the distance between the turret and its aimer
 
         rotating = false;
-        _mRoomManager = gameObject.transform.parent.GetComponent<RoomManager>();
 
         Physics2D.IgnoreLayerCollision(10, 10); // removes collision between enemies
         Physics2D.IgnoreLayerCollision(10, 11); // removes collision between enemies
