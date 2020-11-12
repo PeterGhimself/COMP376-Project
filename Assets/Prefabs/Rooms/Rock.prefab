@@ -40,11 +40,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 849075581395863606, guid: 1183c4afc95424ffab6d8eeabea5f2bb,
         type: 3}
-      propertyPath: m_Offset.y
-      value: 0.0005601421
-      objectReference: {fileID: 0}
-    - target: {fileID: 849075581395863606, guid: 1183c4afc95424ffab6d8eeabea5f2bb,
-        type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
       value: 0.27
       objectReference: {fileID: 0}
@@ -52,6 +47,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
       value: 0.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 849075581395863606, guid: 1183c4afc95424ffab6d8eeabea5f2bb,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.27589464
       objectReference: {fileID: 0}
     - target: {fileID: 849075581395863606, guid: 1183c4afc95424ffab6d8eeabea5f2bb,
         type: 3}
@@ -65,8 +65,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 849075581395863606, guid: 1183c4afc95424ffab6d8eeabea5f2bb,
         type: 3}
-      propertyPath: m_Size.x
-      value: 0.27589464
+      propertyPath: m_Offset.y
+      value: 0.0005601421
       objectReference: {fileID: 0}
     - target: {fileID: 2419095560579587122, guid: 1183c4afc95424ffab6d8eeabea5f2bb,
         type: 3}
@@ -125,18 +125,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2419095560579587122, guid: 1183c4afc95424ffab6d8eeabea5f2bb,
         type: 3}
-      propertyPath: m_LocalScale.y
-      value: 5.904474
+      propertyPath: m_LocalScale.x
+      value: 3.6472101
       objectReference: {fileID: 0}
     - target: {fileID: 2419095560579587122, guid: 1183c4afc95424ffab6d8eeabea5f2bb,
         type: 3}
-      propertyPath: m_LocalScale.x
-      value: 3.6472101
+      propertyPath: m_LocalScale.y
+      value: 5.904474
       objectReference: {fileID: 0}
     - target: {fileID: 3990367613507956551, guid: 1183c4afc95424ffab6d8eeabea5f2bb,
         type: 3}
       propertyPath: m_Name
-      value: Blocker
+      value: Rock
       objectReference: {fileID: 0}
     - target: {fileID: 3990367613507956551, guid: 1183c4afc95424ffab6d8eeabea5f2bb,
         type: 3}
