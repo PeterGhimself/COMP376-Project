@@ -126,6 +126,8 @@ MonoBehaviour:
   - {fileID: 9055076530114748209}
   - {fileID: 1100668758585042068}
   - {fileID: 7440967739796265332}
+  m_icicleProjectile: {fileID: 7812010515636511411, guid: 3730e1e0810bdc04e8c5cc6ab04d4210,
+    type: 3}
   m_chosenWeapon: 0
   m_maxHealth: 5
   m_currentHealth: 5

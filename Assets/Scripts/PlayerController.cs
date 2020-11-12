@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Image m_healthBar = default;
     [SerializeField] private LayerMask m_enemyProjectiles = default;
     [SerializeField] private PlayerWeapon[] m_weapons = default;
+    [SerializeField] private GameObject m_icicleProjectile = default;
 
     [Header("Player Attributes")]
     [SerializeField] private Weapon m_chosenWeapon = default;
@@ -33,7 +34,10 @@ public class PlayerController : MonoBehaviour
     private Animator m_animator = default;
     private PlayerWeapon m_weapon = default;
     private float invincibilityTime = 0;
+
     private float attackCooldownTime = 0;
+    private float projectileCooldownTime = 0;
+
     private float dashCooldownTime = 0;
     private bool dashInvincible = false;
     private float dashInvincibleTime = 0.5f;
@@ -45,6 +49,7 @@ public class PlayerController : MonoBehaviour
 
     //Input const strings
     private const string k_fireButton = "Fire";
+    private const string k_projectileButton = "FireRanged";
     private const string k_horizontalAxis = "Horizontal";
     private const string k_verticalAxis = "Vertical";
 
@@ -77,6 +82,7 @@ public class PlayerController : MonoBehaviour
     {
         Walk();
         Attack();
+        Projectile();
 
         if (invincibilityTime > 0)
             invincibilityTime -= Time.deltaTime;
@@ -84,9 +90,11 @@ public class PlayerController : MonoBehaviour
         if (attackCooldownTime > 0)
             attackCooldownTime -= Time.deltaTime;
 
+        if (projectileCooldownTime > 0)
+            projectileCooldownTime -= Time.deltaTime;
+
         if (dashCooldownTime > 0)
             dashCooldownTime -= Time.deltaTime;
-
 
         if (dashInvincibleTime > 0)
             dashInvincibleTime -= Time.deltaTime;
@@ -153,6 +161,33 @@ public class PlayerController : MonoBehaviour
             m_animator.SetTrigger(k_attackAnim);
             attackCooldownTime = m_weapon.Cooldown;
             //todo set swing speed
+        }
+    }
+
+    private void Projectile()
+    {
+        if(projectileCooldownTime > 0)
+        {
+            return;
+        }
+
+        if (Input.GetButton(k_projectileButton))
+        {
+            projectileCooldownTime = m_weapon.Cooldown;
+            //todo: choose projectile
+
+            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+            GameObject projectile = Instantiate(m_icicleProjectile, transform.position, Quaternion.identity);
+
+            Vector2 direction = (mousePos - (Vector2)transform.position).normalized;
+            projectile.transform.right = direction;
+
+            Rigidbody2D projRB = projectile.GetComponent<Rigidbody2D>();
+            if(projRB)
+            {
+                projRB.AddForce(direction * 5f, ForceMode2D.Impulse);
+            }
         }
     }
 
