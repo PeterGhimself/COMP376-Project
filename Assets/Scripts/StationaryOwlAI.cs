@@ -50,8 +50,9 @@ public class StationaryOwlAI : Owl
     void Update()
     {
         //If not in active room. don't do anything
-        if (!base.IsActive())
+        if (!IsActive())
         {
+            gameObject.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
             return;
         }
         
