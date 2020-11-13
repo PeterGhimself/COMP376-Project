@@ -33,14 +33,19 @@ public class ShootingOwlScript : Owl
         directionTimer = 0f;
         shootTimer = originalShootTimer;
 
-        Physics2D.IgnoreLayerCollision(10, 10); // removes collision between enemies
-        Physics2D.IgnoreLayerCollision(10, 11); // removes collision between enemies
-        Physics2D.IgnoreLayerCollision(11, 11); // removes collision between enemies and their projectiles
+        base.Start();
     }
 
     // Update is called once per frame
     void Update()
     {
+        //If not in active room. don't do anything
+        if (!IsActive())
+        {
+            gameObject.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+            return;
+        }
+        
         directionTimer -= Time.deltaTime;
 
         // if directionTimer runs out, call applyRandomDirection() and reset direction timer;
