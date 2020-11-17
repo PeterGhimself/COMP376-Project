@@ -31,6 +31,8 @@ public class RoomManager : MonoBehaviour
     private int floor;
 
     private bool spawnpoint = false;
+    private bool bossRoom = false;
+    private bool itemRoom = false;
     private bool activeRoom = false;
     public bool currentRoom = false;
 
@@ -41,6 +43,16 @@ public class RoomManager : MonoBehaviour
         set => spawnpoint = value;
     }
 
+    public bool BossRoom
+    {
+        get => bossRoom;
+        set => bossRoom = value;
+    }
+    public bool ItemRoom
+    {
+        get => itemRoom;
+        set => itemRoom = value;
+    }
     private List<Vector3> gridPosition = new List<Vector3>();
 
     private void Awake()
@@ -53,12 +65,12 @@ public class RoomManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (!spawnpoint)
+        if (!spawnpoint && !itemRoom && !bossRoom)
         {
             PlaceObjectAtRandom(obstacleTiles, obstacles.minimum, obstacles.maximum);
             PlaceObjectAtRandom(enemyTiles, enemies.minimum * floor, enemies.maximum * floor);
         }
-        else
+        else if (spawnpoint)
         {
             currentRoom = true;
         }
