@@ -30,6 +30,8 @@ public class RoomManager : MonoBehaviour
     public GameObject[] enemyTiles;
     private int floor;
 
+    private GameManager _gameManager;
+
     private bool spawnpoint = false;
     private bool bossRoom = false;
     private bool itemRoom = false;
@@ -37,6 +39,7 @@ public class RoomManager : MonoBehaviour
     public bool currentRoom = false;
 
     public MoveCameraScript m_cameraScript;
+
     public bool Spawnpoint
     {
         get => spawnpoint;
@@ -48,11 +51,13 @@ public class RoomManager : MonoBehaviour
         get => bossRoom;
         set => bossRoom = value;
     }
+
     public bool ItemRoom
     {
         get => itemRoom;
         set => itemRoom = value;
     }
+
     private List<Vector3> gridPosition = new List<Vector3>();
 
     private void Awake()
@@ -60,19 +65,28 @@ public class RoomManager : MonoBehaviour
         floor = 1;
         SetupRoom(floor);
         m_cameraScript = Camera.main.GetComponent<MoveCameraScript>();
+        _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        if (!spawnpoint && !itemRoom && !bossRoom)
+        if (spawnpoint)
+        {
+            currentRoom = true;
+        }
+        else if (itemRoom)
+        {
+            PlaceItemInRoom();
+        }
+        else if (bossRoom)
+        {
+            SpawnBoss();
+        }
+        else
         {
             PlaceObjectAtRandom(obstacleTiles, obstacles.minimum, obstacles.maximum);
             PlaceObjectAtRandom(enemyTiles, enemies.minimum * floor, enemies.maximum * floor);
-        }
-        else if (spawnpoint)
-        {
-            currentRoom = true;
         }
     }
 
@@ -147,7 +161,7 @@ public class RoomManager : MonoBehaviour
             m_cameraScript.SetDesiredPosition(position.x, position.y);
             var playerObject = other.gameObject;
             var playerPosition = playerObject.transform.position;
-            Vector3 newVector = (position - playerPosition ).normalized;
+            Vector3 newVector = (position - playerPosition).normalized;
             playerPosition += newVector;
             playerObject.transform.position = playerPosition;
         }
@@ -161,4 +175,18 @@ public class RoomManager : MonoBehaviour
             currentRoom = false;
         }
     }
+    private void PlaceItemInRoom()
+    {
+        Debug.Log("SpawnedItem");
+        var item = Instantiate(_gameManager.RandomItem(), gameObject.transform, true);
+        item.transform.localPosition = new Vector3(0,0);
+    }
+    
+    private void SpawnBoss()
+    {
+        Debug.Log("SpawnedBoss");
+        var item = Instantiate(_gameManager.GetBoss(), gameObject.transform, true);
+        item.transform.localPosition = new Vector3(0,0);
+    }
+
 }

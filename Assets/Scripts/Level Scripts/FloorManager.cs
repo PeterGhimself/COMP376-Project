@@ -250,7 +250,7 @@ public class FloorManager : MonoBehaviour
                 GenerateAdjacent(currentRoom, creating);
                 _roomBank -= creating;
             }
-            else if (_roomBank > totalRooms / 4 && _roomBank >= 2)
+            else if (_roomBank > totalRooms / 3 && _roomBank >= 2)
             {
                 creating = low[Random.Range(0, low.Length - 1)];
                 GenerateAdjacent(currentRoom, creating);

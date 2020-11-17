@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Object = UnityEngine.Object;
+using Random = UnityEngine.Random;
 
 [Serializable]
 public class FloorInfo
@@ -18,6 +21,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private FloorManager m_floorManager = default;
     [SerializeField] private int m_currentLevel = 1;
     [SerializeField] private FloorInfo[] m_floorInfos = default;
+    [SerializeField] private List<GameObject> m_items = default;
     [SerializeField] private PlayerController m_player = default;
 
     private UnityEvent m_onLevelComplete;
@@ -25,6 +29,8 @@ public class GameManager : MonoBehaviour
     private FloorManager m_currentFloor = default;
     private Vector2 m_playerInitPosition = Vector2.zero;
 
+    public GameObject normalBoss;
+    public GameObject finalBoss;
     private void Awake()
     {
         DontDestroyOnLoad(this);
@@ -97,6 +103,26 @@ public class GameManager : MonoBehaviour
         else
         {
             //game complete
+        }
+    }
+    
+    public GameObject RandomItem()
+    {
+        int randomIndex = Random.Range(0, m_items.Count);
+        GameObject randomPosition = m_items[randomIndex];
+        m_items.RemoveAt(randomIndex);
+        return randomPosition;
+    }
+
+    public GameObject GetBoss()
+    {
+        if (m_currentLevel < 3)
+        {
+            return normalBoss;
+        }
+        else
+        {
+            return finalBoss;
         }
     }
 }
