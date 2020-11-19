@@ -24,4 +24,9 @@ public class PlayerProjectile : MonoBehaviour
 
         Destroy(gameObject);
     }
+
+    public void SetDamage(float damage)
+    {
+        m_damage += damage;
+    }
 }
