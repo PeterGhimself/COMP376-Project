@@ -526,7 +526,15 @@ MonoBehaviour:
     Floor: 6
   - Room: 3
     Floor: 6
+  m_items:
+  - {fileID: 5485021576982774239, guid: 0bfb60ef7ebfa4a7fb17b3fabac31839, type: 3}
+  - {fileID: 6056230861162354275, guid: ac4977d6259ec4a64ac1b88615fa5990, type: 3}
+  - {fileID: 8165129607985609368, guid: 492e75034a38847a4b39cb29c83a42aa, type: 3}
   m_player: {fileID: 738436676}
+  normalBoss: {fileID: 4545100665353272148, guid: 78452048429134eea8926ac355997436,
+    type: 3}
+  finalBoss: {fileID: 6643053397899247415, guid: f614228f201964060a0a3e62b31da543,
+    type: 3}
 --- !u!4 &731526935
 Transform:
   m_ObjectHideFlags: 0
