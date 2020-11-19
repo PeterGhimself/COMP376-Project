@@ -19,10 +19,6 @@ public class StationaryOwlAI : Owl
 
     private float currentLaserCooldown;
 
-    private float randomAngle; // used to hold the angle the turret is currently rotating to
-    private Quaternion originalRotation; // holds original rotation of the turret
-    private Quaternion targetRotation; // used to hold the next angle the turret will rotate to
-
     public GameObject aimPoint; // attach an empty gameobject where you want the enemy to aim
     private Vector3 aimDirection; // holds the difference between the aimer's position adn the player's position
 
@@ -33,7 +29,7 @@ public class StationaryOwlAI : Owl
     {
         // line rendeder set up
         lineRenderer = GetComponent<LineRenderer>();
-        lineRenderer.enabled = false;
+        lineRenderer.enabled = true;
         lineRenderer.useWorldSpace = true;
         lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
         lineRenderer.SetColors(Color.white, Color.white);
@@ -58,30 +54,20 @@ public class StationaryOwlAI : Owl
         
         if (!rotating && !chargingLaser)
         {
-            //generate random angle based on the vision angle
-            //(ex. if vision angle is 90, an angle from -45 and 45 can be generated
-            randomAngle = Random.Range(-visionAngle / 2, (visionAngle / 2) + 1);
-
-            // set target rotation
-            targetRotation = Quaternion.Euler(0, 0, randomAngle);
             rotating = true;
+            lineRenderer.SetWidth(0.025f, 0.025f);
+            lineRenderer.SetColors(Color.white, Color.white);
         }
 
         if (rotating)
         {
             // rotate the turret
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-
-            // if target rotation is reached, stop rotating
-            if (targetRotation == transform.rotation)
-            {
-                rotating = false;
-            }
+            aimPoint.transform.RotateAround(transform.position, Vector3.forward, rotationSpeed * Time.deltaTime);
         }
 
         aimDirection = aimPoint.transform.position - transform.position;
 
-        int mask = (1 << LayerMask.NameToLayer("Player")) | (1 << LayerMask.NameToLayer("Obstacles")); // make raycast search for in the player layer or obstacle layer
+        int mask = (1 << LayerMask.NameToLayer("Player")) | (1 << LayerMask.NameToLayer("Contact")); // make raycast search for in the player layer or obstacle layer
         RaycastHit2D hit = Physics2D.Raycast(transform.position, aimDirection, range, mask); // shoot raycast from the enemy towards its aimer (child)
 
         Debug.DrawRay(transform.position, aimDirection, Color.red); // used to see the raycast in the editor
@@ -94,16 +80,18 @@ public class StationaryOwlAI : Owl
                 print("PLAYER DETECTED!!!");
                 rotating = false;
                 chargingLaser = true;
-                lineRenderer.SetColors(Color.white, Color.white);
-                warningLaser();
                 chargeTime = 1f;
                 currentLaserCooldown = laserCooldown;
             }
         }
         else if (!chargingLaser)
         {
-            lineRenderer.enabled = false;
+            //lineRenderer.enabled = false;
         }
+
+        lineRenderer.SetPosition(0, transform.position);
+        lineRenderer.SetPosition(1, aimPoint.transform.position);
+
         if (currentLaserCooldown > 0)
         {
             currentLaserCooldown -= Time.deltaTime;
@@ -120,19 +108,9 @@ public class StationaryOwlAI : Owl
         }
     }
 
-    // shootPlayer currently just draws a line in between the player and the enemy
-    void warningLaser()
-    {
-        lineRenderer.SetPosition(0, transform.position);
-        lineRenderer.SetPosition(1, aimPoint.transform.position);
-        lineRenderer.SetWidth(0.025f, 0.025f);
-
-        lineRenderer.enabled = true;
-    }
-
     void fireLaser()
     {
-        lineRenderer.SetWidth(0.1f, 0.1f);
+        lineRenderer.SetWidth(0.2f, 0.2f);
         lineRenderer.SetColors(Color.red, Color.red);
         chargingLaser = false;
 
