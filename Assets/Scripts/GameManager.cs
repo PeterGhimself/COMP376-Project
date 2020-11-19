@@ -77,6 +77,12 @@ public class GameManager : MonoBehaviour
         print("level loading done");
     }
 
+    public void CompleteLevel()
+    {
+        m_currentLevel++;
+        StartCoroutine(LoadLevel());
+    }
+
     public void LoadFirstLevel()
     {
         if (m_floorInfos.Length > 0)
@@ -120,9 +126,7 @@ public class GameManager : MonoBehaviour
         {
             return normalBoss;
         }
-        else
-        {
-            return finalBoss;
-        }
+
+        return finalBoss;
     }
 }
