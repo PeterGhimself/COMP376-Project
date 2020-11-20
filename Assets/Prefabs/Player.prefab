@@ -129,6 +129,8 @@ MonoBehaviour:
   m_icicleProjectile: {fileID: 7812010515636511411, guid: 3730e1e0810bdc04e8c5cc6ab04d4210,
     type: 3}
   m_chosenWeapon: 0
+  m_meleeDamageModifier: 0
+  m_rangedDamageModifier: 0
   m_maxHealth: 5
   m_currentHealth: 5
   m_walkSpeed: 3
@@ -342,7 +344,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2530124330187200568
 Transform:
   m_ObjectHideFlags: 0
@@ -364,7 +366,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2579117111846953849}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -396,8 +398,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SwingSpeed: 1
-  Damage: 1
   Cooldown: 1
+  m_damage: 1
   m_owlLayers:
     serializedVersion: 2
     m_Bits: 1024
@@ -599,7 +601,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &382423672098762086
 Transform:
   m_ObjectHideFlags: 0
@@ -621,7 +623,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7548420744855148302}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -653,8 +655,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SwingSpeed: 1
-  Damage: 1
   Cooldown: 1
+  m_damage: 1
   m_owlLayers:
     serializedVersion: 2
     m_Bits: 1024
@@ -676,7 +678,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6686543622948054587
 Transform:
   m_ObjectHideFlags: 0
@@ -698,7 +700,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8102786557388065099}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -730,8 +732,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SwingSpeed: 1
-  Damage: 1
   Cooldown: 1
+  m_damage: 1
   m_owlLayers:
     serializedVersion: 2
     m_Bits: 1024

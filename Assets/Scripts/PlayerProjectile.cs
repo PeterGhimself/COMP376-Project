@@ -24,6 +24,12 @@ public class PlayerProjectile : MonoBehaviour
 
         Destroy(gameObject);
     }
+
+
+    public void SetDamage(float damage)
+    {
+        m_damage += damage;
+    }
     
     void OnTriggerEnter2D(Collider2D other)
     { 
@@ -43,6 +49,5 @@ public class PlayerProjectile : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
     }
 }

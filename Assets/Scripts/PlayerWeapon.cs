@@ -5,9 +5,17 @@ using UnityEngine;
 public class PlayerWeapon : MonoBehaviour
 {
     public float SwingSpeed;
-    public float Damage;
     public float Cooldown;
+
+    [SerializeField] private float m_damage = default;
     [SerializeField] private LayerMask m_owlLayers = default;
+
+    private float initDamage = 0;
+
+    private void Start()
+    {
+        initDamage = m_damage;
+    }
 
     void OnTriggerEnter2D(Collider2D collider)
     {
@@ -16,7 +24,7 @@ public class PlayerWeapon : MonoBehaviour
             Owl owl = collider.gameObject.GetComponent<Owl>();
             if (owl)
             {
-                owl.ApplyDamage(Damage);
+                owl.ApplyDamage(m_damage);
             }
             else
             {
@@ -34,5 +42,10 @@ public class PlayerWeapon : MonoBehaviour
                 Debug.LogError("No fire script on " + fire.name);
             }
         }
+    }
+
+    public void IncreaseByDamageMod(float damageMod)
+    {
+        m_damage = initDamage + damageMod;
     }
 }
