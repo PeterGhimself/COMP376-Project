@@ -25,8 +25,29 @@ public class PlayerProjectile : MonoBehaviour
         Destroy(gameObject);
     }
 
+
     public void SetDamage(float damage)
     {
         m_damage += damage;
+    }
+    
+    void OnTriggerEnter2D(Collider2D other)
+    { 
+        if (other.gameObject.CompareTag("Fire"))
+        {
+            var fire = other.gameObject.GetComponent<ObstacleTakeDamage>();
+            if (fire)
+            {
+                fire.ApplyDamage(m_damage);
+                Destroy(gameObject);
+            }
+            else
+            {
+                Debug.LogError("No owl script on " + fire.name);
+            }
+        }else if (!other.gameObject.CompareTag("Rooms"))
+        {
+            Destroy(gameObject);
+        }
     }
 }

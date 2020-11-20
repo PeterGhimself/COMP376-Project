@@ -31,6 +31,18 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   m_damage: 1
+--- !u!114 &4649445518603428213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5929865147131231399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09bd8930e28a048dca855dde647a7a8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7585687219080495100
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -51,7 +63,7 @@ PrefabInstance:
     - target: {fileID: 1096099152757541480, guid: 17fc105afc09a4924bbbe298bf8bda62,
         type: 3}
       propertyPath: m_Color.g
-      value: 0.5227925
+      value: 0.06640468
       objectReference: {fileID: 0}
     - target: {fileID: 1096099152757541480, guid: 17fc105afc09a4924bbbe298bf8bda62,
         type: 3}
@@ -131,7 +143,7 @@ PrefabInstance:
     - target: {fileID: 4255579195582350171, guid: 17fc105afc09a4924bbbe298bf8bda62,
         type: 3}
       propertyPath: m_Name
-      value: Hurter
+      value: Hellfire
       objectReference: {fileID: 0}
     - target: {fileID: 4255579195582350171, guid: 17fc105afc09a4924bbbe298bf8bda62,
         type: 3}

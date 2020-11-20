@@ -30,6 +30,17 @@ public class PlayerWeapon : MonoBehaviour
             {
                 Debug.LogError("No owl script on " + owl.gameObject.name);
             }
+        }else if (collider.gameObject.CompareTag("Fire"))
+        {
+            var fire = collider.gameObject.GetComponent<ObstacleTakeDamage>();
+            if (fire)
+            {
+                fire.ApplyDamage(Damage);
+            }
+            else
+            {
+                Debug.LogError("No fire script on " + fire.name);
+            }
         }
     }
 
