@@ -35,7 +35,7 @@ public class PlayerWeapon : MonoBehaviour
             var fire = collider.gameObject.GetComponent<ObstacleTakeDamage>();
             if (fire)
             {
-                fire.ApplyDamage(Damage);
+                fire.ApplyDamage(m_damage);
             }
             else
             {
