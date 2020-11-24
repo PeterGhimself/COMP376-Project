@@ -1368,13 +1368,13 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '1) WASD to move main character
+  m_Text: '1) WASD - to move main character
 
     2) Spacebar - activate the currently
     equipped ability
 
-    3) Left click and swing in the direction that the penguin
-    is facing
+    3) Left click - melee swing attack in the direction that
+    the penguin is facing
 
     4) Right click and aim - fire ranged weapon'
 --- !u!222 &1040311960
