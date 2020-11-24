@@ -97,6 +97,23 @@ public class GameManager : MonoBehaviour
         m_loadingScreen.FadeIn();
         print("rule loading done");
     }
+
+    private IEnumerator LoadTitleScreen() {
+        m_loadingScreen.FadeOut();
+        yield return new WaitUntil(() => !m_loadingScreen.IsFading);
+
+        yield return null;
+        print("title screen loading started");
+
+        m_rulesScreen.SetActive(false);
+        m_TitleScreen.SetActive(true);
+        
+
+        yield return new WaitForSeconds(0.25f);
+
+        m_loadingScreen.FadeIn();
+        print("rule loading done");
+    }
     
     public void CompleteLevel()
     {
@@ -117,6 +134,10 @@ public class GameManager : MonoBehaviour
 
     public void LoadRulesLevel() {
         StartCoroutine(LoadRules());
+    }
+
+    public void LoadTitleScreenMain() {
+        StartCoroutine(LoadTitleScreen());
     }
 
     private void LevelComplete()
