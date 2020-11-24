@@ -68,8 +68,11 @@ public class GameManager : MonoBehaviour
 
         m_TitleScreen.SetActive(false);
         m_player.transform.position = m_playerInitPosition;
-        m_player.Initialize(PlayerController.Weapon.Dagger, m_onRestartLevel); //todo add weapon choice
-        m_player.gameObject.SetActive(true);
+        if (m_currentLevel == 1)
+        {
+            m_player.Initialize(PlayerController.Weapon.Dagger, m_onRestartLevel); //todo add weapon choice
+            m_player.gameObject.SetActive(true);
+        }
 
         yield return new WaitForSeconds(0.25f);
 
@@ -81,6 +84,11 @@ public class GameManager : MonoBehaviour
     {
         m_currentLevel++;
         StartCoroutine(LoadLevel());
+    }
+    
+    public int getLevel()
+    {
+        return m_currentLevel;
     }
 
     public void LoadFirstLevel()

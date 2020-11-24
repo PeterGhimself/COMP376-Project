@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -63,5 +64,10 @@ public class Owl : MonoBehaviour
     public bool IsActive()
     {
         return _mRoomManager.currentRoom;
+    }
+
+    private void OnDestroy()
+    {
+        _mRoomManager.enemyCount--;
     }
 }

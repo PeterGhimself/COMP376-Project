@@ -8,7 +8,8 @@ public class Powerup : MonoBehaviour
     {
         Attack,
         Health,
-        Speed
+        Speed,
+        Heal
     }
 
     [SerializeField] private PowerupType m_powerupType = default;

@@ -18,24 +18,28 @@ public class RoomManager : MonoBehaviour
             maximum = max;
         }
     }
-
-    public int columns = 6;
-    public int rows = 6;
-    public Count obstacles = new Count(5, 15);
+    
+    public Count obstacles = new Count(0, 10);
     public Count enemies = new Count(1, 3);
 
     public GameObject[] obstacleTiles;
-    public GameObject doorTile;
+    public GameObject healthDrop;
     public GameObject[] floorTiles;
     public GameObject[] enemyTiles;
     private int floor;
 
+    private float m_dropChance;
+    
     private GameManager _gameManager;
 
     private bool spawnpoint = false;
     private bool bossRoom = false;
     private bool itemRoom = false;
+    
     private bool activeRoom = false;
+    //will make private later
+    public int enemyCount = 0;
+    
     public bool currentRoom = false;
 
     public MoveCameraScript m_cameraScript;
@@ -62,10 +66,11 @@ public class RoomManager : MonoBehaviour
 
     private void Awake()
     {
-        floor = 1;
-        SetupRoom(floor);
-        m_cameraScript = Camera.main.GetComponent<MoveCameraScript>();
         _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        floor = _gameManager.getLevel();
+        m_dropChance = (1.0f + 4.0f - floor) / 10.0f;
+        SetupRoom();
+        m_cameraScript = Camera.main.GetComponent<MoveCameraScript>();
     }
 
     // Start is called before the first frame update
@@ -86,13 +91,25 @@ public class RoomManager : MonoBehaviour
         else
         {
             PlaceObjectAtRandom(obstacleTiles, obstacles.minimum, obstacles.maximum);
-            PlaceObjectAtRandom(enemyTiles, enemies.minimum * floor, enemies.maximum * floor);
+            PlaceObjectAtRandom(enemyTiles, enemies.minimum * floor, enemies.maximum * floor, true);
         }
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (activeRoom && enemyCount <= 0)
+        {
+            activeRoom = false;
+            //spawn health here. 
+            if(Random.Range(0f, 1f) <= m_dropChance )
+            {
+                Vector3 position = RandomPosition();
+                var placed = Instantiate(healthDrop, gameObject.transform, true);
+                placed.transform.localPosition = position;
+                
+            }
+        }
     }
 
     void InitializeList()
@@ -134,19 +151,29 @@ public class RoomManager : MonoBehaviour
         return randomPosition;
     }
 
-    void PlaceObjectAtRandom(GameObject[] placingArray, int min, int max)
+    void PlaceObjectAtRandom(GameObject[] placingArray, int min, int max, bool enemy = false)
     {
+
         int objectCount = Random.Range(min, max);
         for (int i = 0; i < objectCount; i++)
         {
             Vector3 position = RandomPosition();
             GameObject placing = placingArray[Random.Range(0, placingArray.Length)];
-            var flr = Instantiate(placing, gameObject.transform, true);
-            flr.transform.localPosition = position;
+            var placed = Instantiate(placing, gameObject.transform, true);
+            placed.transform.localPosition = position;
+            if (enemy)
+            {
+                enemyCount++;
+            }
+        }
+        
+        if (enemyCount > 0)
+        {
+            activeRoom = true;
         }
     }
 
-    public void SetupRoom(int difficulty)
+    public void SetupRoom()
     {
         RoomSetup();
         InitializeList();
