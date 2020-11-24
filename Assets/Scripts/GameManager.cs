@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 
@@ -37,7 +38,7 @@ public class GameManager : MonoBehaviour
         m_onLevelComplete = new UnityEvent();
         m_onLevelComplete.AddListener(LevelComplete);
         m_onRestartLevel = new UnityEvent();
-        m_onRestartLevel.AddListener(RestartLevel);
+        m_onRestartLevel.AddListener(Restart);
         //Todo: send events to floor manager (or something) so they can be called when dying or finishing level
     }
 
@@ -79,6 +80,19 @@ public class GameManager : MonoBehaviour
         m_loadingScreen.FadeIn();
         print("level loading done");
     }
+    private IEnumerator RestartGame()
+    {
+        m_loadingScreen.FadeOut();
+        yield return new WaitUntil(() => !m_loadingScreen.IsFading);
+
+        yield return null;
+        print("Returning to main menu");
+
+        SceneManager.LoadScene("MainScene");
+
+        m_loadingScreen.FadeIn();
+        print("Main Menu");
+    }
 
     public void CompleteLevel()
     {
@@ -102,9 +116,9 @@ public class GameManager : MonoBehaviour
         LoadNextLevel();
     }
 
-    private void RestartLevel()
+    private void Restart()
     {
-        StartCoroutine(LoadLevel());
+        StartCoroutine(RestartGame());
     }
 
     private void LoadNextLevel()
