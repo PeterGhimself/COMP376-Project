@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private LoadingScreen m_loadingScreen = default;
     [SerializeField] private GameObject m_TitleScreen = default;
     [SerializeField] private FloorManager m_floorManager = default;
+    [SerializeField] private GameObject m_rulesScreen = default;
     [SerializeField] private int m_currentLevel = 1;
     [SerializeField] private FloorInfo[] m_floorInfos = default;
     [SerializeField] private List<GameObject> m_items = default;
@@ -42,8 +43,8 @@ public class GameManager : MonoBehaviour
     }
 
     void Start()
-    {
-        // LoadFirstLevel(); //should be moved to be called by the play button in the main menu
+    {   
+        m_rulesScreen.SetActive(false);
     }
 
     void OnDestroy()
@@ -67,6 +68,7 @@ public class GameManager : MonoBehaviour
         m_currentFloor.Floor = m_currentLevel;
 
         m_TitleScreen.SetActive(false);
+        m_rulesScreen.SetActive(false);
         m_player.transform.position = m_playerInitPosition;
         m_player.Initialize(PlayerController.Weapon.Dagger, m_onRestartLevel); //todo add weapon choice
         m_player.gameObject.SetActive(true);
@@ -77,6 +79,22 @@ public class GameManager : MonoBehaviour
         print("level loading done");
     }
 
+    private IEnumerator LoadRules() {
+        m_loadingScreen.FadeOut();
+        yield return new WaitUntil(() => !m_loadingScreen.IsFading);
+
+        yield return null;
+        print("rules loading started");
+
+        m_TitleScreen.SetActive(false);
+        m_rulesScreen.SetActive(true);
+
+        yield return new WaitForSeconds(0.25f);
+
+        m_loadingScreen.FadeIn();
+        print("rule loading done");
+    }
+    
     public void CompleteLevel()
     {
         m_currentLevel++;
@@ -87,6 +105,10 @@ public class GameManager : MonoBehaviour
     {
         if (m_floorInfos.Length > 0)
             StartCoroutine(LoadLevel());
+    }
+
+    public void LoadRulesLevel() {
+        StartCoroutine(LoadRules());
     }
 
     private void LevelComplete()
