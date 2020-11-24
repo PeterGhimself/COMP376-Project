@@ -83,7 +83,7 @@ public class FloorManager : MonoBehaviour
         InstantiateRooms();
         // PrintMap();
 
-        Camera.main.GetComponent<MoveCameraScript>().SetDesiredPosition(0,0);
+        Camera.main.GetComponent<MoveCameraScript>().SetDesiredPosition(0, 0);
     }
 
     private void InstantiateRooms()
@@ -93,25 +93,24 @@ public class FloorManager : MonoBehaviour
         bool spawn = true;
         foreach (var room in done)
         {
-            GameObject created;
-            if (_map[room.Y, room.X] == 666 || _map[room.Y, room.X] == 420)
+            GameObject created = Instantiate(rooms[room.GETRoomType(_map)],
+                new Vector3((room.X - 5) * width, (room.Y - 5) * height), Quaternion.identity, transform);
+            created.GetComponent<RoomManager>().Floor = floor;
+            if (spawn)
             {
-                created = Instantiate(rooms[0],
-                    new Vector3((room.X - 5) * width, (room.Y - 5) * height), Quaternion.identity, transform);
+                spawn = !spawn;
+                created.GetComponent<RoomManager>().Spawnpoint = true;
             }
-            else
+            else if (_map[room.Y, room.X] == 666)
             {
-                created = Instantiate(rooms[room.GETRoomType(_map)],
-                    new Vector3((room.X - 5) * width, (room.Y - 5) * height), Quaternion.identity, transform);
-                created.GetComponent<RoomManager>().Floor = floor;
-                if (spawn)
-                {
-                    spawn = !spawn;
-                    created.GetComponent<RoomManager>().Spawnpoint = true;
-                }
+                created.GetComponent<RoomManager>().BossRoom = true;
+            }
+            else if (_map[room.Y, room.X] == 420)
+            {
+                created.GetComponent<RoomManager>().ItemRoom = true;
+            }
 
-            }
-        
+
             created.transform.localScale = new Vector3(width / 10, height / 10);
         }
     }
@@ -251,7 +250,7 @@ public class FloorManager : MonoBehaviour
                 GenerateAdjacent(currentRoom, creating);
                 _roomBank -= creating;
             }
-            else if (_roomBank > totalRooms / 4 && _roomBank >= 2)
+            else if (_roomBank > totalRooms / 3 && _roomBank >= 2)
             {
                 creating = low[Random.Range(0, low.Length - 1)];
                 GenerateAdjacent(currentRoom, creating);
