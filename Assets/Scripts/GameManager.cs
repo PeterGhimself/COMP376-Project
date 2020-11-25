@@ -20,11 +20,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject m_TitleScreen = default;
     [SerializeField] private FloorManager m_floorManager = default;
     [SerializeField] private GameObject m_rulesScreen = default;
-    [SerializeField] private int m_currentLevel = 1;
     [SerializeField] private FloorInfo[] m_floorInfos = default;
     [SerializeField] private List<GameObject> m_items = default;
     [SerializeField] private PlayerController m_player = default;
 
+    private int m_currentLevel = 1; // to avoid accidents, keep it private homie :)
     private UnityEvent m_onLevelComplete;
     private UnityEvent m_onRestartLevel;
     private FloorManager m_currentFloor = default;
@@ -70,10 +70,15 @@ public class GameManager : MonoBehaviour
         m_TitleScreen.SetActive(false);
         m_rulesScreen.SetActive(false);
         m_player.transform.position = m_playerInitPosition;
+
+        m_player.gameObject.SetActive(true);
+
+        //@TODO: @EVAN WHY IS THIS 2 ON STARTUP?????????-------------------------------------------------------------------------------------------------------------------
+        print("m_currentLevel: " + m_currentLevel);
+
         if (m_currentLevel == 1)
         {
             m_player.Initialize(PlayerController.Weapon.Dagger, m_onRestartLevel); //todo add weapon choice
-            m_player.gameObject.SetActive(true);
         }
 
         yield return new WaitForSeconds(0.25f);

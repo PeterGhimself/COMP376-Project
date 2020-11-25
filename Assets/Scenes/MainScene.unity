@@ -593,7 +593,7 @@ MonoBehaviour:
   m_floorManager: {fileID: 5156500922010050231, guid: 3b21d98f3dca945b797a9838e3eb651e,
     type: 3}
   m_rulesScreen: {fileID: 1720522426}
-  m_currentLevel: 2
+  m_currentLevel: 1
   m_floorInfos:
   - Room: 1
     Floor: 6
