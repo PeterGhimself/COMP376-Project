@@ -199,8 +199,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitPoints: 3
-  moveSpeed: 25
-  touchDamage: 1
+  moveSpeed: 100
+  touchDamage: 3
   playerLayer:
     serializedVersion: 2
     m_Bits: 512

@@ -98,7 +98,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 1
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -199,7 +199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitPoints: 3
-  moveSpeed: 25
+  moveSpeed: 100
   touchDamage: 1
   playerLayer:
     serializedVersion: 2
@@ -207,7 +207,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 1457095803886979826, guid: 6fb41aedf16ac12499f50f3d0a2c223f,
     type: 3}
   projectileDamage: 1
-  projectileSpeed: 60
+  projectileSpeed: 100
 --- !u!95 &7849371204424805153
 Animator:
   serializedVersion: 3

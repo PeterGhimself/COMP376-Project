@@ -14,6 +14,11 @@ public class StationaryOwlAI : Owl
     public float chargeTime;
     public float laserCooldown;
 
+    private Rigidbody2D owlRigidBody;
+
+    public float originalDirectionTimer; // change direction rate (set in seconds)
+    private float directionTimer; // holds timer before changing direction
+
     private bool rotating; // bool to indicate that the turret is currently rotating towards a certain angle
     private bool chargingLaser;
 
@@ -27,6 +32,11 @@ public class StationaryOwlAI : Owl
     // Start is called before the first frame update
     void Start()
     {
+        owlRigidBody = GetComponent<Rigidbody2D>();
+
+        originalDirectionTimer = 2f;
+        directionTimer = 0f;
+
         // line rendeder set up
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.enabled = true;
@@ -51,7 +61,16 @@ public class StationaryOwlAI : Owl
             gameObject.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
             return;
         }
-        
+
+        directionTimer -= Time.deltaTime;
+
+        // if directionTimer runs out, call applyRandomDirection() and reset direction timer;
+        if (directionTimer < 0)
+        {
+            applyRandomDirection();
+            directionTimer = originalDirectionTimer;
+        }
+
         if (!rotating && !chargingLaser)
         {
             rotating = true;
@@ -132,5 +151,19 @@ public class StationaryOwlAI : Owl
                 }
             }
         }
+    }
+
+    void applyRandomDirection()
+    {
+        // nullify the current forces
+        owlRigidBody.velocity = Vector2.zero;
+        owlRigidBody.angularVelocity = 0;
+
+
+        // generate new x and y values for the new force to be applied
+        float randomX = Random.Range(-1, 2) * moveSpeed;
+        float randomY = Random.Range(-1, 2) * moveSpeed;
+
+        owlRigidBody.velocity = new Vector2(randomX, randomY);
     }
 }
