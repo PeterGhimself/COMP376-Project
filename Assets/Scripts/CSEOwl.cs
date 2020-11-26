@@ -58,7 +58,7 @@ public class CSEOwl : Owl
         }
     }
 
-
+    //maybe try using a loop for this :)
     void explodeProjectiles()
     {
         // spawn 8 projectiles
