@@ -130,7 +130,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject GetBoss()
     {
-        if (m_currentLevel < 3)
+        if (m_currentLevel <= 3)
         {
             return normalBoss;
         }
