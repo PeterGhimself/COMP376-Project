@@ -9,35 +9,36 @@ public class Maps : MonoBehaviour
     int m_floor = 1;
 
     public GameObject prefabRef;
-
-    GameObject prefabInstantiated;
     
 
 
     void Start() 
     {
-        prefabInstantiated = Instantiate(prefabRef, new Vector2(0, 0), Quaternion.identity);
+        var prefabInstantiated = Instantiate(prefabRef, new Vector2(0, 0), Quaternion.identity);
+
+        if(m_floor == 1) 
+        {
+            prefabInstantiated.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.white); // arctic
+        } 
+        else if(m_floor == 2)
+        {
+            prefabInstantiated.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.blue); // ocean
+
+        } 
+        else if (m_floor == 3)
+        {
+            prefabInstantiated.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.black); // cave (original)
+        }
+        else if (m_floor == 4)
+        {
+            prefabInstantiated.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.green); // forest
+        }
+        Destroy(prefabInstantiated);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(m_floor == 1) 
-        {
-            prefabInstantiated.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.red);
-        } 
-        else if(m_floor == 2)
-        {
-
-        } 
-        else if (m_floor == 3)
-        {
-
-        }
-        else if (m_floor == 4)
-        {
-
-        }
-        Destroy(prefabInstantiated);
+        
     }
 }

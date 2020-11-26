@@ -580,7 +580,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_floor: 1
-  prefabRef: {fileID: 0}
+  prefabRef: {fileID: 8928315814887593543, guid: 2b7f55bb58d56435a81d3006ccd4f5c2,
+    type: 3}
 --- !u!114 &738436676 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 790160647679140609, guid: 9d306615ac7e842edae15097b94af7e7,
