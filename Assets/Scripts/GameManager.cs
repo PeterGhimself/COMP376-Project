@@ -87,9 +87,9 @@ public class GameManager : MonoBehaviour
 
         yield return null;
         print("Returning to main menu");
-
+        
         SceneManager.LoadScene("MainScene");
-
+        Destroy(gameObject);
         m_loadingScreen.FadeIn();
         print("Main Menu");
     }
