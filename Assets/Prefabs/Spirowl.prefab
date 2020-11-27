@@ -790,7 +790,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8756476003047371834}
   m_Layer: 0
-  m_Name: Spirowl 1
+  m_Name: Spirowl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1038,7 +1038,14 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 512
-  generalCollider: {fileID: 0}
+  CSEOwlPrefab: {fileID: 3371880922119208831, guid: 2924990e1ef676543a9b81769c97c94c,
+    type: 3}
+  SpikeyOwlPrefab: {fileID: 3306818708877844131, guid: 183af7aa96be2274da3cdc81ba2bc840,
+    type: 3}
+  ShootingOwlPrefab: {fileID: 5475906689530320857, guid: ecf028daa5689424db631716ee40f4f7,
+    type: 3}
+  TurretOwlPrefab: {fileID: 2744502993293896220, guid: f91f81c281ca3fa408d9b970391704af,
+    type: 3}
   originalDirectionTimer: 2
   firstWing: {fileID: 8756476002805006692}
   secondWing: {fileID: 8756476001988378286}
@@ -1048,3 +1055,5 @@ MonoBehaviour:
   wingsExpandSpeed: 15
   moving: 0
   targetPosition: {x: 0, y: 0, z: 0}
+  spawnMinionTimer: 15
+  spawnMinionAmount: 2
