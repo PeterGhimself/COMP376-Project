@@ -648,8 +648,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: LoadTitleScreenMain
+      - m_Target: {fileID: 731526934}
+        m_MethodName: GoToMainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1691,7 +1691,7 @@ MonoBehaviour:
   m_readyScreen: {fileID: 1149230339}
   m_floorManager: {fileID: 5156500922010050231, guid: 3b21d98f3dca945b797a9838e3eb651e,
     type: 3}
-  m_currentLevel: 1
+  m_rulesScreen: {fileID: 2033492322}
   m_floorInfos:
   - Room: 1
     Floor: 6
@@ -3205,7 +3205,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 731526934}
-        m_MethodName: LoadFirstLevel
+        m_MethodName: LoadRulesLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

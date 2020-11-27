@@ -137,6 +137,8 @@ MonoBehaviour:
     Cooldown: 4
   m_chosenWeapon: 0
   chosenAbility: 0
+  m_meleeDamageModifier: 0
+  m_rangedDamageModifier: 0
   m_maxHealth: 5
   m_currentHealth: 5
   m_walkSpeed: 3
@@ -481,8 +483,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SwingSpeed: 1
-  Damage: 1
   Cooldown: 1
+  m_damage: 0
   m_owlLayers:
     serializedVersion: 2
     m_Bits: 1024
@@ -1223,8 +1225,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SwingSpeed: 0.5
-  Damage: 5
   Cooldown: 3
+  m_damage: 0
   m_owlLayers:
     serializedVersion: 2
     m_Bits: 1024
@@ -1378,8 +1380,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SwingSpeed: 1
-  Damage: 1
   Cooldown: 1
+  m_damage: 0
   m_owlLayers:
     serializedVersion: 2
     m_Bits: 1024

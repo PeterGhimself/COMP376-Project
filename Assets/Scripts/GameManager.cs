@@ -143,7 +143,7 @@ public class GameManager : MonoBehaviour
         m_readyScreen.SetActive(true);
     }
 
-    public void GotToMainMenu()
+    public void GoToMainMenu()
     {
         SceneManager.LoadScene(0);
     }
