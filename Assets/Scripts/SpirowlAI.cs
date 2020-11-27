@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class SpirowlAI : Owl
 {
+
+    [Header("StationaryOwl")]
     private Rigidbody2D owlRigidBody;
 
-    public GameObject CSEOwlPrefab;
     public GameObject SpikeyOwlPrefab;
-    public GameObject ShootingOwlPrefab;
-    public GameObject TurretOwlPrefab;
 
     public float originalDirectionTimer; // change direction rate (set in seconds)
     private float directionTimer; // holds timer before changing direction
@@ -40,7 +39,6 @@ public class SpirowlAI : Owl
 
     public float spawnMinionTimer;
     private float spawnMinionCooldown;
-    public int spawnMinionAmount;
 
 
     // Start is called before the first frame update
@@ -72,38 +70,14 @@ public class SpirowlAI : Owl
         
         spawnMinionCooldown -= Time.deltaTime;
 
-        /*
+        // spawn spikey owl
         if(spawnMinionCooldown < 0)
         {
-            GameObject minion;
-
-            for(int x = 0; x < spawnMinionAmount; x++)
-            {
-                int randomInt = Random.Range(1, 5);
-                if (randomInt == 1)
-                {
-                    minion = Instantiate(CSEOwlPrefab, transform.position, Quaternion.identity) as GameObject;
-                }
-                else if (randomInt == 2)
-                {
-                    minion = Instantiate(SpikeyOwlPrefab, transform.position, Quaternion.identity) as GameObject;
-                }
-                else if (randomInt == 3)
-                {
-                    minion = Instantiate(ShootingOwlPrefab, transform.position, Quaternion.identity) as GameObject;
-                }
-                else
-                {
-                    minion = Instantiate(TurretOwlPrefab, transform.position, Quaternion.identity) as GameObject;
-                }
-                minion.transform.parent = transform.parent;
-            }
+            GameObject minion = Instantiate(SpikeyOwlPrefab, transform.position, Quaternion.identity) as GameObject;
+            minion.transform.parent = transform.parent;
             spawnMinionCooldown = spawnMinionTimer;
-
-            // for evan: refer to the spawned minion as a gameobject called "minion"
-            // set whatever you need to set over here
         }
-        */
+        
 
         if(moving)
         {

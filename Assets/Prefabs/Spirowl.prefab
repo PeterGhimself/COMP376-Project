@@ -1007,13 +1007,7 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 512
-  CSEOwlPrefab: {fileID: 3371880922119208831, guid: 2924990e1ef676543a9b81769c97c94c,
-    type: 3}
   SpikeyOwlPrefab: {fileID: 3306818708877844131, guid: 183af7aa96be2274da3cdc81ba2bc840,
-    type: 3}
-  ShootingOwlPrefab: {fileID: 5475906689530320857, guid: ecf028daa5689424db631716ee40f4f7,
-    type: 3}
-  TurretOwlPrefab: {fileID: 2744502993293896220, guid: f91f81c281ca3fa408d9b970391704af,
     type: 3}
   originalDirectionTimer: 2
   firstWing: {fileID: 8756476002805006692}
@@ -1024,5 +1018,4 @@ MonoBehaviour:
   wingsExpandSpeed: 15
   moving: 0
   targetPosition: {x: 0, y: 0, z: 0}
-  spawnMinionTimer: 15
-  spawnMinionAmount: 2
+  spawnMinionTimer: 8
