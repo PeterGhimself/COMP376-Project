@@ -23,11 +23,11 @@ public class Owl : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player");
         animator = GetComponent<Animator>();
-        _mRoomManager = gameObject.transform.parent.GetComponent<RoomManager>();
     }
 
     protected void Start()
     {
+        _mRoomManager = gameObject.transform.parent.GetComponent<RoomManager>();
         Physics2D.IgnoreLayerCollision(10, 10); // removes collision between enemies
         Physics2D.IgnoreLayerCollision(10, 11); // removes collision between enemies
         Physics2D.IgnoreLayerCollision(11, 11); // removes collision between enemies and their projectiles

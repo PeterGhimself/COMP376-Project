@@ -19,6 +19,7 @@ public class WingAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        mainBody = transform.parent.gameObject;
         wingRigidbody = GetComponent<Rigidbody2D>();
         amInOriginalPosition = true;
         expanding = false;
@@ -83,7 +84,7 @@ public class WingAI : MonoBehaviour
                 }
                 else
                 {
-                    Transform currentRoom = mainBody.transform.parent.transform.parent;
+                    Transform currentRoom = mainBody.transform.parent;
                     mainBody.GetComponent<SpirowlAI>().targetPosition = new Vector3(currentRoom.position.x, currentRoom.position.y, mainBody.GetComponent<SpirowlAI>().targetPosition.z);
                     
                 }

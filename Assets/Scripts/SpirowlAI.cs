@@ -65,31 +65,38 @@ public class SpirowlAI : Owl
     // Update is called once per frame
     void Update()
     {
+        if (!IsActive())
+        {
+            return;
+        }
+        
         spawnMinionCooldown -= Time.deltaTime;
 
         /*
         if(spawnMinionCooldown < 0)
         {
+            GameObject minion;
+
             for(int x = 0; x < spawnMinionAmount; x++)
             {
                 int randomInt = Random.Range(1, 5);
-
                 if (randomInt == 1)
                 {
-                    GameObject minion = Instantiate(CSEOwlPrefab, transform.position, Quaternion.identity) as GameObject;
+                    minion = Instantiate(CSEOwlPrefab, transform.position, Quaternion.identity) as GameObject;
                 }
                 else if (randomInt == 2)
                 {
-                    GameObject minion = Instantiate(SpikeyOwlPrefab, transform.position, Quaternion.identity) as GameObject;
+                    minion = Instantiate(SpikeyOwlPrefab, transform.position, Quaternion.identity) as GameObject;
                 }
                 else if (randomInt == 3)
                 {
-                    GameObject minion = Instantiate(ShootingOwlPrefab, transform.position, Quaternion.identity) as GameObject;
+                    minion = Instantiate(ShootingOwlPrefab, transform.position, Quaternion.identity) as GameObject;
                 }
                 else
                 {
-                    GameObject minion = Instantiate(TurretOwlPrefab, transform.position, Quaternion.identity) as GameObject;
+                    minion = Instantiate(TurretOwlPrefab, transform.position, Quaternion.identity) as GameObject;
                 }
+                minion.transform.parent = transform.parent;
             }
             spawnMinionCooldown = spawnMinionTimer;
 
