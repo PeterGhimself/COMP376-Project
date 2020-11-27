@@ -1365,11 +1365,7 @@ MonoBehaviour:
     Floor: 6
   - Room: 3
     Floor: 6
-  m_items:
-  - {fileID: 7203675515500265854, guid: abfbabad06b234548a7d3bf66c92b51f, type: 3}
-  - {fileID: 8209963248598602059, guid: 0eeca26b45ac4374cb4df1e363fdaa5b, type: 3}
-  - {fileID: 8209963248598602059, guid: 0eeca26b45ac4374cb4df1e363fdaa5b, type: 3}
-  - {fileID: 5840134960949840250, guid: 9998bc426a39e8f4bb360068d454cc05, type: 3}
+  m_items: []
   m_player: {fileID: 738436676}
   normalBoss: {fileID: 4545100665353272148, guid: 78452048429134eea8926ac355997436,
     type: 3}
@@ -1390,7 +1386,7 @@ Transform:
   - {fileID: 770954961}
   - {fileID: 1149230340}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &738436676 stripped
 MonoBehaviour:
@@ -1581,7 +1577,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &887380688
 GameObject:
@@ -1779,7 +1775,7 @@ PrefabInstance:
     - target: {fileID: 946682553466885108, guid: 9d306615ac7e842edae15097b94af7e7,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 946682553466885108, guid: 9d306615ac7e842edae15097b94af7e7,
         type: 3}
@@ -3170,7 +3166,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2143810315
 MonoBehaviour:
