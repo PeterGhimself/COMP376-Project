@@ -63,7 +63,7 @@ public class SpirowlAI : Owl
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (!IsActive())
         {

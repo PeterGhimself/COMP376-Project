@@ -794,9 +794,9 @@ GameObject:
   - component: {fileID: 2536503887057456709}
   - component: {fileID: 4596198972279912170}
   - component: {fileID: 3408681539665785965}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Spirowl
-  m_TagString: Untagged
+  m_TagString: Spirowl
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
