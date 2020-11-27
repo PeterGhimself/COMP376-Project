@@ -19,11 +19,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private LoadingScreen m_loadingScreen = default;
     [SerializeField] private GameObject m_TitleScreen = default;
     [SerializeField] private FloorManager m_floorManager = default;
-    [SerializeField] private int m_currentLevel = 1;
+    [SerializeField] private GameObject m_rulesScreen = default;
     [SerializeField] private FloorInfo[] m_floorInfos = default;
     [SerializeField] private List<GameObject> m_items = default;
     [SerializeField] private PlayerController m_player = default;
 
+    private int m_currentLevel = 1; // to avoid accidents, keep it private homie :)
     private UnityEvent m_onLevelComplete;
     private UnityEvent m_onRestartLevel;
     private FloorManager m_currentFloor = default;
@@ -42,8 +43,8 @@ public class GameManager : MonoBehaviour
     }
 
     void Start()
-    {
-        // LoadFirstLevel(); //should be moved to be called by the play button in the main menu
+    {   
+        m_rulesScreen.SetActive(false);
     }
 
     void OnDestroy()
@@ -67,11 +68,17 @@ public class GameManager : MonoBehaviour
         m_currentFloor.Floor = m_currentLevel;
 
         m_TitleScreen.SetActive(false);
+        m_rulesScreen.SetActive(false);
         m_player.transform.position = m_playerInitPosition;
+
+        m_player.gameObject.SetActive(true);
+
+        //@TODO: @EVAN WHY IS THIS 2 ON STARTUP?????????-------------------------------------------------------------------------------------------------------------------
+        print("m_currentLevel: " + m_currentLevel);
+
         if (m_currentLevel == 1)
         {
             m_player.Initialize(PlayerController.Weapon.Dagger, m_onRestartLevel); //todo add weapon choice
-            m_player.gameObject.SetActive(true);
         }
 
         yield return new WaitForSeconds(0.25f);
@@ -80,6 +87,39 @@ public class GameManager : MonoBehaviour
         print("level loading done");
     }
 
+    private IEnumerator LoadRules() {
+        m_loadingScreen.FadeOut();
+        yield return new WaitUntil(() => !m_loadingScreen.IsFading);
+
+        yield return null;
+        print("rules loading started");
+
+        m_TitleScreen.SetActive(false);
+        m_rulesScreen.SetActive(true);
+
+        yield return new WaitForSeconds(0.25f);
+
+        m_loadingScreen.FadeIn();
+        print("rule loading done");
+    }
+
+    private IEnumerator LoadTitleScreen() {
+        m_loadingScreen.FadeOut();
+        yield return new WaitUntil(() => !m_loadingScreen.IsFading);
+
+        yield return null;
+        print("title screen loading started");
+
+        m_rulesScreen.SetActive(false);
+        m_TitleScreen.SetActive(true);
+        
+
+        yield return new WaitForSeconds(0.25f);
+
+        m_loadingScreen.FadeIn();
+        print("rule loading done");
+    }
+    
     public void CompleteLevel()
     {
         m_currentLevel++;
@@ -95,6 +135,14 @@ public class GameManager : MonoBehaviour
     {
         if (m_floorInfos.Length > 0)
             StartCoroutine(LoadLevel());
+    }
+
+    public void LoadRulesLevel() {
+        StartCoroutine(LoadRules());
+    }
+
+    public void LoadTitleScreenMain() {
+        StartCoroutine(LoadTitleScreen());
     }
 
     private void LevelComplete()
