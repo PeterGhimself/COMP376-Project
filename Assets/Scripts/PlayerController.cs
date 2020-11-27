@@ -39,6 +39,8 @@ public class PlayerController : MonoBehaviour
     [Header("Player Attributes")]
     [SerializeField] private Weapon m_chosenWeapon = default;
     [SerializeField] private EAbility chosenAbility = default;
+    [SerializeField] private float m_meleeDamageModifier = 0f;
+    [SerializeField] private float m_rangedDamageModifier = 0f;
     [SerializeField] private float m_maxHealth = 5f;
     [SerializeField] private float m_currentHealth = 5f;
     [SerializeField] private float m_walkSpeed = 1f;
@@ -63,6 +65,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 dashDirection = default;
 
     private UnityEvent restartEvent = default;
+    private bool initialized = false;
 
     //Animation const strings
     private const string k_attackAnim = "Attack";
@@ -77,17 +80,30 @@ public class PlayerController : MonoBehaviour
     //UI
     private bool menuActive = false;
 
-    public void Initialize(Weapon choice, UnityEvent restart)
+    private void Start()
+    {
+        if (!initialized)
+            Initialize(m_chosenWeapon);
+    }
+
+    public void Initialize(Weapon choice, UnityEvent restart = null)
     {
         m_chosenWeapon = choice;
-        m_weapon = m_weapons[(int)choice];
+        m_weapon = m_weapons[(int) choice];
+        m_weapon.gameObject.SetActive(true);
         m_rigidbody = GetComponent<Rigidbody2D>();
         m_animator = GetComponent<Animator>();
         restartEvent = restart;
+
+        if (restart != null)
+            restartEvent = restart;
+
         m_currentHealth = m_maxHealth;
+
+        initialized = true;
     }
 
-#region Updates
+    #region Updates
 
     void Update()
     {
@@ -154,17 +170,24 @@ public class PlayerController : MonoBehaviour
         m_animator.SetFloat("VerticalSpeed", Mathf.Abs(verticalSpeed));
 
         Vector3 theScale = transform.localScale;
-        if (horizontalSpeed < 0) {
-		    // Multiply the player's x local scale by -1.
-            if (theScale.x > 0) {  // only rotate if necessary
-		        theScale.x *= -1;
-		        transform.localScale = theScale;
-            }
-        } else if (horizontalSpeed > 0) {
+        if (horizontalSpeed < 0)
+        {
             // Multiply the player's x local scale by -1.
-            if (theScale.x < 0) { // only rotate if necessary
-		        theScale.x *= -1;
-		        transform.localScale = theScale;
+            if (theScale.x > 0)
+            {
+                // only rotate if necessary
+                theScale.x *= -1;
+                transform.localScale = theScale;
+            }
+        }
+        else if (horizontalSpeed > 0)
+        {
+            // Multiply the player's x local scale by -1.
+            if (theScale.x < 0)
+            {
+                // only rotate if necessary
+                theScale.x *= -1;
+                transform.localScale = theScale;
             }
         }
     }
@@ -186,7 +209,7 @@ public class PlayerController : MonoBehaviour
 
     private void Projectile()
     {
-        if(projectileCooldownTime > 0)
+        if (projectileCooldownTime > 0)
         {
             return;
         }
@@ -200,11 +223,22 @@ public class PlayerController : MonoBehaviour
 
             GameObject projectile = Instantiate(m_icicleProjectile, transform.position, Quaternion.identity);
 
-            Vector2 direction = (mousePos - (Vector2)transform.position).normalized;
+            Vector2 direction = (mousePos - (Vector2) transform.position).normalized;
             projectile.transform.right = direction;
 
+            PlayerProjectile playerProjectile = projectile.GetComponent<PlayerProjectile>();
+
+            if (playerProjectile)
+            {
+                playerProjectile.SetDamage(m_meleeDamageModifier);
+            }
+            else
+            {
+                Debug.LogError("No player projectile script on " + projectile.gameObject.name);
+            }
+
             Rigidbody2D projRB = projectile.GetComponent<Rigidbody2D>();
-            if(projRB)
+            if (projRB)
             {
                 projRB.AddForce(direction * 5f, ForceMode2D.Impulse);
             }
@@ -273,9 +307,34 @@ public class PlayerController : MonoBehaviour
         invincibilityTime = m_invincibilityCooldown;
         m_currentHealth -= damage;
 
-        if(m_currentHealth <= 0)
+        if (m_currentHealth <= 0)
         {
             restartEvent?.Invoke();
+        }
+    }
+
+    public void ChangePlayerStat(Powerup.PowerupType type, float amount)
+    {
+        switch (type)
+        {
+            case Powerup.PowerupType.Attack:
+                m_meleeDamageModifier += amount;
+                m_weapon.IncreaseByDamageMod(m_meleeDamageModifier);
+                m_rangedDamageModifier += amount;
+                break;
+            case Powerup.PowerupType.Health:
+                m_maxHealth += amount;
+                break;
+            case Powerup.PowerupType.Speed:
+                m_walkSpeed += amount;
+                break;
+            case Powerup.PowerupType.Heal:
+                m_currentHealth += amount;
+                if (m_currentHealth > m_maxHealth)
+                    m_currentHealth = m_maxHealth;
+                break;
+            default:
+                break;
         }
     }
 
@@ -284,7 +343,7 @@ public class PlayerController : MonoBehaviour
         if (m_enemyProjectiles == (m_enemyProjectiles | (1 << collision.gameObject.layer)))
         {
             ProjectileScript projectile = collision.gameObject.GetComponent<ProjectileScript>();
-            if(projectile)
+            if (projectile)
             {
                 DamagePlayer(projectile.damage);
             }

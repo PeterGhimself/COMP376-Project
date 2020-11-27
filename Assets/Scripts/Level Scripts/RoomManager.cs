@@ -18,55 +18,98 @@ public class RoomManager : MonoBehaviour
             maximum = max;
         }
     }
-
-    public int columns = 6;
-    public int rows = 6;
-    public Count obstacles = new Count(5, 15);
+    
+    public Count obstacles = new Count(0, 10);
     public Count enemies = new Count(1, 3);
 
     public GameObject[] obstacleTiles;
-    public GameObject doorTile;
+    public GameObject healthDrop;
     public GameObject[] floorTiles;
     public GameObject[] enemyTiles;
     private int floor;
 
+    private float m_dropChance;
+    
+    private GameManager _gameManager;
+
     private bool spawnpoint = false;
+    private bool bossRoom = false;
+    private bool itemRoom = false;
+    
     private bool activeRoom = false;
+    //will make private later
+    public int enemyCount = 0;
+    
     public bool currentRoom = false;
 
     public MoveCameraScript m_cameraScript;
+
     public bool Spawnpoint
     {
         get => spawnpoint;
         set => spawnpoint = value;
     }
 
+    public bool BossRoom
+    {
+        get => bossRoom;
+        set => bossRoom = value;
+    }
+
+    public bool ItemRoom
+    {
+        get => itemRoom;
+        set => itemRoom = value;
+    }
+
     private List<Vector3> gridPosition = new List<Vector3>();
 
     private void Awake()
     {
-        floor = 1;
-        SetupRoom(floor);
+        _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        floor = _gameManager.getLevel();
+        m_dropChance = (1.0f + 4.0f - floor) / 10.0f;
+        SetupRoom();
         m_cameraScript = Camera.main.GetComponent<MoveCameraScript>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        if (!spawnpoint)
+        if (spawnpoint)
         {
-            PlaceObjectAtRandom(obstacleTiles, obstacles.minimum, obstacles.maximum);
-            PlaceObjectAtRandom(enemyTiles, enemies.minimum * floor, enemies.maximum * floor);
+            currentRoom = true;
+        }
+        else if (itemRoom)
+        {
+            PlaceItemInRoom();
+        }
+        else if (bossRoom)
+        {
+            SpawnBoss();
         }
         else
         {
-            currentRoom = true;
+            PlaceObjectAtRandom(obstacleTiles, obstacles.minimum, obstacles.maximum);
+            PlaceObjectAtRandom(enemyTiles, enemies.minimum * floor, enemies.maximum * floor, true);
         }
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (activeRoom && enemyCount <= 0)
+        {
+            activeRoom = false;
+            //spawn health here. 
+            if(Random.Range(0f, 1f) <= m_dropChance )
+            {
+                Vector3 position = RandomPosition();
+                var placed = Instantiate(healthDrop, gameObject.transform, true);
+                placed.transform.localPosition = position;
+                
+            }
+        }
     }
 
     void InitializeList()
@@ -108,19 +151,29 @@ public class RoomManager : MonoBehaviour
         return randomPosition;
     }
 
-    void PlaceObjectAtRandom(GameObject[] placingArray, int min, int max)
+    void PlaceObjectAtRandom(GameObject[] placingArray, int min, int max, bool enemy = false)
     {
+
         int objectCount = Random.Range(min, max);
         for (int i = 0; i < objectCount; i++)
         {
             Vector3 position = RandomPosition();
             GameObject placing = placingArray[Random.Range(0, placingArray.Length)];
-            var flr = Instantiate(placing, gameObject.transform, true);
-            flr.transform.localPosition = position;
+            var placed = Instantiate(placing, gameObject.transform, true);
+            placed.transform.localPosition = position;
+            if (enemy)
+            {
+                enemyCount++;
+            }
+        }
+        
+        if (enemyCount > 0)
+        {
+            activeRoom = true;
         }
     }
 
-    public void SetupRoom(int difficulty)
+    public void SetupRoom()
     {
         RoomSetup();
         InitializeList();
@@ -135,7 +188,7 @@ public class RoomManager : MonoBehaviour
             m_cameraScript.SetDesiredPosition(position.x, position.y);
             var playerObject = other.gameObject;
             var playerPosition = playerObject.transform.position;
-            Vector3 newVector = (position - playerPosition ).normalized;
+            Vector3 newVector = (position - playerPosition).normalized;
             playerPosition += newVector;
             playerObject.transform.position = playerPosition;
         }
@@ -149,4 +202,18 @@ public class RoomManager : MonoBehaviour
             currentRoom = false;
         }
     }
+    private void PlaceItemInRoom()
+    {
+        Debug.Log("SpawnedItem");
+        var item = Instantiate(_gameManager.RandomItem(), gameObject.transform, true);
+        item.transform.localPosition = new Vector3(0,0);
+    }
+    
+    private void SpawnBoss()
+    {
+        Debug.Log("SpawnedBoss");
+        var item = Instantiate(_gameManager.GetBoss(), gameObject.transform, true);
+        item.transform.localPosition = new Vector3(0,0);
+    }
+
 }

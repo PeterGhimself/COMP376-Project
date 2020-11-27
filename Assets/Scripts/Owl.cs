@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,11 +16,21 @@ public class Owl : MonoBehaviour
     private Animator animator = default;
 
     private const string k_owlHitAnim = "OwlHit";
+    
+    private RoomManager _mRoomManager;
 
     private void Awake()
     {
         player = GameObject.FindWithTag("Player");
         animator = GetComponent<Animator>();
+        _mRoomManager = gameObject.transform.parent.GetComponent<RoomManager>();
+    }
+
+    protected void Start()
+    {
+        Physics2D.IgnoreLayerCollision(10, 10); // removes collision between enemies
+        Physics2D.IgnoreLayerCollision(10, 11); // removes collision between enemies
+        Physics2D.IgnoreLayerCollision(11, 11); // removes collision between enemies and their projectiles
     }
 
     public void ApplyDamage(float damage)
@@ -48,5 +59,15 @@ public class Owl : MonoBehaviour
                 Debug.LogError("No playercontroller script on " + player.name);
             }
         }
+    }
+
+    public bool IsActive()
+    {
+        return _mRoomManager.currentRoom;
+    }
+
+    private void OnDestroy()
+    {
+        _mRoomManager.enemyCount--;
     }
 }

@@ -1365,7 +1365,16 @@ MonoBehaviour:
     Floor: 6
   - Room: 3
     Floor: 6
+  m_items:
+  - {fileID: 7203675515500265854, guid: abfbabad06b234548a7d3bf66c92b51f, type: 3}
+  - {fileID: 8209963248598602059, guid: 0eeca26b45ac4374cb4df1e363fdaa5b, type: 3}
+  - {fileID: 8209963248598602059, guid: 0eeca26b45ac4374cb4df1e363fdaa5b, type: 3}
+  - {fileID: 5840134960949840250, guid: 9998bc426a39e8f4bb360068d454cc05, type: 3}
   m_player: {fileID: 738436676}
+  normalBoss: {fileID: 4545100665353272148, guid: 78452048429134eea8926ac355997436,
+    type: 3}
+  finalBoss: {fileID: 6643053397899247415, guid: f614228f201964060a0a3e62b31da543,
+    type: 3}
 --- !u!4 &731526935
 Transform:
   m_ObjectHideFlags: 0
@@ -2710,9 +2719,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 770954962}
-        m_MethodName: PlayGame
-        m_Mode: 3
+      - m_Target: {fileID: 731526934}
+        m_MethodName: LoadFirstLevel
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

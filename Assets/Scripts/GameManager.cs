@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using Object = UnityEngine.Object;
+using Random = UnityEngine.Random;
 
 [Serializable]
 public class FloorInfo
@@ -20,6 +23,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private FloorManager m_floorManager = default;
     [SerializeField] private int m_currentLevel = 1;
     [SerializeField] private FloorInfo[] m_floorInfos = default;
+    [SerializeField] private List<GameObject> m_items = default;
     [SerializeField] private PlayerController m_player = default;
 
     private UnityEvent m_onLevelComplete;
@@ -28,6 +32,8 @@ public class GameManager : MonoBehaviour
     private Vector2 m_playerInitPosition = Vector2.zero;
     private PlayerController.Weapon chosenWeapon = PlayerController.Weapon.Dagger;
 
+    public GameObject normalBoss;
+    public GameObject finalBoss;
     private void Awake()
     {
         m_onLevelComplete = new UnityEvent();
@@ -60,12 +66,29 @@ public class GameManager : MonoBehaviour
         m_TitleScreen.SetActive(false);
         m_readyScreen.SetActive(false);
         m_player.transform.position = m_playerInitPosition;
+
         m_player.gameObject.SetActive(true);
-        m_player.Initialize(chosenWeapon, m_onRestartLevel);
+
+        if (m_currentLevel == 1)
+        {
+            m_player.Initialize(PlayerController.Weapon.Dagger, m_onRestartLevel); 
+            m_player.gameObject.SetActive(true);
+        }
 
 
         m_loadingScreen.FadeIn();
         print("level loading done");
+    }
+
+    public void CompleteLevel()
+    {
+        m_currentLevel++;
+        StartCoroutine(LoadLevel());
+    }
+    
+    public int getLevel()
+    {
+        return m_currentLevel;
     }
 
     public void LoadFirstLevel()
@@ -111,5 +134,23 @@ public class GameManager : MonoBehaviour
         {
             //game complete
         }
+    }
+    
+    public GameObject RandomItem()
+    {
+        int randomIndex = Random.Range(0, m_items.Count);
+        GameObject randomPosition = m_items[randomIndex];
+        m_items.RemoveAt(randomIndex);
+        return randomPosition;
+    }
+
+    public GameObject GetBoss()
+    {
+        if (m_currentLevel <= 3)
+        {
+            return normalBoss;
+        }
+
+        return finalBoss;
     }
 }
