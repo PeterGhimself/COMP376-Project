@@ -1,13 +1,19 @@
 fileFormatVersion: 2
-guid: 0392fb5fe0723df48807f9c16b7ddcb6
+guid: 92ed05813473b254ebd26bb9a251f03d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -311864918929429538
-    second: shuriken_fly_0
+      213: -5796771222674251469
+    second: penguinoF_walk_naked_vertical_0
   - first:
-      213: 5018425678448128749
-    second: shuriken_fly_1
+      213: -181394564506293861
+    second: penguinoF_walk_naked_vertical_1
+  - first:
+      213: -1019013246718527752
+    second: penguinoF_walk_naked_vertical_2
+  - first:
+      213: 9214329928108374729
+    second: penguinoF_walk_naked_vertical_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -93,13 +99,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: shuriken_fly_0
+      name: penguinoF_walk_naked_vertical_0
       rect:
         serializedVersion: 2
-        x: 88
-        y: 385
-        width: 128
-        height: 128
+        x: 0
+        y: 256
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -107,20 +113,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: edb2e4132880cabf0800000000000000
-      internalID: -311864918929429538
+      spriteID: 3316b4c194bbd8fa0800000000000000
+      internalID: -5796771222674251469
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: shuriken_fly_1
+      name: penguinoF_walk_naked_vertical_1
       rect:
         serializedVersion: 2
-        x: 69
-        y: 66
-        width: 164
-        height: 164
+        x: 256
+        y: 256
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +134,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: de27997d09705a540800000000000000
-      internalID: 5018425678448128749
+      spriteID: b996a6aca9e8b7df0800000000000000
+      internalID: -181394564506293861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penguinoF_walk_naked_vertical_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f6bcefd9dcbbd1f0800000000000000
+      internalID: -1019013246718527752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penguinoF_walk_naked_vertical_3
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ca76200040efdf70800000000000000
+      internalID: 9214329928108374729
       vertices: []
       indices: 
       edges: []

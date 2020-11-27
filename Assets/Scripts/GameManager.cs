@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
     private FloorManager m_currentFloor = default;
     private Vector2 m_playerInitPosition = Vector2.zero;
     private PlayerController.Weapon chosenWeapon = PlayerController.Weapon.Dagger;
+    private int chosenProjectile = 0;
 
     public GameObject normalBoss;
     public GameObject finalBoss;
@@ -73,7 +74,7 @@ public class GameManager : MonoBehaviour
 
         if (m_currentLevel == 1)
         {
-            m_player.Initialize(chosenWeapon, m_onRestartLevel); 
+            m_player.Initialize(chosenWeapon, chosenProjectile, m_onRestartLevel); 
         }
 
         print("m_currentLevel: " + m_currentLevel);
@@ -135,6 +136,11 @@ public class GameManager : MonoBehaviour
     public void SetChosenWeapon(int weapon)
     {
         chosenWeapon = (PlayerController.Weapon)weapon;
+    }
+
+    public void SetChosenProjectile(int choice)
+    {
+        chosenProjectile = choice;
     }
 
     public void GoToReadyScreen()

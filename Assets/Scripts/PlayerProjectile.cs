@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerProjectile : MonoBehaviour
 {
+    public float Speed = 1;
+    public float Cooldown = 1;
+
     [SerializeField] private LayerMask m_enemyLayers;
     [SerializeField] private float m_damage = 1;
 

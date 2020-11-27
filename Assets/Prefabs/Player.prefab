@@ -262,8 +262,10 @@ MonoBehaviour:
   - {fileID: 5742417907739069938}
   - {fileID: 1100668758585042068}
   - {fileID: 4406061058130990255}
-  m_icicleProjectile: {fileID: 7812010515636511411, guid: 3730e1e0810bdc04e8c5cc6ab04d4210,
-    type: 3}
+  m_projectiles:
+  - {fileID: 5373140848164093499, guid: 3730e1e0810bdc04e8c5cc6ab04d4210, type: 3}
+  - {fileID: 5373140848164093499, guid: d8af565f6bb56f849a671f9800d748e9, type: 3}
+  - {fileID: 5373140848164093499, guid: b7e81110615093e4bbaa4f74e969a13e, type: 3}
   m_playerAbilities:
   - Ability: 0
     Cooldown: 2
@@ -271,6 +273,7 @@ MonoBehaviour:
     Cooldown: 4
   m_chosenWeapon: 0
   chosenAbility: 0
+  m_chosenProjectile: {fileID: 0}
   m_meleeDamageModifier: 0
   m_rangedDamageModifier: 0
   m_maxHealth: 5

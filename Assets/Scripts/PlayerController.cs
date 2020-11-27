@@ -33,12 +33,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject m_menu = default;
     [SerializeField] private LayerMask m_enemyProjectiles = default;
     [SerializeField] private PlayerWeapon[] m_weapons = default;
-    [SerializeField] private GameObject m_icicleProjectile = default;
+    [SerializeField] private PlayerProjectile[] m_projectiles = default;
     [SerializeField] private PlayerAbilityDefinition[] m_playerAbilities = default;
 
     [Header("Player Attributes")]
     [SerializeField] private Weapon m_chosenWeapon = default;
     [SerializeField] private EAbility chosenAbility = default;
+    [SerializeField] private PlayerProjectile m_chosenProjectile = default;
     [SerializeField] private float m_meleeDamageModifier = 0f;
     [SerializeField] private float m_rangedDamageModifier = 0f;
     [SerializeField] private float m_maxHealth = 5f;
@@ -65,7 +66,6 @@ public class PlayerController : MonoBehaviour
     private Vector2 dashDirection = default;
 
     private UnityEvent restartEvent = default;
-    private bool initialized = false;
 
     //Animation const strings
     private const string k_attackAnim = "Attack";
@@ -81,7 +81,7 @@ public class PlayerController : MonoBehaviour
     //UI
     private bool menuActive = false;
 
-    public void Initialize(Weapon choice, UnityEvent restart = null)
+    public void Initialize(Weapon choice, int projectileChoice, UnityEvent restart = null)
     {
         m_chosenWeapon = choice;
         m_weapon = m_weapons[(int) choice];
@@ -89,6 +89,7 @@ public class PlayerController : MonoBehaviour
         m_animator = GetComponent<Animator>();
         restartEvent = restart;
 
+        m_chosenProjectile = m_projectiles[projectileChoice];
         m_weapon.gameObject.SetActive(true);
 
         m_animator.SetFloat(k_playerAtkSpeed, m_weapon.SwingSpeed);
@@ -97,8 +98,6 @@ public class PlayerController : MonoBehaviour
             restartEvent = restart;
 
         m_currentHealth = m_maxHealth;
-
-        initialized = true;
     }
 
     #region Updates
@@ -213,12 +212,12 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButton(k_projectileButton))
         {
-            projectileCooldownTime = m_weapon.Cooldown;
+            projectileCooldownTime = m_chosenProjectile.Cooldown;
             //todo: choose projectile
 
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-            GameObject projectile = Instantiate(m_icicleProjectile, transform.position, Quaternion.identity);
+            GameObject projectile = Instantiate(m_chosenProjectile.gameObject, transform.position, Quaternion.identity);
 
             Vector2 direction = (mousePos - (Vector2) transform.position).normalized;
             projectile.transform.right = direction;
@@ -284,7 +283,7 @@ public class PlayerController : MonoBehaviour
                 if (i == 0 && j == 0)
                     continue;
 
-                GameObject projectile = Instantiate(m_icicleProjectile, transform.position, Quaternion.identity);
+                GameObject projectile = Instantiate(m_chosenProjectile.gameObject, transform.position, Quaternion.identity);
                 Vector2 direction = ((new Vector2(i, j) + (Vector2)transform.position) - (Vector2)transform.position).normalized;
                 projectile.transform.right = direction;
                 Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
