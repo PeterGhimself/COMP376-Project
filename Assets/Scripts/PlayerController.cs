@@ -356,4 +356,10 @@ public class PlayerController : MonoBehaviour
         menuActive = false;
         m_menu.SetActive(false);
     }
+
+    public void QuitToMenu()
+    {
+        Time.timeScale = 1;
+        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+    }
 }

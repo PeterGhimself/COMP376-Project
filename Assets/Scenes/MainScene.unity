@@ -1372,9 +1372,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Rules
-
-'
+  m_Text: Controls
 --- !u!222 &404958184
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2637,7 +2635,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 731526934}
-        m_MethodName: GotToMainMenu
+        m_MethodName: GoToMainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3485,7 +3483,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -24.75}
   m_SizeDelta: {x: 199.2, y: 199.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1258173206
@@ -3521,7 +3519,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e01f778da7b34fb4b9d89912482f114c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 511306a86f5e05d49ae452c3634b073c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
