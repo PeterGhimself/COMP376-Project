@@ -22,12 +22,11 @@ public class RoomManager : MonoBehaviour
     public Count obstacles = new Count(0, 10);
     public Count enemies = new Count(1, 3);
 
-    // testing
+    
     [SerializeField] [Range(1,4)] 
     int m_level = 1;
 
     public GameObject prefabRef;
-    // -----
 
     public GameObject[] obstacleTiles;
     public GameObject healthDrop;
@@ -101,22 +100,7 @@ public class RoomManager : MonoBehaviour
             PlaceObjectAtRandom(enemyTiles, enemies.minimum * floor, enemies.maximum * floor, true);
         }
 
-        if(m_level == 1)
-        {
-            prefabRef.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.white); // arctic
-        }
-        else if(m_level == 2)
-        {
-            prefabRef.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.blue); // ocean
-        }
-        else if(m_level == 3)
-        {
-            prefabRef.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.black); // cave (original)
-        }
-        else if(m_level == 4)
-        {
-             prefabRef.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.green); // forest
-        }
+        MapChange();
     }
 
     // Update is called once per frame
@@ -133,6 +117,26 @@ public class RoomManager : MonoBehaviour
                 placed.transform.localPosition = position;
                 
             }
+        }
+    }
+
+    private void MapChange()
+    {
+        if(m_level == 1)
+        {
+            prefabRef.GetComponent<SpriteRenderer>().color = Color.red; // arctic
+        }
+        else if(m_level == 2)
+        {
+            prefabRef.GetComponent<SpriteRenderer>().color = Color.blue; // ocean
+        }
+        else if(m_level == 3)
+        {
+            prefabRef.GetComponent<SpriteRenderer>().color = Color.white; // cave (original)
+        }
+        else if(m_level == 4)
+        {
+             prefabRef.GetComponent<SpriteRenderer>().color = Color.green; // forest
         }
     }
 
