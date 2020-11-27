@@ -70,6 +70,7 @@ public class PlayerController : MonoBehaviour
     //Animation const strings
     private const string k_attackAnim = "Attack";
     private const string m_playerHitAnim = "PlayerHit";
+    private const string k_playerAtkSpeed = "SwingSpeed";
 
     //Input const strings
     private const string k_fireButton = "Fire";
@@ -80,12 +81,6 @@ public class PlayerController : MonoBehaviour
     //UI
     private bool menuActive = false;
 
-    private void Start()
-    {
-        if (!initialized)
-            Initialize(m_chosenWeapon);
-    }
-
     public void Initialize(Weapon choice, UnityEvent restart = null)
     {
         m_chosenWeapon = choice;
@@ -93,6 +88,10 @@ public class PlayerController : MonoBehaviour
         m_rigidbody = GetComponent<Rigidbody2D>();
         m_animator = GetComponent<Animator>();
         restartEvent = restart;
+
+        m_weapon.gameObject.SetActive(true);
+
+        m_animator.SetFloat(k_playerAtkSpeed, m_weapon.SwingSpeed);
 
         if (restart != null)
             restartEvent = restart;
@@ -202,7 +201,6 @@ public class PlayerController : MonoBehaviour
         {
             m_animator.SetTrigger(k_attackAnim);
             attackCooldownTime = m_weapon.Cooldown;
-            //todo set swing speed
         }
     }
 

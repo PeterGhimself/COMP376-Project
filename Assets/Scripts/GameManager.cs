@@ -73,7 +73,7 @@ public class GameManager : MonoBehaviour
 
         if (m_currentLevel == 1)
         {
-            m_player.Initialize(PlayerController.Weapon.Dagger, m_onRestartLevel); 
+            m_player.Initialize(chosenWeapon, m_onRestartLevel); 
         }
 
         print("m_currentLevel: " + m_currentLevel);
