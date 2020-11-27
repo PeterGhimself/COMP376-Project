@@ -23,7 +23,6 @@ public class Maps : MonoBehaviour
         else if(m_floor == 2)
         {
             prefabInstantiated.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.blue); // ocean
-
         } 
         else if (m_floor == 3)
         {
