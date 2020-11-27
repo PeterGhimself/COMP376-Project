@@ -90,7 +90,6 @@ public class PlayerController : MonoBehaviour
     {
         m_chosenWeapon = choice;
         m_weapon = m_weapons[(int) choice];
-        m_weapon.gameObject.SetActive(true);
         m_rigidbody = GetComponent<Rigidbody2D>();
         m_animator = GetComponent<Animator>();
         restartEvent = restart;
@@ -230,7 +229,7 @@ public class PlayerController : MonoBehaviour
 
             if (playerProjectile)
             {
-                playerProjectile.SetDamage(m_meleeDamageModifier);
+                playerProjectile.IncreaseDamage(m_meleeDamageModifier);
             }
             else
             {

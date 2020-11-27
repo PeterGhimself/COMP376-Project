@@ -26,7 +26,7 @@ public class PlayerProjectile : MonoBehaviour
     }
 
 
-    public void SetDamage(float damage)
+    public void IncreaseDamage(float damage)
     {
         m_damage += damage;
     }
@@ -45,9 +45,6 @@ public class PlayerProjectile : MonoBehaviour
             {
                 Debug.LogError("No owl script on " + fire.name);
             }
-        }else if (!other.gameObject.CompareTag("Rooms"))
-        {
-            Destroy(gameObject);
         }
     }
 }
