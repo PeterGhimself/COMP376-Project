@@ -593,7 +593,6 @@ MonoBehaviour:
   m_floorManager: {fileID: 5156500922010050231, guid: 3b21d98f3dca945b797a9838e3eb651e,
     type: 3}
   m_rulesScreen: {fileID: 1720522426}
-  m_currentLevel: 1
   m_floorInfos:
   - Room: 1
     Floor: 6
@@ -804,7 +803,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 543.1, y: -460.5}
+  m_AnchoredPosition: {x: 188, y: -512}
   m_SizeDelta: {x: 294.75946, y: 60.172867}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &855566276
@@ -1100,7 +1099,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -122, y: 21}
+  m_AnchoredPosition: {x: -281, y: 231}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &930749597
@@ -1333,8 +1332,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 305.65, y: -246.56}
-  m_SizeDelta: {x: 569.34467, y: 249.68161}
+  m_AnchoredPosition: {x: 373, y: -270.5}
+  m_SizeDelta: {x: 704.1326, y: 297.543}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1040311959
 MonoBehaviour:

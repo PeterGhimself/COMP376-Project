@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Video;
 using UnityEngine.SceneManagement;
 using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
@@ -17,6 +18,7 @@ public class FloorInfo
 
 public class GameManager : MonoBehaviour
 {
+  
     [SerializeField] private LoadingScreen m_loadingScreen = default;
     [SerializeField] private GameObject m_TitleScreen = default;
     [SerializeField] private FloorManager m_floorManager = default;
@@ -45,6 +47,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {   
+        
         m_rulesScreen.SetActive(false);
     }
 
