@@ -39,7 +39,7 @@ public class SpirowlAI : Owl
 
     public float spawnMinionTimer;
     private float spawnMinionCooldown;
-
+    [SerializeField] private GameObject _exit;
 
     // Start is called before the first frame update
     void Start()
@@ -133,5 +133,11 @@ public class SpirowlAI : Owl
                 wingsRotatingTimer = wingsRotatingCooldown;
             }
         }
+    }
+    
+    private void OnDestroy()
+    {
+        var item = Instantiate(_exit, gameObject.transform.parent.transform, true);
+        item.transform.localPosition = new Vector3(0,0);    
     }
 }

@@ -993,3 +993,4 @@ MonoBehaviour:
   moving: 0
   targetPosition: {x: 0, y: 0, z: 0}
   spawnMinionTimer: 8
+  _exit: {fileID: 170075321377839083, guid: 25fa1fe48f08b4214b41cbd7799e8585, type: 3}
