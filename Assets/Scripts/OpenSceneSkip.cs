@@ -9,4 +9,6 @@ public class OpenSceneSkip : MonoBehaviour
     {
         SceneManager.LoadScene(scene_name);
     }
+
+    
 }
