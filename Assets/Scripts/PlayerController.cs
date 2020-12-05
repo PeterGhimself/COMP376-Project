@@ -80,6 +80,18 @@ public class PlayerController : MonoBehaviour
         initialized = true;
     }
 
+    public float getMeleeDamageModifier() {
+        return this.m_meleeDamageModifier;
+    }
+
+    public float getRangedDamageModifier() {
+        return this.m_rangedDamageModifier;
+    }
+
+    public float getWalkSpeed() {
+        return this.m_walkSpeed;
+    }
+
     #region Updates
 
     void Update()
