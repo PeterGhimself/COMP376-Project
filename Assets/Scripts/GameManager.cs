@@ -35,8 +35,13 @@ public class GameManager : MonoBehaviour
     private FloorManager m_currentFloor = default;
     private Vector2 m_playerInitPosition = Vector2.zero;
 
+    GameObject video;
+    VideoPlayer clip;
+
     public GameObject normalBoss;
     public GameObject finalBoss;
+
+    
     private void Awake()
     {
         DontDestroyOnLoad(this);
@@ -44,6 +49,9 @@ public class GameManager : MonoBehaviour
         m_onLevelComplete.AddListener(LevelComplete);
         m_onRestartLevel = new UnityEvent();
         m_onRestartLevel.AddListener(Restart);
+        video = GameObject.FindWithTag("OpenScene");
+        clip = video.GetComponent<VideoPlayer>();
+        clip.loopPointReached += Verify;
         //Todo: send events to floor manager (or something) so they can be called when dying or finishing level
     }
 
@@ -174,6 +182,11 @@ public class GameManager : MonoBehaviour
     {
         if (m_floorInfos.Length > 0)
             StartCoroutine(LoadLevel());
+    }
+
+    void Verify(VideoPlayer v)
+    {
+        LoadFirstLevel();
     }
 
     public void LoadCutScene()

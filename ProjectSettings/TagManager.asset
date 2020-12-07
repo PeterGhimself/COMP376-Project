@@ -10,6 +10,7 @@ TagManager:
   - Rooms
   - EnemyProjectile
   - Fire
+  - OpenScene
   layers:
   - Default
   - TransparentFX
