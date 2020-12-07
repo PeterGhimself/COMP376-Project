@@ -18,7 +18,7 @@ public class FloorInfo
 
 public class GameManager : MonoBehaviour
 {
-  
+
     [SerializeField] private LoadingScreen m_loadingScreen = default;
     [SerializeField] private GameObject m_TitleScreen = default;
     [SerializeField] private FloorManager m_floorManager = default;
@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private FloorInfo[] m_floorInfos = default;
     [SerializeField] private List<GameObject> m_items = default;
     [SerializeField] private PlayerController m_player = default;
+
+    [SerializeField] private GameObject m_openCutScene = default;
 
     private int m_currentLevel = 1; // to avoid accidents, keep it private homie :)
     private UnityEvent m_onLevelComplete;
@@ -46,8 +48,8 @@ public class GameManager : MonoBehaviour
     }
 
     void Start()
-    {   
-        
+    {
+        m_openCutScene.SetActive(false);
         m_rulesScreen.SetActive(false);
     }
 
@@ -73,6 +75,7 @@ public class GameManager : MonoBehaviour
 
         m_TitleScreen.SetActive(false);
         m_rulesScreen.SetActive(false);
+        m_openCutScene.SetActive(false);
         m_player.transform.position = m_playerInitPosition;
 
         m_player.gameObject.SetActive(true);
@@ -97,14 +100,32 @@ public class GameManager : MonoBehaviour
 
         yield return null;
         print("Returning to main menu");
-        
+
         SceneManager.LoadScene("MainScene");
         Destroy(gameObject);
         m_loadingScreen.FadeIn();
         print("Main Menu");
     }
 
-    private IEnumerator LoadRules() {
+    private IEnumerator LoadOpeningCutScene()
+    {
+        m_loadingScreen.FadeOut();
+        yield return new WaitUntil(() => !m_loadingScreen.IsFading);
+        
+        yield return null;
+        print("opening cut scene loading started");
+
+        m_TitleScreen.SetActive(false);
+        m_openCutScene.SetActive(true);
+
+        yield return new WaitForSeconds(0.25f);
+
+        m_loadingScreen.FadeIn();
+        print("opening cut scene loading done");
+    }
+
+    private IEnumerator LoadRules()
+    {
         m_loadingScreen.FadeOut();
         yield return new WaitUntil(() => !m_loadingScreen.IsFading);
 
@@ -120,7 +141,8 @@ public class GameManager : MonoBehaviour
         print("rule loading done");
     }
 
-    private IEnumerator LoadTitleScreen() {
+    private IEnumerator LoadTitleScreen()
+    {
         m_loadingScreen.FadeOut();
         yield return new WaitUntil(() => !m_loadingScreen.IsFading);
 
@@ -129,20 +151,20 @@ public class GameManager : MonoBehaviour
 
         m_rulesScreen.SetActive(false);
         m_TitleScreen.SetActive(true);
-        
 
         yield return new WaitForSeconds(0.25f);
 
         m_loadingScreen.FadeIn();
+
         print("rule loading done");
     }
-    
+
     public void CompleteLevel()
     {
         m_currentLevel++;
         StartCoroutine(LoadLevel());
     }
-    
+
     public int getLevel()
     {
         return m_currentLevel;
@@ -154,11 +176,18 @@ public class GameManager : MonoBehaviour
             StartCoroutine(LoadLevel());
     }
 
-    public void LoadRulesLevel() {
+    public void LoadCutScene()
+    {
+        StartCoroutine(LoadOpeningCutScene());
+    }
+
+    public void LoadRulesLevel()
+    {
         StartCoroutine(LoadRules());
     }
 
-    public void LoadTitleScreenMain() {
+    public void LoadTitleScreenMain()
+    {
         StartCoroutine(LoadTitleScreen());
     }
 
@@ -184,7 +213,7 @@ public class GameManager : MonoBehaviour
             //game complete
         }
     }
-    
+
     public GameObject RandomItem()
     {
         int randomIndex = Random.Range(0, m_items.Count);
