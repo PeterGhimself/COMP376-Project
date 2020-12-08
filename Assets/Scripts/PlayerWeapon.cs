@@ -6,6 +6,7 @@ public class PlayerWeapon : MonoBehaviour
 {
     public float SwingSpeed;
     public float Cooldown;
+    public float KnockbackForce;
 
     [SerializeField] private float m_damage = default;
     [SerializeField] private LayerMask m_owlLayers = default;

@@ -73,7 +73,7 @@ public class CSEOwl : Owl
 
     }
 
-
+    //maybe try using a loop for this :)
     void explodeProjectiles()
     {
         // spawn 8 projectiles
@@ -88,14 +88,14 @@ public class CSEOwl : Owl
 
 
         // project them towards 8 different directions
-        firstProjectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(1, 0) * projectileSpeed);
-        secondProjectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(1, 1).normalized * projectileSpeed);
-        thirdProjectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 1) * projectileSpeed);
-        fourthProjectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(-1, 1).normalized * projectileSpeed);
-        fifthProjectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(-1, 0) * projectileSpeed);
-        sixthProjectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(-1, -1).normalized * projectileSpeed);
-        seventhProjectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, -1) * projectileSpeed);
-        eighthProjectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(1, -1).normalized * projectileSpeed);
+        firstProjectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(1, 0) * projectileSpeed, ForceMode2D.Impulse);
+        secondProjectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(1, 1).normalized * projectileSpeed, ForceMode2D.Impulse);
+        thirdProjectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 1) * projectileSpeed, ForceMode2D.Impulse);
+        fourthProjectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(-1, 1).normalized * projectileSpeed, ForceMode2D.Impulse);
+        fifthProjectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(-1, 0) * projectileSpeed, ForceMode2D.Impulse);
+        sixthProjectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(-1, -1).normalized * projectileSpeed, ForceMode2D.Impulse);
+        seventhProjectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, -1) * projectileSpeed, ForceMode2D.Impulse);
+        eighthProjectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(1, -1).normalized * projectileSpeed, ForceMode2D.Impulse);
 
         firstProjectile.GetComponent<ProjectileScript>().damage = projectileDamage;
         secondProjectile.GetComponent<ProjectileScript>().damage = projectileDamage;
