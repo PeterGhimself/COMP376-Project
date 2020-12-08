@@ -11,6 +11,8 @@ TagManager:
   - EnemyProjectile
   - Fire
   - Spirowl
+  - Owlinator
+  - PlayerProjectile
   layers:
   - Default
   - TransparentFX
