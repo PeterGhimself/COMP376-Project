@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 5669132446526904921, guid: bdbf85c223a5d460f97177d3e35e16ed,
         type: 3}
       propertyPath: m_Name
-      value: Wall
+      value: WhiteWall
       objectReference: {fileID: 0}
     - target: {fileID: 5669132446526904921, guid: bdbf85c223a5d460f97177d3e35e16ed,
         type: 3}
