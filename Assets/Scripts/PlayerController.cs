@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PlayerWeapon[] m_weapons = default;
     [SerializeField] private PlayerProjectile[] m_projectiles = default;
     [SerializeField] private PlayerAbilityDefinition[] m_playerAbilities = default;
+    [SerializeField] private TimeSpeedChanger m_timeSpeedChanger = default;
 
     [Header("Player Attributes")]
     [SerializeField] private Weapon m_chosenWeapon = default;
@@ -47,6 +48,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float m_walkSpeed = 1f;
     [SerializeField] private float m_dashForce = 5f;
     [SerializeField] private float m_dashInvincibilityTime = 0.5f;
+    [SerializeField] private float m_slowmoDuration = 2f;
+    [SerializeField] private float m_slowmoTimeSpeed = 0.5f;
     [SerializeField] private float m_invincibilityCooldown = 0.5f;
 
     private Rigidbody2D m_rigidbody = default;
@@ -112,7 +115,10 @@ public class PlayerController : MonoBehaviour
         }
 
         if (menuActive)
+        {
+            m_timeSpeedChanger.Stop();
             return;
+        }
 
         UpdateCharacterStates();
         UpdatePlayerUI();
@@ -158,7 +164,7 @@ public class PlayerController : MonoBehaviour
 
         dashDirection = walkVector;
 
-        transform.Translate(walkVector * m_walkSpeed * Time.deltaTime);
+        transform.Translate(walkVector * m_walkSpeed * Time.unscaledDeltaTime);
 
         float horizontalSpeed = walkVector.x;
         float verticalSpeed = walkVector.y;
@@ -256,6 +262,8 @@ public class PlayerController : MonoBehaviour
                 DashAbility();
             else if (ability.Ability == EAbility.ProjectileExplosion)
                 ProjectileExplosionAbility();
+            else
+                StartCoroutine(SlowMotionAbility());
         }
 
         if (dashInvincibleTime < 0)
@@ -267,14 +275,14 @@ public class PlayerController : MonoBehaviour
 
     #endregion
 
-    public void DashAbility()
+    private void DashAbility()
     {
         dashInvincible = true;
         dashInvincibleTime = m_dashInvincibilityTime;
         m_rigidbody.AddForce(dashDirection * m_dashForce, ForceMode2D.Impulse);
     }
 
-    public void ProjectileExplosionAbility()
+    private void ProjectileExplosionAbility()
     {
         for(int i = -1; i < 2; i++)
         {
@@ -293,6 +301,13 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+    }
+
+    private IEnumerator SlowMotionAbility()
+    {
+        m_timeSpeedChanger.SetTargetTimeSpeed(m_slowmoTimeSpeed);
+        yield return new WaitForSecondsRealtime(m_slowmoDuration);
+        m_timeSpeedChanger.SetTargetTimeSpeed(1);
     }
 
     public void DamagePlayer(float damage)
@@ -355,6 +370,8 @@ public class PlayerController : MonoBehaviour
         Time.timeScale = 1;
         menuActive = false;
         m_menu.SetActive(false);
+        m_timeSpeedChanger.SetTargetTimeSpeed(1);
+        m_timeSpeedChanger.Resume();
     }
 
     public void QuitToMenu()
