@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
     public GameObject normalBoss;
     public GameObject finalBoss;
 
-    
+
     private void Awake()
     {
         DontDestroyOnLoad(this);
@@ -49,9 +49,8 @@ public class GameManager : MonoBehaviour
         m_onLevelComplete.AddListener(LevelComplete);
         m_onRestartLevel = new UnityEvent();
         m_onRestartLevel.AddListener(Restart);
-        video = GameObject.FindWithTag("OpenScene");
-        clip = video.GetComponent<VideoPlayer>();
-        clip.loopPointReached += Verify;
+        VideoControl();
+
         //Todo: send events to floor manager (or something) so they can be called when dying or finishing level
     }
 
@@ -65,6 +64,13 @@ public class GameManager : MonoBehaviour
     {
         m_onLevelComplete.RemoveAllListeners();
         m_onRestartLevel.RemoveAllListeners();
+    }
+
+    private void VideoControl()
+    {
+        video = GameObject.FindWithTag("OpenScene");
+        clip = video.GetComponent<VideoPlayer>();
+        clip.loopPointReached += Verify;
     }
 
     private IEnumerator LoadLevel()
@@ -119,7 +125,7 @@ public class GameManager : MonoBehaviour
     {
         m_loadingScreen.FadeOut();
         yield return new WaitUntil(() => !m_loadingScreen.IsFading);
-        
+
         yield return null;
         print("opening cut scene loading started");
 
