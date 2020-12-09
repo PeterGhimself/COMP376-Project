@@ -1867,6 +1867,7 @@ GameObject:
   - component: {fileID: 9013956652712527058}
   - component: {fileID: 2011192403839613614}
   - component: {fileID: 6375260117279273733}
+  - component: {fileID: 5011641355470265705}
   m_Layer: 8
   m_Name: RangedDamage
   m_TagString: Untagged
@@ -1934,6 +1935,20 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 'Ranged: '
+--- !u!114 &5011641355470265705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7504218121954217114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 390be3bb8000b264b9fd4477297556ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 790160647679140609}
+  rangedText: {fileID: 6375260117279273733}
 --- !u!1 &7880959489361123384
 GameObject:
   m_ObjectHideFlags: 0

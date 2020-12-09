@@ -18,7 +18,7 @@ public class PlayerWeapon : MonoBehaviour
         initDamage = m_damage;
     }
 
-    public float getDamage() {
+    public float GetDamage() {
         return this.m_damage;
     }
 

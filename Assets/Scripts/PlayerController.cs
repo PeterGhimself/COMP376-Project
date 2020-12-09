@@ -86,6 +86,11 @@ public class PlayerController : MonoBehaviour
         return this.m_weapons[(int)this.m_chosenWeapon];
     }
 
+    public PlayerProjectile GetChosenProjectile()
+    {
+        return this.m_chosenProjectile;
+    }
+
     //UI
     private bool menuActive = false;
 

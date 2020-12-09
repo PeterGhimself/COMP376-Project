@@ -11,12 +11,7 @@ public class MeleeStats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*
-        Dagger = 0,
-        Sword = 1,
-        Hammer = 2
-        */
-        float damage = player.GetChosenWeapon().getDamage();
+        float damage = player.GetChosenWeapon().GetDamage();
         attackText.text = "Melee: " + (damage);
         //print("Attack: " + (damage));
     }
