@@ -2068,6 +2068,9 @@ MonoBehaviour:
   - {fileID: 8209963248598602059, guid: 0eeca26b45ac4374cb4df1e363fdaa5b, type: 3}
   - {fileID: 8209963248598602059, guid: 0eeca26b45ac4374cb4df1e363fdaa5b, type: 3}
   - {fileID: 5840134960949840250, guid: 9998bc426a39e8f4bb360068d454cc05, type: 3}
+  - {fileID: 226099729906136451, guid: 9ff47675deebc534e9a358a505469ecc, type: 3}
+  - {fileID: 2761007271285326466, guid: 0681c6dfe00ec4b468a9fb18eaba0ad1, type: 3}
+  - {fileID: 7805628601999819672, guid: 0153ea3aa65c5df4b9b8e2e3b43fc831, type: 3}
   m_player: {fileID: 738436676}
   normalBoss: {fileID: 8756476003047371832, guid: 9cfff4d9222b5d94381dc84e328231eb,
     type: 3}
