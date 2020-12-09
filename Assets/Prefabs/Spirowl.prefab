@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 8756476001988378259}
   - component: {fileID: 8756476001988378258}
   - component: {fileID: 8756476001988378261}
-  m_Layer: 13
+  m_Layer: 14
   m_Name: SecondWing
-  m_TagString: Untagged
+  m_TagString: SpirowlWing
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -208,9 +208,9 @@ GameObject:
   - component: {fileID: 8756476002632365056}
   - component: {fileID: 8756476002632365059}
   - component: {fileID: 8756476002632365058}
-  m_Layer: 13
+  m_Layer: 14
   m_Name: FourthWing
-  m_TagString: Untagged
+  m_TagString: SpirowlWing
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -403,9 +403,9 @@ GameObject:
   - component: {fileID: 8756476002710257099}
   - component: {fileID: 8756476002710257098}
   - component: {fileID: 8756476002710257101}
-  m_Layer: 13
+  m_Layer: 14
   m_Name: ThirdWing
-  m_TagString: Untagged
+  m_TagString: SpirowlWing
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -598,9 +598,9 @@ GameObject:
   - component: {fileID: 8756476002805006697}
   - component: {fileID: 8756476002805006696}
   - component: {fileID: 8756476002805006699}
-  m_Layer: 13
+  m_Layer: 14
   m_Name: FirstWing
-  m_TagString: Untagged
+  m_TagString: SpirowlWing
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

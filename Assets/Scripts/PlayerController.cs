@@ -360,7 +360,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                Debug.LogError("No projectile script on " + projectile.gameObject.name);
+                Debug.LogError("No projectile script on " + collision.gameObject.name);
             }
         }
     }

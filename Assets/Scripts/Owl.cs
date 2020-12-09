@@ -32,7 +32,8 @@ public class Owl : MonoBehaviour
         Physics2D.IgnoreLayerCollision(10, 11); // removes collision between enemies
         Physics2D.IgnoreLayerCollision(11, 11); // removes collision between enemies and their projectiles
         Physics2D.IgnoreLayerCollision(10, 13); 
-        Physics2D.IgnoreLayerCollision(11, 13); 
+        Physics2D.IgnoreLayerCollision(11, 13);
+        Physics2D.IgnoreLayerCollision(10, 14);
     }
 
     public void ApplyDamage(float damage)
@@ -58,7 +59,7 @@ public class Owl : MonoBehaviour
             }
             else
             {
-                Debug.LogError("No playercontroller script on " + player.name);
+                Debug.LogError("No playercontroller script on " + collision.gameObject.name);
             }
         }
     }

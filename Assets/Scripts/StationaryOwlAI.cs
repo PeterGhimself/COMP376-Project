@@ -147,7 +147,7 @@ public class StationaryOwlAI : Owl
                 }
                 else
                 {
-                    Debug.LogError("No playercontroller script on " + player.name);
+                    Debug.LogError("No playercontroller script on " + hit.collider.gameObject.name);
                 }
             }
         }

@@ -73,7 +73,8 @@ public class WingAI : MonoBehaviour
     {
         if (collision.collider != null)
         {
-            if(!collision.collider.CompareTag("Player"))
+
+            if (!collision.collider.CompareTag("Player"))
             {
                 if(expanding == true || retracting == true)
                 {

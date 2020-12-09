@@ -29,7 +29,7 @@ public class PlayerWeapon : MonoBehaviour
             }
             else
             {
-                Debug.LogError("No owl script on " + owl.gameObject.name);
+                Debug.LogError("No owl script on " + collider.gameObject.name);
             }
         }else if (collider.gameObject.CompareTag("Fire"))
         {
@@ -40,7 +40,7 @@ public class PlayerWeapon : MonoBehaviour
             }
             else
             {
-                Debug.LogError("No fire script on " + fire.name);
+                Debug.LogError("No fire script on " + collider.gameObject.name);
             }
         }
     }

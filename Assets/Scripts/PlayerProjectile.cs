@@ -21,7 +21,7 @@ public class PlayerProjectile : MonoBehaviour
             }
             else
             {
-                Debug.LogError("No owl script on " + owl.name);
+                Debug.LogError("No owl script on " + collision.gameObject.name);
             }
         }
 
@@ -46,7 +46,7 @@ public class PlayerProjectile : MonoBehaviour
             }
             else
             {
-                Debug.LogError("No owl script on " + fire.name);
+                Debug.LogError("No owl script on " + other.gameObject.name);
             }
         }
     }

@@ -2069,7 +2069,7 @@ MonoBehaviour:
   - {fileID: 8209963248598602059, guid: 0eeca26b45ac4374cb4df1e363fdaa5b, type: 3}
   - {fileID: 5840134960949840250, guid: 9998bc426a39e8f4bb360068d454cc05, type: 3}
   m_player: {fileID: 738436676}
-  normalBoss: {fileID: 4545100665353272148, guid: 78452048429134eea8926ac355997436,
+  normalBoss: {fileID: 8756476003047371832, guid: 9cfff4d9222b5d94381dc84e328231eb,
     type: 3}
   finalBoss: {fileID: 6643053397899247415, guid: f614228f201964060a0a3e62b31da543,
     type: 3}
