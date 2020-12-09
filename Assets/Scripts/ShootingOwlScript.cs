@@ -63,7 +63,7 @@ public class ShootingOwlScript : Owl
             GameObject bullet = Instantiate(projectilePrefab, transform.position, Quaternion.identity) as GameObject;
             bullet.GetComponent<ProjectileScript>().damage = projectileDamage;
 
-            bullet.GetComponent<Rigidbody2D>().AddForce((player.transform.position - transform.position).normalized * projectileSpeed);
+            bullet.GetComponent<Rigidbody2D>().AddForce((player.transform.position - transform.position).normalized * projectileSpeed, ForceMode2D.Impulse);
 
             shootTimer = originalShootTimer;
         }
