@@ -9,6 +9,7 @@ public class ProjectileScript : MonoBehaviour
 
     void Start()
     {
+        Physics2D.IgnoreLayerCollision(11, 11); // removes collision between enemies and their projectiles
         Physics2D.IgnoreLayerCollision(14, 14); // projectiles ignore collision with each other
     }
 

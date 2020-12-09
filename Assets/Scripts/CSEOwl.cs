@@ -12,7 +12,9 @@ public class CSEOwl : Owl
     public float projectileSpeed;
     private Rigidbody2D owlRigidBody;
     private bool moving;
+    private bool stopped;
     private float directionTimer; // holds timer before changing direction
+    private float stopTimer;
 
     private Vector3 playerPosition;
 
@@ -22,7 +24,9 @@ public class CSEOwl : Owl
         owlRigidBody = GetComponent<Rigidbody2D>();
         player = GameObject.FindWithTag("Player");
         moving = false;
+        stopped = true;
         directionTimer = 3f;
+        stopTimer = 1f;
         base.Start();
     }
 
@@ -38,13 +42,14 @@ public class CSEOwl : Owl
         
         directionTimer -= Time.deltaTime;
 
-        if (moving == false)
+        if (!moving && stopped)
         {
             playerPosition = player.transform.position; // store player's current position
             // head towards that position
 
             gameObject.GetComponent<Rigidbody2D>().AddForce((player.transform.position - transform.position).normalized * moveSpeed);
 
+            stopped = false;
             moving = true; // change state to moving
         }
 
@@ -53,13 +58,19 @@ public class CSEOwl : Owl
             // nullify the current forces
             owlRigidBody.velocity = Vector2.zero;
             owlRigidBody.angularVelocity = 0;
+            stopTimer = 1f;
+            stopped = true;
+        }
 
+        if(stopped && moving)
+        {
             explodeProjectiles();
 
             directionTimer = Random.Range(2, 5); // generate a random idleTimer for the next
 
             moving = false;
         }
+
     }
 
     //maybe try using a loop for this :)
