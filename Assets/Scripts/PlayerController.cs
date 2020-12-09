@@ -86,11 +86,6 @@ public class PlayerController : MonoBehaviour
         return (int)this.m_chosenWeapon;
     }
 
-    private void Start()
-    {
-        if (!initialized)
-            Initialize(m_chosenWeapon);
-    }
     //UI
     private bool menuActive = false;
 
