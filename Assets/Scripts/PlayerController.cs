@@ -100,9 +100,24 @@ public class PlayerController : MonoBehaviour
     {
         return this.m_maxHealth;
     }
-    
+
     public float GetWalkSpeed() {
         return this.m_walkSpeed;
+    }
+
+    public float GetAttackCooldownTime()
+    {
+        return this.attackCooldownTime;
+    }
+
+    public float GetProjectileCooldownTime()
+    {
+        return this.projectileCooldownTime;
+    }
+
+    public float GetAbilityCooldownTime()
+    {
+        return this.abilityCooldownTime;
     }
 
     //UI
