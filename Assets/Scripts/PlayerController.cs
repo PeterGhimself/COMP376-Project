@@ -91,6 +91,20 @@ public class PlayerController : MonoBehaviour
         return this.m_chosenProjectile;
     }
 
+    public float GetCurrentHealth()
+    {
+        return this.m_currentHealth;
+    }
+
+    public float GetMaxHealth()
+    {
+        return this.m_maxHealth;
+    }
+    
+    public float GetWalkSpeed() {
+        return this.m_walkSpeed;
+    }
+
     //UI
     private bool menuActive = false;
 
@@ -111,18 +125,6 @@ public class PlayerController : MonoBehaviour
             restartEvent = restart;
 
         m_currentHealth = m_maxHealth;
-    }
-
-    public float getMeleeDamageModifier() {
-        return this.m_meleeDamageModifier;
-    }
-
-    public float getRangedDamageModifier() {
-        return this.m_rangedDamageModifier;
-    }
-
-    public float getWalkSpeed() {
-        return this.m_walkSpeed;
     }
 
     #region Updates

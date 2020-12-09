@@ -10,7 +10,6 @@ public class SpeedStats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        speedText.text = "Speed: " + player.getWalkSpeed();
-        print("Speed: " + player.getWalkSpeed());
+        speedText.text = "Speed: " + player.GetWalkSpeed();
     }
 }
