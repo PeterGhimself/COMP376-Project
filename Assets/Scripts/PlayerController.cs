@@ -81,9 +81,9 @@ public class PlayerController : MonoBehaviour
     private const string k_horizontalAxis = "Horizontal";
     private const string k_verticalAxis = "Vertical";
 
-    public int GetChosenWeapon()
+    public PlayerWeapon GetChosenWeapon()
     {
-        return (int)this.m_chosenWeapon;
+        return this.m_weapons[(int)this.m_chosenWeapon];
     }
 
     //UI
