@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerProjectile : MonoBehaviour
 {
+    public float Speed = 1;
+    public float Cooldown = 1;
+
     [SerializeField] private LayerMask m_enemyLayers;
     [SerializeField] private float m_damage = 1;
 
@@ -18,7 +21,7 @@ public class PlayerProjectile : MonoBehaviour
             }
             else
             {
-                Debug.LogError("No owl script on " + owl.name);
+                Debug.LogError("No owl script on " + collision.gameObject.name);
             }
         }
 
@@ -26,7 +29,7 @@ public class PlayerProjectile : MonoBehaviour
     }
 
 
-    public void SetDamage(float damage)
+    public void IncreaseDamage(float damage)
     {
         m_damage += damage;
     }
@@ -43,11 +46,8 @@ public class PlayerProjectile : MonoBehaviour
             }
             else
             {
-                Debug.LogError("No owl script on " + fire.name);
+                Debug.LogError("No owl script on " + other.gameObject.name);
             }
-        }else if (!other.gameObject.CompareTag("Rooms"))
-        {
-            Destroy(gameObject);
         }
     }
 }

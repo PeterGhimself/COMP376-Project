@@ -10,6 +10,9 @@ TagManager:
   - Rooms
   - EnemyProjectile
   - Fire
+  - Owlinator
+  - Spirowl
+  - SpirowlWing
   layers:
   - Default
   - TransparentFX
@@ -24,7 +27,7 @@ TagManager:
   - Enemy
   - Projectile
   - PlayerProjectile
-  - 
+  - PlayerWeapon
   - 
   - 
   - 

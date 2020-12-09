@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Video;
 using UnityEngine.SceneManagement;
 using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
@@ -19,6 +20,7 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private LoadingScreen m_loadingScreen = default;
     [SerializeField] private GameObject m_TitleScreen = default;
+    [SerializeField] private GameObject m_readyScreen = default;
     [SerializeField] private FloorManager m_floorManager = default;
     [SerializeField] private GameObject m_rulesScreen = default;
     [SerializeField] private FloorInfo[] m_floorInfos = default;
@@ -30,22 +32,18 @@ public class GameManager : MonoBehaviour
     private UnityEvent m_onRestartLevel;
     private FloorManager m_currentFloor = default;
     private Vector2 m_playerInitPosition = Vector2.zero;
+    private PlayerController.Weapon chosenWeapon = PlayerController.Weapon.Dagger;
+    private int chosenProjectile = 0;
 
     public GameObject normalBoss;
     public GameObject finalBoss;
     private void Awake()
     {
-        DontDestroyOnLoad(this);
         m_onLevelComplete = new UnityEvent();
         m_onLevelComplete.AddListener(LevelComplete);
         m_onRestartLevel = new UnityEvent();
         m_onRestartLevel.AddListener(Restart);
         //Todo: send events to floor manager (or something) so they can be called when dying or finishing level
-    }
-
-    void Start()
-    {   
-        m_rulesScreen.SetActive(false);
     }
 
     void OnDestroy()
@@ -69,20 +67,18 @@ public class GameManager : MonoBehaviour
         m_currentFloor.Floor = m_currentLevel;
 
         m_TitleScreen.SetActive(false);
+        m_readyScreen.SetActive(false);
         m_rulesScreen.SetActive(false);
         m_player.transform.position = m_playerInitPosition;
 
         m_player.gameObject.SetActive(true);
 
-        //@TODO: @EVAN WHY IS THIS 2 ON STARTUP?????????-------------------------------------------------------------------------------------------------------------------
-        print("m_currentLevel: " + m_currentLevel);
-
         if (m_currentLevel == 1)
         {
-            m_player.Initialize(PlayerController.Weapon.Dagger, m_onRestartLevel); //todo add weapon choice
+            m_player.Initialize(chosenWeapon, chosenProjectile, m_onRestartLevel); 
         }
 
-        yield return new WaitForSeconds(0.25f);
+        print("m_currentLevel: " + m_currentLevel);
 
         m_loadingScreen.FadeIn();
         print("level loading done");
@@ -151,11 +147,35 @@ public class GameManager : MonoBehaviour
             StartCoroutine(LoadLevel());
     }
 
-    public void LoadRulesLevel() {
+    public void SetChosenWeapon(int weapon)
+    {
+        chosenWeapon = (PlayerController.Weapon)weapon;
+    }
+
+    public void SetChosenProjectile(int choice)
+    {
+        chosenProjectile = choice;
+    }
+
+    public void GoToReadyScreen()
+    {
+        m_TitleScreen.SetActive(false);
+        m_readyScreen.SetActive(true);
+    }
+
+    public void GoToMainMenu()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(0);
+    }
+
+    public void LoadRulesLevel() 
+    {
         StartCoroutine(LoadRules());
     }
 
-    public void LoadTitleScreenMain() {
+    public void LoadTitleScreenMain() 
+    {
         StartCoroutine(LoadTitleScreen());
     }
 

@@ -6,6 +6,7 @@ public class PlayerWeapon : MonoBehaviour
 {
     public float SwingSpeed;
     public float Cooldown;
+    public float KnockbackForce;
 
     [SerializeField] private float m_damage = default;
     [SerializeField] private LayerMask m_owlLayers = default;
@@ -32,7 +33,7 @@ public class PlayerWeapon : MonoBehaviour
             }
             else
             {
-                Debug.LogError("No owl script on " + owl.gameObject.name);
+                Debug.LogError("No owl script on " + collider.gameObject.name);
             }
         }else if (collider.gameObject.CompareTag("Fire"))
         {
@@ -43,7 +44,7 @@ public class PlayerWeapon : MonoBehaviour
             }
             else
             {
-                Debug.LogError("No fire script on " + fire.name);
+                Debug.LogError("No fire script on " + collider.gameObject.name);
             }
         }
     }
