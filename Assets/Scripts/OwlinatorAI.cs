@@ -59,6 +59,11 @@ public class OwlinatorAI : Owl
     // Update is called once per frame
     void Update()
     {
+        if(gameObject.transform.rotation != Quaternion.identity && !bubble.activeSelf)
+        {
+            gameObject.transform.rotation = Quaternion.identity;
+        }
+
         if (bubble.activeSelf)
         {
             if (!bubble.GetComponent<OwlinatorBubbleScript>().stunned)
@@ -161,6 +166,19 @@ public class OwlinatorAI : Owl
                 bubble.GetComponent<OwlinatorBubbleScript>().bubbleVulnerable = false;
                 currentBubbleVulnerableTimer = bubbleVulnerableTimer;
                 returning = true;
+            }
+        }
+
+        if (playerLayer == (playerLayer | (1 << collision.gameObject.layer)))
+        {
+            PlayerController playerCtrl = collision.gameObject.GetComponent<PlayerController>();
+            if (playerCtrl)
+            {
+                playerCtrl.DamagePlayer(touchDamage);
+            }
+            else
+            {
+                Debug.LogError("No playercontroller script on " + collision.gameObject.name);
             }
         }
     }

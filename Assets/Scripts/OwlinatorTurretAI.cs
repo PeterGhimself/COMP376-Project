@@ -15,7 +15,6 @@ public class OwlinatorTurretAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        shootIntervalRange = 10;
         shootTimer = Random.Range(4, shootIntervalRange);
     }
 

@@ -3108,7 +3108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b3f66f8376f1614cb79916dffe63e14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 30
+  health: 50
   bubble: {fileID: 3087867989072339704}
 --- !u!60 &3087867989280192974
 PolygonCollider2D:
