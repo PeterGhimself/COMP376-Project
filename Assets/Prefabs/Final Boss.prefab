@@ -98,9 +98,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 1457095803886979826, guid: 6fb41aedf16ac12499f50f3d0a2c223f,
     type: 3}
-  projectileDamage: 2
+  projectileDamage: 1
   projectileSpeed: 50
-  shootIntervalRange: 10
+  shootIntervalRange: 15
 --- !u!50 &2050400526437720613
 Rigidbody2D:
   serializedVersion: 4
@@ -271,9 +271,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 1457095803886979826, guid: 6fb41aedf16ac12499f50f3d0a2c223f,
     type: 3}
-  projectileDamage: 2
+  projectileDamage: 1
   projectileSpeed: 50
-  shootIntervalRange: 10
+  shootIntervalRange: 15
 --- !u!50 &5490030067283599712
 Rigidbody2D:
   serializedVersion: 4
@@ -444,9 +444,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 1457095803886979826, guid: 6fb41aedf16ac12499f50f3d0a2c223f,
     type: 3}
-  projectileDamage: 2
+  projectileDamage: 1
   projectileSpeed: 50
-  shootIntervalRange: 10
+  shootIntervalRange: 15
 --- !u!50 &8852811661319147695
 Rigidbody2D:
   serializedVersion: 4
@@ -617,9 +617,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 1457095803886979826, guid: 6fb41aedf16ac12499f50f3d0a2c223f,
     type: 3}
-  projectileDamage: 2
+  projectileDamage: 1
   projectileSpeed: 50
-  shootIntervalRange: 10
+  shootIntervalRange: 15
 --- !u!50 &7677117897371827013
 Rigidbody2D:
   serializedVersion: 4
@@ -790,9 +790,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 1457095803886979826, guid: 6fb41aedf16ac12499f50f3d0a2c223f,
     type: 3}
-  projectileDamage: 2
+  projectileDamage: 1
   projectileSpeed: 50
-  shootIntervalRange: 10
+  shootIntervalRange: 15
 --- !u!50 &7355505087721584634
 Rigidbody2D:
   serializedVersion: 4
@@ -963,9 +963,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 1457095803886979826, guid: 6fb41aedf16ac12499f50f3d0a2c223f,
     type: 3}
-  projectileDamage: 2
+  projectileDamage: 1
   projectileSpeed: 50
-  shootIntervalRange: 10
+  shootIntervalRange: 15
 --- !u!50 &1018940968595638476
 Rigidbody2D:
   serializedVersion: 4
@@ -1136,9 +1136,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 1457095803886979826, guid: 6fb41aedf16ac12499f50f3d0a2c223f,
     type: 3}
-  projectileDamage: 2
+  projectileDamage: 1
   projectileSpeed: 50
-  shootIntervalRange: 10
+  shootIntervalRange: 15
 --- !u!50 &9025794905612884842
 Rigidbody2D:
   serializedVersion: 4
@@ -1309,9 +1309,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 1457095803886979826, guid: 6fb41aedf16ac12499f50f3d0a2c223f,
     type: 3}
-  projectileDamage: 2
+  projectileDamage: 1
   projectileSpeed: 50
-  shootIntervalRange: 10
+  shootIntervalRange: 15
 --- !u!50 &5272778042568317189
 Rigidbody2D:
   serializedVersion: 4
@@ -1640,9 +1640,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 1457095803886979826, guid: 6fb41aedf16ac12499f50f3d0a2c223f,
     type: 3}
-  projectileDamage: 2
+  projectileDamage: 1
   projectileSpeed: 50
-  shootIntervalRange: 10
+  shootIntervalRange: 15
 --- !u!50 &7524513174196535822
 Rigidbody2D:
   serializedVersion: 4
@@ -1869,6 +1869,7 @@ GameObject:
   - component: {fileID: 5506102212214012192}
   - component: {fileID: 4437270932595424739}
   - component: {fileID: 5601142389599742717}
+  - component: {fileID: 1888408333528142924}
   m_Layer: 0
   m_Name: ShieldCore
   m_TagString: ShieldCore
@@ -1952,8 +1953,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b3f66f8376f1614cb79916dffe63e14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 50
+  health: 30
   bubble: {fileID: 5003651446001192089}
+  animator: {fileID: 0}
 --- !u!60 &4437270932595424739
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -2063,6 +2065,25 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!95 &1888408333528142924
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5456305755907372482}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9be32e76910081d438d914356e9d102d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5570269872264304682
 GameObject:
   m_ObjectHideFlags: 0
@@ -2161,9 +2182,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 1457095803886979826, guid: 6fb41aedf16ac12499f50f3d0a2c223f,
     type: 3}
-  projectileDamage: 2
+  projectileDamage: 1
   projectileSpeed: 50
-  shootIntervalRange: 10
+  shootIntervalRange: 15
 --- !u!50 &780528612495403071
 Rigidbody2D:
   serializedVersion: 4
@@ -2334,9 +2355,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 1457095803886979826, guid: 6fb41aedf16ac12499f50f3d0a2c223f,
     type: 3}
-  projectileDamage: 2
+  projectileDamage: 1
   projectileSpeed: 50
-  shootIntervalRange: 10
+  shootIntervalRange: 15
 --- !u!50 &3789996147181652545
 Rigidbody2D:
   serializedVersion: 4
@@ -2507,9 +2528,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 1457095803886979826, guid: 6fb41aedf16ac12499f50f3d0a2c223f,
     type: 3}
-  projectileDamage: 2
+  projectileDamage: 1
   projectileSpeed: 50
-  shootIntervalRange: 10
+  shootIntervalRange: 15
 --- !u!50 &8594385013769653215
 Rigidbody2D:
   serializedVersion: 4
@@ -2680,9 +2701,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 1457095803886979826, guid: 6fb41aedf16ac12499f50f3d0a2c223f,
     type: 3}
-  projectileDamage: 2
+  projectileDamage: 1
   projectileSpeed: 50
-  shootIntervalRange: 10
+  shootIntervalRange: 15
 --- !u!50 &3407945946935573896
 Rigidbody2D:
   serializedVersion: 4
@@ -2803,9 +2824,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c50d604512d871843aa977d71358c14f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitPoints: 20
+  hitPoints: 30
   moveSpeed: 15
-  touchDamage: 5
+  touchDamage: 1
   playerLayer:
     serializedVersion: 2
     m_Bits: 512
@@ -3057,9 +3078,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 1457095803886979826, guid: 6fb41aedf16ac12499f50f3d0a2c223f,
     type: 3}
-  projectileDamage: 2
+  projectileDamage: 1
   projectileSpeed: 50
-  shootIntervalRange: 10
+  shootIntervalRange: 15
 --- !u!50 &3626512171165013847
 Rigidbody2D:
   serializedVersion: 4
@@ -3230,9 +3251,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 1457095803886979826, guid: 6fb41aedf16ac12499f50f3d0a2c223f,
     type: 3}
-  projectileDamage: 2
+  projectileDamage: 1
   projectileSpeed: 50
-  shootIntervalRange: 10
+  shootIntervalRange: 15
 --- !u!50 &7779218298506304657
 Rigidbody2D:
   serializedVersion: 4
@@ -3403,9 +3424,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 1457095803886979826, guid: 6fb41aedf16ac12499f50f3d0a2c223f,
     type: 3}
-  projectileDamage: 2
+  projectileDamage: 1
   projectileSpeed: 50
-  shootIntervalRange: 10
+  shootIntervalRange: 15
 --- !u!50 &338273303096160019
 Rigidbody2D:
   serializedVersion: 4
@@ -3576,9 +3597,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 1457095803886979826, guid: 6fb41aedf16ac12499f50f3d0a2c223f,
     type: 3}
-  projectileDamage: 2
+  projectileDamage: 1
   projectileSpeed: 50
-  shootIntervalRange: 10
+  shootIntervalRange: 15
 --- !u!50 &5618096957694975799
 Rigidbody2D:
   serializedVersion: 4
@@ -3749,9 +3770,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 1457095803886979826, guid: 6fb41aedf16ac12499f50f3d0a2c223f,
     type: 3}
-  projectileDamage: 2
+  projectileDamage: 1
   projectileSpeed: 50
-  shootIntervalRange: 10
+  shootIntervalRange: 15
 --- !u!50 &473593491182623535
 Rigidbody2D:
   serializedVersion: 4

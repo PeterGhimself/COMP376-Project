@@ -56,6 +56,7 @@ public class PlayerWeapon : MonoBehaviour
         else if(collider.gameObject.CompareTag("ShieldCore"))
         {
             collider.gameObject.GetComponent<ShieldCoreScript>().health -= (int)m_damage;
+            collider.gameObject.GetComponent<Animator>().SetTrigger("ShieldCoreHit");
         }
     }
 
