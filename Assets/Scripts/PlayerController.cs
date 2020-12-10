@@ -84,6 +84,8 @@ public class PlayerController : MonoBehaviour
     //UI
     private bool menuActive = false;
 
+
+
     public void Initialize(Weapon choice, int projectileChoice, UnityEvent restart = null)
     {
         m_chosenWeapon = choice;
