@@ -18,7 +18,6 @@ public class Powerup : MonoBehaviour
     [SerializeField] private LayerMask m_playerLayer = default;
     [SerializeField] private Canvas m_tooltip = default;
 
-
     private void ShowTooltip()
     {
         m_tooltip.gameObject.SetActive(true);

@@ -36,10 +36,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PlayerProjectile[] m_projectiles = default;
     [SerializeField] private PlayerAbilityDefinition[] m_playerAbilities = default;
     [SerializeField] private TimeSpeedChanger m_timeSpeedChanger = default;
+    [SerializeField] private Image imageMeleeCooldown, imageRangedCooldown, imageAbilityCooldown;
 
     [Header("Player Attributes")]
     [SerializeField] private Weapon m_chosenWeapon = default;
-    [SerializeField] private EAbility chosenAbility = default;
+    [SerializeField] private EAbility m_chosenAbility = default;
     [SerializeField] private PlayerProjectile m_chosenProjectile = default;
     [SerializeField] private float m_meleeDamageModifier = 0f;
     [SerializeField] private float m_rangedDamageModifier = 0f;
@@ -167,6 +168,9 @@ public class PlayerController : MonoBehaviour
     private void UpdatePlayerUI()
     {
         m_healthBar.fillAmount = m_currentHealth / m_maxHealth;
+        imageMeleeCooldown.fillAmount = attackCooldownTime / m_weapon.Cooldown;
+        imageRangedCooldown.fillAmount = projectileCooldownTime / m_chosenProjectile.Cooldown;
+        imageAbilityCooldown.fillAmount = abilityCooldownTime / m_playerAbilities[(int)m_chosenAbility].Cooldown;
     }
 
     private void UpdateCharacterStates()
@@ -293,9 +297,9 @@ public class PlayerController : MonoBehaviour
 
     private void PlayerAbility()
     {
-        if (Input.GetButtonDown("Ability") && abilityCooldownTime <= 0)
+        if (Input.GetButton("Ability") && abilityCooldownTime <= 0)
         {
-            PlayerAbilityDefinition ability = m_playerAbilities[(int)chosenAbility];
+            PlayerAbilityDefinition ability = m_playerAbilities[(int)m_chosenAbility];
             abilityCooldownTime = ability.Cooldown;
             if (ability.Ability == EAbility.Dash)
                 DashAbility();
