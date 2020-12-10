@@ -25,7 +25,6 @@ public class OwlinatorAI : Owl
     void Start()
     {
         player = GameObject.FindWithTag("Player");
-        owlRigidbody = GetComponent<Rigidbody2D>();
         chargeTimer = 2; //Random.Range(chargeCooldown, chargeCooldown + 3);
         charging = false;
         returning = false;

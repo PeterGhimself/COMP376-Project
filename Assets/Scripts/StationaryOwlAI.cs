@@ -55,6 +55,8 @@ public class StationaryOwlAI : Owl
     // Update is called once per frame
     void Update()
     {
+        animator.SetBool(k_owlFlyAnim, owlRigidBody.velocity.magnitude > 0);
+
         //If not in active room. don't do anything
         if (!IsActive())
         {

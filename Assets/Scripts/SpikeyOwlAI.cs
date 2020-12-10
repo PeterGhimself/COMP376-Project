@@ -37,6 +37,8 @@ public class SpikeyOwlAI : Owl
         
         directionTimer -= Time.deltaTime;
 
+        animator.SetBool(k_owlFlyAnim, owlRigidBody.velocity.magnitude > 0);
+
         // charge towards player location after the direction timer runs out
         if (directionTimer < 0)
         {

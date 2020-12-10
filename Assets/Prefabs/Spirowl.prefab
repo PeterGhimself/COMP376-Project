@@ -175,7 +175,7 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
@@ -370,7 +370,7 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
@@ -565,7 +565,7 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
@@ -760,7 +760,7 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
@@ -954,7 +954,7 @@ Animator:
   m_GameObject: {fileID: 8756476003047371832}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 0d4f2c7aa8ef64077a69308cd23fb49d, type: 2}
+  m_Controller: {fileID: 9100000, guid: 7667f5a98bd73ea499a38a4ccb0f29fa, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -988,8 +988,8 @@ MonoBehaviour:
   secondWing: {fileID: 8756476001988378286}
   thirdWing: {fileID: 8756476002710257094}
   fourthWing: {fileID: 8756476002632365087}
-  wingsRotationSpeed: 50
-  wingsExpandSpeed: 15
+  wingsRotationSpeed: 40
+  wingsExpandSpeed: 3
   moving: 0
   targetPosition: {x: 0, y: 0, z: 0}
   spawnMinionTimer: 8
