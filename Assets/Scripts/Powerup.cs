@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Powerup : MonoBehaviour
 {
+
     public enum PowerupType
     {
         Attack,
@@ -15,6 +16,28 @@ public class Powerup : MonoBehaviour
     [SerializeField] private PowerupType m_powerupType = default;
     [SerializeField] private float m_powerupIncrease = default;
     [SerializeField] private LayerMask m_playerLayer = default;
+    [SerializeField] private Canvas m_tooltip = default;
+
+
+    private void ShowTooltip()
+    {
+        m_tooltip.gameObject.SetActive(true);
+    }
+
+    private void HideTooltip()
+    {
+        m_tooltip.gameObject.SetActive(false);
+    }
+
+    void OnMouseEnter()
+    {
+        this.ShowTooltip();
+    }
+
+    void OnMouseExit()
+    {
+        this.HideTooltip();
+    }
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
