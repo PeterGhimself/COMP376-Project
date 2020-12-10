@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class OwlinatorAI : Owl
 {
+    public GameObject projectilePrefab;
+
+    public float projectileDamage;
+    public float projectileSpeed;
+
     public GameObject bubble;
 
     private Rigidbody2D owlRigidbody;
@@ -21,6 +26,16 @@ public class OwlinatorAI : Owl
     private float bubbleVulnerableTimer;
     private float currentBubbleVulnerableTimer;
 
+    private float burstShootCooldown;
+    private float burstShootCurrentTime;
+    private bool burstShooting;
+    private int shotCount;
+
+    private float shootCooldown;
+    private float shootTimer;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,56 +47,106 @@ public class OwlinatorAI : Owl
         originalPosition = transform.position;
         Physics2D.IgnoreLayerCollision(10, 11); // removes collision between enemies
         bubbleVulnerableTimer = 2f;
+        burstShootCooldown = 5f;
+        burstShootCurrentTime = burstShootCooldown;
+        burstShooting = false;
+        shotCount = 0;
+        shootCooldown = 0.3f;
+        shootTimer = shootCooldown;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        chargeTimer -= Time.deltaTime;
-        if (chargeTimer < 0 && !charging)
+        if (bubble.activeSelf)
         {
-            targetPosition = player.transform.position;
-            charging = true;
-        }
-
-        if (charging)
-        {
-            if (!returning)
+            if (!bubble.GetComponent<OwlinatorBubbleScript>().stunned)
             {
-                if (Vector3.Distance(transform.position, targetPosition) < 0.1f)
+
+                chargeTimer -= Time.deltaTime;
+                if (chargeTimer < 0 && !charging)
                 {
-                    if(!bubble.GetComponent<OwlinatorBubbleScript>().bubbleVulnerable)
+                    targetPosition = player.transform.position;
+                    charging = true;
+                }
+
+                if (charging)
+                {
+                    if (!returning)
                     {
-                        bubble.GetComponent<OwlinatorBubbleScript>().bubbleVulnerable = true;
-                        currentBubbleVulnerableTimer = bubbleVulnerableTimer;
+                        if (Vector3.Distance(transform.position, targetPosition) < 0.1f)
+                        {
+                            if (!bubble.GetComponent<OwlinatorBubbleScript>().bubbleVulnerable)
+                            {
+                                bubble.GetComponent<OwlinatorBubbleScript>().bubbleVulnerable = true;
+                                currentBubbleVulnerableTimer = bubbleVulnerableTimer;
+                            }
+                            else
+                            {
+                                currentBubbleVulnerableTimer -= Time.deltaTime;
+                                if (currentBubbleVulnerableTimer < 0)
+                                {
+                                    bubble.GetComponent<OwlinatorBubbleScript>().bubbleVulnerable = false;
+                                    returning = true;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed/2 * Time.deltaTime);
+                        }
                     }
                     else
                     {
-                        print(currentBubbleVulnerableTimer);
-                        currentBubbleVulnerableTimer -= Time.deltaTime;
-                        if(currentBubbleVulnerableTimer < 0)
+                        if (Vector3.Distance(transform.position, originalPosition) < 0.1f)
                         {
-                            bubble.GetComponent<OwlinatorBubbleScript>().bubbleVulnerable = false;
-                            returning = true;
+                            returning = false;
+                            charging = false;
+                            chargeTimer = Random.Range(chargeCooldown, chargeCooldown + 3);
+                        }
+                        else
+                        {
+                            transform.position = Vector3.MoveTowards(transform.position, originalPosition, moveSpeed/3 * Time.deltaTime);
                         }
                     }
                 }
-                else
+            }
+        }
+        else
+        {
+            if(!burstShooting)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, player.transform.position, moveSpeed / 8 * Time.deltaTime);
+                burstShootCurrentTime -= Time.deltaTime;
+
+                if(burstShootCurrentTime < 0)
                 {
-                    transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
+                    burstShooting = true;
                 }
             }
             else
             {
-                if (Vector3.Distance(transform.position, originalPosition) < 0.1f)
+                shootTimer -= Time.deltaTime;
+
+                // if shootTimer runs out, shoot a projectile towards the player
+                if (shootTimer < 0)
                 {
-                    returning = false;
-                    charging = false;
-                    chargeTimer = Random.Range(chargeCooldown, chargeCooldown + 3);
+                    GameObject bossBullet = Instantiate(projectilePrefab, transform.position, Quaternion.identity) as GameObject;
+                    bossBullet.GetComponent<ProjectileScript>().damage = projectileDamage;
+
+                    bossBullet.GetComponent<Rigidbody2D>().AddForce((player.transform.position - transform.position).normalized * projectileSpeed, ForceMode2D.Impulse);
+
+                    shootTimer = shootCooldown;
+                    shotCount += 1;
+                    print(shotCount);
                 }
-                else
+
+                if(shotCount == 5)
                 {
-                    transform.position = Vector3.MoveTowards(transform.position, originalPosition, moveSpeed * Time.deltaTime);
+                    burstShooting = false;
+                    burstShootCurrentTime = burstShootCooldown;
+                    shotCount = 0;
                 }
             }
         }
@@ -93,6 +158,8 @@ public class OwlinatorAI : Owl
         {
             if (!collision.collider.CompareTag("Player"))
             {
+                bubble.GetComponent<OwlinatorBubbleScript>().bubbleVulnerable = false;
+                currentBubbleVulnerableTimer = bubbleVulnerableTimer;
                 returning = true;
             }
         }

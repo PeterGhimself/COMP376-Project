@@ -13,6 +13,9 @@ TagManager:
   - Owlinator
   - Spirowl
   - SpirowlWing
+  - PlayerProjectile
+  - OwlinatorBubble
+  - ShieldCore
   layers:
   - Default
   - TransparentFX
