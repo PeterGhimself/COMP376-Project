@@ -977,7 +977,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitPoints: 10
   moveSpeed: 5
-  touchDamage: 5
+  touchDamage: 1
   playerLayer:
     serializedVersion: 2
     m_Bits: 512

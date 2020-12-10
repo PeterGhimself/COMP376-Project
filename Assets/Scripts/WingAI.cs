@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class WingAI : MonoBehaviour
 {
-    public GameObject mainBody;
     private Rigidbody2D wingRigidbody;
     private Vector3 originalPosition;
     public bool amInOriginalPosition;
@@ -23,7 +22,7 @@ public class WingAI : MonoBehaviour
         wingRigidbody = GetComponent<Rigidbody2D>();
         amInOriginalPosition = true;
         expanding = false;
-        touchDamage = 3f;
+        touchDamage = 1f;
         invincibleToWing = false;
         invincibleToWingTimer = 2f;
 
