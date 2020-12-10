@@ -1,13 +1,43 @@
 fileFormatVersion: 2
-guid: 7da0527d945031f4989ad548efe6056c
+guid: ceb70511278e9904da83cad314dab49e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7925115449053873505
-    second: Nsmbu_unused_iceblocks_393_0
+      213: -3793788817174678837
+    second: ice-wall-blocks-small_0
   - first:
-      213: -5980103335938126716
-    second: Nsmbu_unused_iceblocks_393_1
+      213: 3516932217883611691
+    second: ice-wall-blocks-small_1
+  - first:
+      213: 7250059751139918732
+    second: ice-wall-blocks-small_2
+  - first:
+      213: 5104114004727974905
+    second: ice-wall-blocks-small_3
+  - first:
+      213: 1800419050210340653
+    second: ice-wall-blocks-small_4
+  - first:
+      213: -8272607901156328406
+    second: ice-wall-blocks-small_0
+  - first:
+      213: 7742531263818594359
+    second: ice-wall-blocks-small_1
+  - first:
+      213: 1290789759761444013
+    second: ice-wall-blocks-small_2
+  - first:
+      213: -1842172306874372283
+    second: ice-wall-blocks-small_3
+  - first:
+      213: 2495353766709434610
+    second: ice-wall-blocks-small_4
+  - first:
+      213: -8265086515938426767
+    second: ice-wall-blocks-small_5
+  - first:
+      213: -5998183634985803710
+    second: ice-wall-blocks-small_6
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -93,43 +123,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Nsmbu_unused_iceblocks_393_0
+      name: ice-wall-blocks-small_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 153
-        height: 149
+        x: 679
+        y: 326
+        width: 177
+        height: 174
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f9afe27fc75540290800000000000000
-      internalID: -7925115449053873505
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nsmbu_unused_iceblocks_393_1
-      rect:
-        serializedVersion: 2
-        x: 163
-        y: 0
-        width: 269
-        height: 149
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 48c874d23b7620da0800000000000000
-      internalID: -5980103335938126716
+      spriteID: a2cbc7da1fac13d80800000000000000
+      internalID: -8272607901156328406
       vertices: []
       indices: 
       edges: []
