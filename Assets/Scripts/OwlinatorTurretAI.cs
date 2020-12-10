@@ -35,7 +35,7 @@ public class OwlinatorTurretAI : MonoBehaviour
         GameObject bullet = Instantiate(projectilePrefab, transform.position, Quaternion.identity) as GameObject;
         bullet.GetComponent<ProjectileScript>().damage = projectileDamage;
 
-        bullet.GetComponent<Rigidbody2D>().AddForce(-transform.up * projectileSpeed);
+        bullet.GetComponent<Rigidbody2D>().AddForce(-transform.right * projectileSpeed);
 
     }
 }

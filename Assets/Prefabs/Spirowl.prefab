@@ -989,7 +989,7 @@ MonoBehaviour:
   thirdWing: {fileID: 8756476002710257094}
   fourthWing: {fileID: 8756476002632365087}
   wingsRotationSpeed: 50
-  wingsExpandSpeed: 15
+  wingsExpandSpeed: 5
   moving: 0
   targetPosition: {x: 0, y: 0, z: 0}
   spawnMinionTimer: 8
