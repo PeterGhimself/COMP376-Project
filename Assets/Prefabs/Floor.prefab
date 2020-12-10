@@ -61,3 +61,5 @@ MonoBehaviour:
   - {fileID: 704029436224075078, guid: 1ed760c2277ff4ce3b79039182afdc27, type: 3}
   - {fileID: 5216006150880866981, guid: 816a8842cba854dabad1b044e08f9c55, type: 3}
   - {fileID: 9200916461339440651, guid: d01bcdd55ea7b4881a4433633bb4a68f, type: 3}
+  finalRoom: {fileID: 3674711669446032714, guid: a46e5762ad73b49acbc3a9e4df619c7a,
+    type: 3}

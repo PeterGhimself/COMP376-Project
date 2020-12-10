@@ -182,4 +182,10 @@ public class OwlinatorAI : Owl
             }
         }
     }
+    
+    private void OnDestroy()
+    {
+        //Add game complete code here i guess
+    }
+    
 }
