@@ -130,3 +130,4 @@ MonoBehaviour:
   m_playerLayer:
     serializedVersion: 2
     m_Bits: 512
+  m_spriteRenderer: {fileID: 5786962855023373510}

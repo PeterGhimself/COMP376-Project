@@ -6,6 +6,7 @@ public class Ability : MonoBehaviour
 {
 	[SerializeField] private PlayerController.EAbility m_abilityType = default;
 	[SerializeField] private LayerMask m_playerLayer = default;
+	[SerializeField] private SpriteRenderer m_spriteRenderer = default;
 
 	private void OnTriggerEnter2D(Collider2D collider)
 	{
@@ -17,6 +18,7 @@ public class Ability : MonoBehaviour
 				PlayerController.EAbility oldAbility = playerCtrl.GetPlayerAbility();
 				playerCtrl.ChangePlayerAbility(m_abilityType);
 				m_abilityType = oldAbility;
+				ChangeColor();
 			}
 			else
 			{
@@ -24,6 +26,22 @@ public class Ability : MonoBehaviour
 			}
 
 			//spawn effect here
+		}
+	}
+
+	private void ChangeColor()
+	{
+		switch(m_abilityType)
+		{
+			case PlayerController.EAbility.Dash:
+				m_spriteRenderer.color = Color.blue;
+				break;
+			case PlayerController.EAbility.ProjectileExplosion:
+				m_spriteRenderer.color = Color.red;
+				break;
+			case PlayerController.EAbility.Slowmo:
+				m_spriteRenderer.color = Color.yellow;
+				break;
 		}
 	}
 }
