@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class WingAI : MonoBehaviour
 {
+    public GameObject mainBody;
     private Rigidbody2D wingRigidbody;
     private Vector3 originalPosition;
     public bool amInOriginalPosition;
