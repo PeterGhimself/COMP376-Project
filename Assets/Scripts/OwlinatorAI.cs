@@ -182,9 +182,4 @@ public class OwlinatorAI : Owl
             }
         }
     }
-    
-    private void OnDestroy()
-    {
-    }
-    
 }

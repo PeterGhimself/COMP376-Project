@@ -9,7 +9,6 @@ public class FloorManager : MonoBehaviour
 {
     [SerializeField] int floor = 1;
     [SerializeField] private GameObject[] rooms;
-    [SerializeField] private GameObject finalRoom;
     private int[,] _map = new int [12, 12];
     private int _roomBank;
 
@@ -75,28 +74,14 @@ public class FloorManager : MonoBehaviour
 
     void Start()
     {
-        if (floor <= 4)
-        {
-            InitializeEmptyMap();
-            _roomBank = 7 + 3 * floor;
-            RoomSpot temp = new RoomSpot(5, 5);
-            incomplete.Enqueue(temp);
-            GenerateMap();
-            GenerateBossAndItemRoom();
-            InstantiateRooms();
-            // PrintMap();
-        }
-        else
-        {
-            float height = Camera.main.orthographicSize * 2;
-            float width = height * Screen.width / Screen.height;
-            bool spawn = true;
-            GameObject created = Instantiate(finalRoom,
-                new Vector3(0, 0), Quaternion.identity, transform);
-            created.GetComponent<RoomManager>().Floor = floor;
-            created.GetComponent<RoomManager>().Spawnpoint = true;
-            created.transform.localScale = new Vector3(width / 10, height / 10);
-        }
+        InitializeEmptyMap();
+        _roomBank = 7 + 3 * floor;
+        RoomSpot temp = new RoomSpot(5, 5);
+        incomplete.Enqueue(temp);
+        GenerateMap();
+        GenerateBossAndItemRoom();
+        InstantiateRooms();
+        // PrintMap();
 
         Camera.main.GetComponent<MoveCameraScript>().SetDesiredPosition(0, 0);
     }
