@@ -2053,7 +2053,7 @@ MonoBehaviour:
   m_loadingScreen: {fileID: 1264832866}
   m_TitleScreen: {fileID: 770954960}
   m_readyScreen: {fileID: 1149230339}
-  m_floorManager: {fileID: 5156500922010050231, guid: 385b03ce8516e664590dd1e62975fe7a,
+  m_floorManager: {fileID: 5156500922010050231, guid: 3b21d98f3dca945b797a9838e3eb651e,
     type: 3}
   m_rulesScreen: {fileID: 2033492322}
   m_floorInfos:
