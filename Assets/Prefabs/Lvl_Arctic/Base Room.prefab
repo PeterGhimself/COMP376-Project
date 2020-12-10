@@ -87,17 +87,17 @@ MonoBehaviour:
     maximum: 3
     minimum: 1
   obstacleTiles:
-  - {fileID: 5929865147131231399, guid: 2740da7c9507447ccb9a4039a8c0a7ea, type: 3}
-  - {fileID: 4255579195582350171, guid: 17fc105afc09a4924bbbe298bf8bda62, type: 3}
-  - {fileID: 4255579195582350171, guid: 17fc105afc09a4924bbbe298bf8bda62, type: 3}
-  - {fileID: 5929865147131231399, guid: 4538e7638fe114616820ee581a0c006d, type: 3}
-  - {fileID: 5929865147131231399, guid: 4538e7638fe114616820ee581a0c006d, type: 3}
-  - {fileID: 4255579195582350171, guid: 17fc105afc09a4924bbbe298bf8bda62, type: 3}
+  - {fileID: 4255579195582350171, guid: 9876514ad9a202f47bf40a90173147e7, type: 3}
+  - {fileID: 4255579195582350171, guid: 9876514ad9a202f47bf40a90173147e7, type: 3}
+  - {fileID: 5929865147131231399, guid: 2545e797afff9fa46acc7e26f0e62c84, type: 3}
+  - {fileID: 4255579195582350171, guid: 9876514ad9a202f47bf40a90173147e7, type: 3}
+  - {fileID: 5929865147131231399, guid: 2545e797afff9fa46acc7e26f0e62c84, type: 3}
+  - {fileID: 5929865147131231399, guid: 5c31736e0e6f5454e8b582d22f3b462d, type: 3}
   healthDrop: {fileID: 8965331110802989222, guid: 0835245e7b797418f97e3d81cb224307,
     type: 3}
   floorTiles:
-  - {fileID: 7696479844224944668, guid: a30aa5e14878241eda6c7bafeb920ff3, type: 3}
-  - {fileID: 1645888954612320925, guid: 797eb1cecc5e946d9a13807886b0643b, type: 3}
+  - {fileID: 7696479844224944668, guid: fbb5da5240e9b8246a064fa50d21cc48, type: 3}
+  - {fileID: 1645888954612320925, guid: 6e3f848c85f58584982e0939b4498f34, type: 3}
   enemyTiles:
   - {fileID: 5475906689530320857, guid: ecf028daa5689424db631716ee40f4f7, type: 3}
   - {fileID: 3306818708877844131, guid: 183af7aa96be2274da3cdc81ba2bc840, type: 3}
@@ -107,7 +107,6 @@ MonoBehaviour:
   - {fileID: 5475906689530320857, guid: ecf028daa5689424db631716ee40f4f7, type: 3}
   - {fileID: 3371880922119208831, guid: 2924990e1ef676543a9b81769c97c94c, type: 3}
   - {fileID: 5475906689530320857, guid: ecf028daa5689424db631716ee40f4f7, type: 3}
-  - {fileID: 3306818708877844131, guid: 183af7aa96be2274da3cdc81ba2bc840, type: 3}
   - {fileID: 3306818708877844131, guid: 183af7aa96be2274da3cdc81ba2bc840, type: 3}
   enemyCount: 0
   currentRoom: 0

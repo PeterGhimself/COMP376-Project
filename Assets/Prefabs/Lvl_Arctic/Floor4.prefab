@@ -67,8 +67,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -819262623
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_Sprite: {fileID: -5980103335938126716, guid: 6a2754cdccc42794d9f35d2baab87ca3,
     type: 3}
@@ -95,6 +95,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2415078317887781457, guid: 315cb58869908024fbfa6fb33734140c,
         type: 3}
+    - target: {fileID: 6843106693253530415, guid: a30aa5e14878241eda6c7bafeb920ff3,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 7696479844224944668, guid: a30aa5e14878241eda6c7bafeb920ff3,
         type: 3}
       propertyPath: m_Name
@@ -165,7 +170,8 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 2.265764
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6843106693253530415, guid: a30aa5e14878241eda6c7bafeb920ff3, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a30aa5e14878241eda6c7bafeb920ff3, type: 3}
 --- !u!4 &10599168060389864 stripped
 Transform:
