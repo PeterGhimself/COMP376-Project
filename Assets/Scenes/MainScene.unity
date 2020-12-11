@@ -4661,13 +4661,13 @@ MonoBehaviour:
   sounds:
   - name: GameMenu
     clip: {fileID: 8300000, guid: 9301ada40d279854b9f35039740b5c6c, type: 3}
-    volume: 0.3
+    volume: 0.25
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: Lvl1
     clip: {fileID: 8300000, guid: 0a603e904eab7184db4edcc85623d670, type: 3}
-    volume: 0.3
+    volume: 0.25
     pitch: 1
     loop: 1
     source: {fileID: 0}
@@ -4685,21 +4685,81 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Lvl4
     clip: {fileID: 8300000, guid: 89cd5fb421f8066479ab171994b5dd96, type: 3}
-    volume: 0.3
+    volume: 0.25
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: MiniBoss
     clip: {fileID: 8300000, guid: b90048af4a0321f4c934a74df1bde53a, type: 3}
-    volume: 0.3
+    volume: 0.25
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: FinalBoss
     clip: {fileID: 8300000, guid: 40fae13b837acff499c3f06b518cc08b, type: 3}
-    volume: 0.3
+    volume: 0.25
     pitch: 1
     loop: 1
+    source: {fileID: 0}
+  - name: Injured1
+    clip: {fileID: 8300000, guid: 176c733bb2a98074dae02e400dddea10, type: 3}
+    volume: 0.6
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
+  - name: Injured2
+    clip: {fileID: 8300000, guid: 176c733bb2a98074dae02e400dddea10, type: 3}
+    volume: 0.6
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
+  - name: Injured3
+    clip: {fileID: 8300000, guid: ca4e83dd5cfe5504d9c210e15782d25d, type: 3}
+    volume: 0.6
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
+  - name: Injured4
+    clip: {fileID: 8300000, guid: 73f2fa58f5c2c80458b4e1aedf1a03a9, type: 3}
+    volume: 0.6
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
+  - name: Injured5
+    clip: {fileID: 8300000, guid: ebe0b178d60a55048b5b24f3e5dce819, type: 3}
+    volume: 0.6
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
+  - name: InjuredNotReally
+    clip: {fileID: 8300000, guid: bc74194849bb9244c89deeb611573699, type: 3}
+    volume: 0.6
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
+  - name: FlockOff
+    clip: {fileID: 8300000, guid: 5927223374ade4441a9e475a9d1d3aeb, type: 3}
+    volume: 0.6
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
+  - name: FlockMe1
+    clip: {fileID: 8300000, guid: 3046de3dbc360f84bbca4619381cd291, type: 3}
+    volume: 0.6
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
+  - name: FlockMe2
+    clip: {fileID: 8300000, guid: 80abcc2f17c5fb04599e575f38e295de, type: 3}
+    volume: 0.6
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
+  - name: FlockIt
+    clip: {fileID: 8300000, guid: 40fae13b837acff499c3f06b518cc08b, type: 3}
+    volume: 0.6
+    pitch: 1.5
+    loop: 0
     source: {fileID: 0}
 --- !u!1 &1847238080
 GameObject:

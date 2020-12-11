@@ -84,6 +84,8 @@ public class PlayerController : MonoBehaviour
     private const string k_horizontalAxis = "Horizontal";
     private const string k_verticalAxis = "Vertical";
 
+    private AudioManager audioManager = null;
+
     public PlayerWeapon GetChosenWeapon()
     {
         return this.m_weapons[(int)this.m_chosenWeapon];
@@ -121,6 +123,11 @@ public class PlayerController : MonoBehaviour
     public float GetAbilityCooldownTime()
     {
         return this.abilityCooldownTime;
+    }
+
+    void Start ()
+    {
+        audioManager = FindObjectOfType<AudioManager>();
     }
 
     //UI
@@ -359,12 +366,51 @@ public class PlayerController : MonoBehaviour
 
     public void DamagePlayer(float damage)
     {
+        int select = 1;
+        string soundName = "";
+        System.Random random = new System.Random();
+
         if (invincibilityTime > 0 || dashInvincible)
             return;
 
         invincibilityTime = m_invincibilityCooldown;
         m_currentHealth -= damage;
 
+        
+        if (m_currentHealth > 2) {
+            select = random.Next(1,6);
+            soundName = "Injured";
+
+            if (select == 6) {
+                soundName += "NotReally";
+            } else {
+                soundName += select;
+            }
+
+            audioManager.Play(soundName);
+
+        } else if (m_currentHealth <= 2) {
+            select = random.Next(1,4);
+            soundName = "Flock";
+
+            switch(select) {
+                case 1:
+                    soundName += "Off";
+                    break;
+                case 2:
+                    soundName += "Me1";
+                    break;
+                case 3:
+                    soundName += "Me2";
+                    break;
+                case 4:
+                    soundName += "It";
+                    break;
+            }
+
+            audioManager.Play(soundName);
+        }
+        
         if (m_currentHealth <= 0)
         {
             Time.timeScale = 0;
