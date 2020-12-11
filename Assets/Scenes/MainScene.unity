@@ -792,7 +792,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 731526934}
-        m_MethodName: GoToMainMenu
+        m_MethodName: LoadTitleScreenMain
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2763,7 +2763,43 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 1510267157571089938, guid: 9d306615ac7e842edae15097b94af7e7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1827351387048039173, guid: 9d306615ac7e842edae15097b94af7e7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2034029603272557206, guid: 9d306615ac7e842edae15097b94af7e7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3012689586673148730, guid: 9d306615ac7e842edae15097b94af7e7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3836360543737084847, guid: 9d306615ac7e842edae15097b94af7e7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4474231604566981480, guid: 9d306615ac7e842edae15097b94af7e7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8510829706604486959, guid: 9d306615ac7e842edae15097b94af7e7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 8629216808179774702, guid: 9d306615ac7e842edae15097b94af7e7, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9d306615ac7e842edae15097b94af7e7, type: 3}
 --- !u!1 &952981463
 GameObject:
@@ -3622,7 +3658,7 @@ Canvas:
   m_GameObject: {fileID: 1264832863}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -3632,7 +3668,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 69
   m_TargetDisplay: 0
 --- !u!224 &1264832869
 RectTransform:
