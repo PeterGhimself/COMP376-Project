@@ -39,7 +39,6 @@ public class OwlinatorAI : Owl
     private float shootTimer;
 
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -123,6 +122,7 @@ public class OwlinatorAI : Owl
                         {
                             returning = false;
                             charging = false;
+                            bubble.GetComponent<OwlinatorBubbleScript>().stunnable = true;
                             chargeTimer = Random.Range(chargeCooldown, chargeCooldown + 3);
                         }
                         else
