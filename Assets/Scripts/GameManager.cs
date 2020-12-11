@@ -102,7 +102,12 @@ public class GameManager : MonoBehaviour
                 break;
             case 5:
                 audioManager.StopAll();
-                audioManager.Play("FinalBoss");
+                System.Random random = new System.Random();
+                int select = random.Next(1,4);
+                string soundName = "FinalBossLine" + select;
+                print("SOUNDNAME: " + soundName);
+                audioManager.Play(soundName); // voiceline
+                audioManager.Play("FinalBoss", 3); // music
                 break;
         }
 

@@ -378,7 +378,7 @@ public class PlayerController : MonoBehaviour
 
         
         if (m_currentHealth > 2) {
-            select = random.Next(1,6);
+            select = random.Next(1,7);
             soundName = "Injured";
 
             if (select == 6) {
@@ -390,7 +390,7 @@ public class PlayerController : MonoBehaviour
             audioManager.Play(soundName);
 
         } else if (m_currentHealth <= 2) {
-            select = random.Next(1,4);
+            select = random.Next(1,5);
             soundName = "Flock";
 
             switch(select) {

@@ -3,7 +3,6 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-// easily add/remove sounds as we go
 public class AudioManager : MonoBehaviour
 {
     public Sound[] sounds;
@@ -32,6 +31,20 @@ public class AudioManager : MonoBehaviour
         }
 
         s.source.Play();
+
+    }
+
+    public void Play (string name, float delay)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+
+        if (s == null)
+        {
+            print("WARNING: sound with name " + name + " not found!");
+            return;
+        }
+
+        s.source.PlayDelayed(delay);
 
     }
 

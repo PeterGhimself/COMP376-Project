@@ -109,7 +109,8 @@ public class SpirowlAI : Owl
         {   
             isFighting = true;
             audioManager.StopAll();
-            audioManager.Play("MiniBoss");
+            audioManager.Play("MiniBossLine"); // voice line
+            audioManager.Play("MiniBoss", 5); // music
             bossHealthBar.SetActive(true);
         }
 
@@ -184,12 +185,10 @@ public class SpirowlAI : Owl
     }
     
     private void OnDestroy()
-    {   
-        var ting = player.transform.Find("UI").gameObject.transform.Find("BossHealth").gameObject;
-
-        if (ting != null)
+    {
+        if (player != null)
         {
-            ting.SetActive(false);
+            player.transform.Find("UI").gameObject.transform.Find("BossHealth").gameObject.SetActive(false);
         }
         var item = Instantiate(_exit, gameObject.transform.parent.transform, true);
         item.transform.localPosition = new Vector3(0,0);    
