@@ -32,6 +32,28 @@ public class Ability : MonoBehaviour
 		}
 	}
 
+	Ray ray;
+	RaycastHit2D[] hits;
+
+	private void Update()
+	{
+		ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+		hits = Physics2D.RaycastAll(ray.origin, ray.direction, Mathf.Infinity);
+		if (hits.Length > 0)
+		{
+			foreach(RaycastHit2D hit in hits)
+			{
+				if(hit.collider.gameObject == gameObject)
+				{
+					ShowTooltip();
+					return;
+				}
+			}
+		}
+
+		HideTooltip();
+	}
+
 	private void ShowTooltip()
 	{
 		m_tooltip.gameObject.SetActive(true);
@@ -40,16 +62,6 @@ public class Ability : MonoBehaviour
 	private void HideTooltip()
 	{
 		m_tooltip.gameObject.SetActive(false);
-	}
-
-	void OnMouseEnter()
-	{
-		this.ShowTooltip();
-	}
-
-	void OnMouseExit()
-	{
-		this.HideTooltip();
 	}
 
 	private void ChangeColor()
