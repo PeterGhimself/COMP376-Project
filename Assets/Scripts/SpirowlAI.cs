@@ -44,7 +44,6 @@ public class SpirowlAI : Owl
     // Start is called before the first frame update
     void Start()
     {
-        owlRigidBody = GetComponent<Rigidbody2D>();
 
         originalDirectionTimer = 2f;
 
@@ -63,6 +62,8 @@ public class SpirowlAI : Owl
     // Update is called once per frame
     void FixedUpdate()
     {
+        animator.SetBool(k_owlFlyAnim, moving);
+
         if (!IsActive())
         {
             return;

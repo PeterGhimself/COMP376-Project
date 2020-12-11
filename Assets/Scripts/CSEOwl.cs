@@ -42,6 +42,8 @@ public class CSEOwl : Owl
         
         directionTimer -= Time.deltaTime;
 
+        animator.SetBool(k_owlFlyAnim, owlRigidBody.velocity.magnitude > 0);
+
         if (!moving && stopped)
         {
             playerPosition = player.transform.position; // store player's current position
