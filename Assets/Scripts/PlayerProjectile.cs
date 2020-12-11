@@ -28,6 +28,10 @@ public class PlayerProjectile : MonoBehaviour
         Destroy(gameObject);
     }
 
+    public float GetDamage()
+    {
+        return this.m_damage;
+    }
 
     public void IncreaseDamage(float damage)
     {

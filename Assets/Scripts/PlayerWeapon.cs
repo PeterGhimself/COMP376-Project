@@ -18,6 +18,10 @@ public class PlayerWeapon : MonoBehaviour
         initDamage = m_damage;
     }
 
+    public float GetDamage() {
+        return this.m_damage;
+    }
+
     void OnTriggerEnter2D(Collider2D collider)
     {
         if (m_owlLayers == (m_owlLayers | (1 << collider.gameObject.layer)))
