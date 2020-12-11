@@ -200,6 +200,7 @@ public class OwlinatorAI : Owl
     
     private void OnDestroy()
     {
+        player.transform.Find("UI").gameObject.transform.Find("BossHealth").gameObject.SetActive(false);
         //Add game complete code here i guess
     }
     

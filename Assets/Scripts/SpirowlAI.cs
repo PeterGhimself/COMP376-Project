@@ -154,6 +154,7 @@ public class SpirowlAI : Owl
     
     private void OnDestroy()
     {
+        player.transform.Find("UI").gameObject.transform.Find("BossHealth").gameObject.SetActive(false);
         var item = Instantiate(_exit, gameObject.transform.parent.transform, true);
         item.transform.localPosition = new Vector3(0,0);    
     }
