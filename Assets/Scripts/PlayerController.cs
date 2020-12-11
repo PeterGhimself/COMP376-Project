@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private Image m_healthBar = default;
+    [SerializeField] private Image m_cooldownReady = default;
     [SerializeField] private GameObject m_menu = default;
     [SerializeField] private GameObject m_gameOverMenu = default;
     [SerializeField] private LayerMask m_enemyProjectiles = default;
@@ -142,6 +143,8 @@ public class PlayerController : MonoBehaviour
             restartEvent = restart;
 
         m_currentHealth = m_maxHealth;
+
+        ChangePlayerAbility(m_chosenAbility);
     }
 
     #region Updates
@@ -398,6 +401,19 @@ public class PlayerController : MonoBehaviour
 	public void ChangePlayerAbility(EAbility type)
 	{
 		m_chosenAbility = m_playerAbilities[(int)type].Ability;
+        
+        switch(m_chosenAbility)
+		{
+			case PlayerController.EAbility.Dash:
+				m_cooldownReady.color = Color.blue;
+				break;
+			case PlayerController.EAbility.ProjectileExplosion:
+				m_cooldownReady.color = Color.red;
+				break;
+			case PlayerController.EAbility.Slowmo:
+				m_cooldownReady.color = Color.yellow;
+				break;
+		}
 	}
 
 	public EAbility GetPlayerAbility()
