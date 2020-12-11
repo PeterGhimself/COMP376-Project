@@ -11,6 +11,7 @@ public class RulesMenu : MonoBehaviour
     public GameObject weaponsPanel;
     public GameObject abilitiesPanel;
     public GameObject powerUpsPanel;
+    public GameObject obstaclesPanel;
 
     public void showBasicControlsPanel()
     {
@@ -21,6 +22,7 @@ public class RulesMenu : MonoBehaviour
         weaponsPanel.SetActive(false);
         abilitiesPanel.SetActive(false);
         powerUpsPanel.SetActive(false);
+        obstaclesPanel.SetActive(false);
     }
 
     public void showPlayerPanel()
@@ -32,6 +34,7 @@ public class RulesMenu : MonoBehaviour
         weaponsPanel.SetActive(false);
         abilitiesPanel.SetActive(false);
         powerUpsPanel.SetActive(false);
+        obstaclesPanel.SetActive(false);
     }
 
     public void showEnemiesPanel()
@@ -43,6 +46,7 @@ public class RulesMenu : MonoBehaviour
         weaponsPanel.SetActive(false);
         abilitiesPanel.SetActive(false);
         powerUpsPanel.SetActive(false);
+        obstaclesPanel.SetActive(false);
     }
 
     public void showBossesPanel()
@@ -54,6 +58,7 @@ public class RulesMenu : MonoBehaviour
         weaponsPanel.SetActive(false);
         abilitiesPanel.SetActive(false);
         powerUpsPanel.SetActive(false);
+        obstaclesPanel.SetActive(false);
     }
 
     public void showWeaponsPanel()
@@ -65,6 +70,7 @@ public class RulesMenu : MonoBehaviour
         weaponsPanel.SetActive(true);
         abilitiesPanel.SetActive(false);
         powerUpsPanel.SetActive(false);
+        obstaclesPanel.SetActive(false);
     }
 
     public void showAbilitiesPanel()
@@ -76,6 +82,7 @@ public class RulesMenu : MonoBehaviour
         weaponsPanel.SetActive(false);
         abilitiesPanel.SetActive(true);
         powerUpsPanel.SetActive(false);
+        obstaclesPanel.SetActive(false);
     }
 
     public void showPowerUpsPanel()
@@ -87,5 +94,18 @@ public class RulesMenu : MonoBehaviour
         weaponsPanel.SetActive(false);
         abilitiesPanel.SetActive(false);
         powerUpsPanel.SetActive(true);
+        obstaclesPanel.SetActive(false);
+    }
+
+    public void showObstaclesPanel()
+    {
+        basicControlPanel.SetActive(false);
+        playerPanel.SetActive(false);
+        enemiesPanel.SetActive(false);
+        bossesPanel.SetActive(false);
+        weaponsPanel.SetActive(false);
+        abilitiesPanel.SetActive(false);
+        powerUpsPanel.SetActive(false);
+        obstaclesPanel.SetActive(true);
     }
 }
