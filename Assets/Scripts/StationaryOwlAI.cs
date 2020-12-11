@@ -64,7 +64,8 @@ public class StationaryOwlAI : Owl
             return;
         }
 
-        directionTimer -= Time.deltaTime;
+        if(!chargingLaser)
+            directionTimer -= Time.deltaTime;
 
         // if directionTimer runs out, call applyRandomDirection() and reset direction timer;
         if (directionTimer < 0)
@@ -98,11 +99,14 @@ public class StationaryOwlAI : Owl
         {
             if (hit.collider.CompareTag("Player") && currentLaserCooldown <= 0)
             {
-                print("PLAYER DETECTED!!!");
                 rotating = false;
                 chargingLaser = true;
                 chargeTime = 1f;
                 currentLaserCooldown = laserCooldown;
+
+                // nullify the current forces
+                owlRigidBody.velocity = Vector2.zero;
+                owlRigidBody.angularVelocity = 0;
             }
         }
         else if (!chargingLaser)

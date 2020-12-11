@@ -12,10 +12,16 @@ public class OwlinatorBubbleScript : MonoBehaviour
 
     public bool bubbleVulnerable;
 
+    public bool stunned;
+    public float originalStunLength;
+    public float stunLength;
+
+
     void Start()
     {
         currentBubbleHealth = bubbleHealth;
         bubbleVulnerable = false;
+        stunned = false;
     }
 
     void Update()
@@ -24,6 +30,27 @@ public class OwlinatorBubbleScript : MonoBehaviour
             GetComponent<SpriteRenderer>().sprite = vulnerableSprite;
         else
             GetComponent<SpriteRenderer>().sprite = defaultSprite;
+
+        if(stunned)
+        {
+            
+            stunLength -= Time.deltaTime;
+
+            // stun rotation logic
+
+            if(stunLength >= originalStunLength * 0.75)    
+                transform.parent.transform.Rotate(new Vector3(0, 0, 20) * Time.deltaTime);
+            else if (stunLength >= originalStunLength * 0.25)
+                transform.parent.transform.Rotate(new Vector3(0, 0, -20) * Time.deltaTime);
+            else if (stunLength >= 0)
+                transform.parent.transform.Rotate(new Vector3(0, 0, 20) * Time.deltaTime);
+
+            if (stunLength < 0)
+            {
+                transform.parent.transform.rotation = Quaternion.identity;
+                stunned = false;
+            }
+        }
     }
 
     void OnCollisionEnter2D(Collision2D collision)

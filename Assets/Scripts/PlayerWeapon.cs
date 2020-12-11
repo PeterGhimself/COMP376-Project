@@ -47,6 +47,21 @@ public class PlayerWeapon : MonoBehaviour
                 Debug.LogError("No fire script on " + collider.gameObject.name);
             }
         }
+        else if(collider.gameObject.CompareTag("OwlinatorBubble"))
+        {
+            if(!collider.gameObject.GetComponent<OwlinatorBubbleScript>().stunned && collider.gameObject.GetComponent<OwlinatorBubbleScript>().bubbleVulnerable)
+            {
+                collider.gameObject.GetComponent<OwlinatorBubbleScript>().stunned = true;
+                collider.gameObject.GetComponent<OwlinatorBubbleScript>().stunLength = 3f; // hardcoded stun length
+                collider.gameObject.GetComponent<OwlinatorBubbleScript>().originalStunLength = 3f; // hardcoded stun length
+            }
+
+        }
+        else if(collider.gameObject.CompareTag("ShieldCore"))
+        {
+            collider.gameObject.GetComponent<ShieldCoreScript>().health -= (int)m_damage;
+            collider.gameObject.GetComponent<Animator>().SetTrigger("ShieldCoreHit");
+        }
     }
 
     public void IncreaseByDamageMod(float damageMod)

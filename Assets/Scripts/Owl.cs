@@ -7,6 +7,7 @@ public class Owl : MonoBehaviour
 {
     [Header("Owl")]
     public float hitPoints;
+    public float originalHitPoints;
     public float moveSpeed;
     public float touchDamage;
     public LayerMask playerLayer;
@@ -28,6 +29,7 @@ public class Owl : MonoBehaviour
 
     protected void Start()
     {
+        originalHitPoints = hitPoints;
         _mRoomManager = gameObject.transform.parent.GetComponent<RoomManager>();
         Physics2D.IgnoreLayerCollision(10, 10); // removes collision between enemies
         Physics2D.IgnoreLayerCollision(10, 11); // removes collision between enemies

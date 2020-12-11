@@ -976,20 +976,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitPoints: 10
+  originalHitPoints: 0
   moveSpeed: 5
-  touchDamage: 5
+  touchDamage: 1
   playerLayer:
     serializedVersion: 2
     m_Bits: 512
   SpikeyOwlPrefab: {fileID: 3306818708877844131, guid: 183af7aa96be2274da3cdc81ba2bc840,
     type: 3}
+  bossHealthBar: {fileID: 946682553466885115, guid: 9d306615ac7e842edae15097b94af7e7,
+    type: 3}
+  bossHealthBarImage: {fileID: 0}
   originalDirectionTimer: 2
   firstWing: {fileID: 8756476002805006692}
   secondWing: {fileID: 8756476001988378286}
   thirdWing: {fileID: 8756476002710257094}
   fourthWing: {fileID: 8756476002632365087}
   wingsRotationSpeed: 40
-  wingsExpandSpeed: 3
+  wingsExpandSpeed: 5
   moving: 0
   targetPosition: {x: 0, y: 0, z: 0}
   spawnMinionTimer: 8

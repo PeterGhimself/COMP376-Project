@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<GameObject> m_items = default;
     [SerializeField] private PlayerController m_player = default;
 
-    private int m_currentLevel = 1; // to avoid accidents, keep it private homie :)
+    public int m_currentLevel = 1; // to avoid accidents, keep it private homie :) //no make public so we can skip levels when testing >:(
     private UnityEvent m_onLevelComplete;
     private UnityEvent m_onRestartLevel;
     private FloorManager m_currentFloor = default;
