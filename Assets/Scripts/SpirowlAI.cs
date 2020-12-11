@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SpirowlAI : Owl
 {
@@ -9,6 +10,9 @@ public class SpirowlAI : Owl
     private Rigidbody2D owlRigidBody;
 
     public GameObject SpikeyOwlPrefab;
+
+    public GameObject bossHealthBar;
+    public Image bossHealthBarImage;
 
     public float originalDirectionTimer; // change direction rate (set in seconds)
     private float directionTimer; // holds timer before changing direction
@@ -56,6 +60,9 @@ public class SpirowlAI : Owl
 
         spawnMinionCooldown = spawnMinionTimer;
 
+        bossHealthBar = player.transform.Find("UI").gameObject.transform.Find("BossHealth").gameObject;
+        bossHealthBarImage = bossHealthBar.transform.Find("Fill").GetComponent<Image>();
+
         base.Start();
     }
 
@@ -66,9 +73,18 @@ public class SpirowlAI : Owl
 
         if (!IsActive())
         {
+            bossHealthBar.SetActive(false);
             return;
         }
-        
+
+        if(!bossHealthBar.activeSelf)
+        {
+            bossHealthBar.SetActive(true);
+        }
+
+        bossHealthBarImage.fillAmount = hitPoints / originalHitPoints;
+
+
         spawnMinionCooldown -= Time.deltaTime;
 
         // spawn spikey owl

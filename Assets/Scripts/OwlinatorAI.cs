@@ -1,10 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class OwlinatorAI : Owl
 {
     public GameObject projectilePrefab;
+
+    public GameObject bossHealthBar;
+    public Image bossHealthBarImage;
 
     public float projectileDamage;
     public float projectileSpeed;
@@ -52,13 +56,25 @@ public class OwlinatorAI : Owl
         shotCount = 0;
         shootCooldown = 0.3f;
         shootTimer = shootCooldown;
+        originalHitPoints = hitPoints;
+
+        bossHealthBar = player.transform.Find("UI").gameObject.transform.Find("BossHealth").gameObject;
+        bossHealthBarImage = bossHealthBar.transform.Find("Fill").GetComponent<Image>();
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(gameObject.transform.rotation != Quaternion.identity && !bubble.activeSelf)
+
+        if (!bossHealthBar.activeSelf)
+        {
+            bossHealthBar.SetActive(true);
+        }
+
+        bossHealthBarImage.fillAmount = hitPoints / originalHitPoints;
+
+        if (gameObject.transform.rotation != Quaternion.identity && !bubble.activeSelf)
         {
             gameObject.transform.rotation = Quaternion.identity;
         }

@@ -109,3 +109,5 @@ MonoBehaviour:
   - {fileID: 9086803670472845102, guid: 02b238f98b4a04a2d970535ebc8a68cc, type: 3}
   - {fileID: 2702241191651626559, guid: 720503231af784c82af0b89435b66795, type: 3}
   - {fileID: 6138396691849663039, guid: 519eb812f4c5648b8a6dc27c68620074, type: 3}
+  finalRoom: {fileID: 3674711669446032714, guid: a46e5762ad73b49acbc3a9e4df619c7a,
+    type: 3}

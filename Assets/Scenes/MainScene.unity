@@ -2072,7 +2072,7 @@ MonoBehaviour:
   - {fileID: 2761007271285326466, guid: 0681c6dfe00ec4b468a9fb18eaba0ad1, type: 3}
   - {fileID: 7805628601999819672, guid: 0153ea3aa65c5df4b9b8e2e3b43fc831, type: 3}
   m_player: {fileID: 738436676}
-  m_currentLevel: 1
+  m_currentLevel: 5
   normalBoss: {fileID: 8756476003047371832, guid: 9cfff4d9222b5d94381dc84e328231eb,
     type: 3}
   finalBoss: {fileID: 170075321377839083, guid: 25fa1fe48f08b4214b41cbd7799e8585,
@@ -2793,6 +2793,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4899891064808669723, guid: 9d306615ac7e842edae15097b94af7e7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8510829706604486959, guid: 9d306615ac7e842edae15097b94af7e7,
         type: 3}
