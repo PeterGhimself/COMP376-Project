@@ -2074,7 +2074,7 @@ MonoBehaviour:
   m_player: {fileID: 738436676}
   normalBoss: {fileID: 8756476003047371832, guid: 9cfff4d9222b5d94381dc84e328231eb,
     type: 3}
-  finalBoss: {fileID: 6643053397899247415, guid: f614228f201964060a0a3e62b31da543,
+  finalBoss: {fileID: 170075321377839083, guid: 25fa1fe48f08b4214b41cbd7799e8585,
     type: 3}
 --- !u!4 &731526935
 Transform:
