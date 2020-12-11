@@ -108,7 +108,8 @@ public class FloorManager : MonoBehaviour
         bool spawn = true;
         foreach (var room in done)
         {
-            GameObject created = Instantiate(rooms[room.GETRoomType(_map)],
+            int roomNum = 16 * (floor-1) + room.GETRoomType(_map);
+            GameObject created = Instantiate(rooms[roomNum],
                 new Vector3((room.X - 5) * width, (room.Y - 5) * height), Quaternion.identity, transform);
             created.GetComponent<RoomManager>().Floor = floor;
             if (spawn)

@@ -13,10 +13,11 @@ public class Owl : MonoBehaviour
 
     protected GameObject player = default;
 
-    private Animator animator = default;
+    protected Animator animator = default;
 
     private const string k_owlHitAnim = "OwlHit";
-    
+    protected const string k_owlFlyAnim = "Moving";
+
     private RoomManager _mRoomManager;
 
     private void Awake()
