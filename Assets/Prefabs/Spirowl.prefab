@@ -977,7 +977,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitPoints: 10
   moveSpeed: 5
-  touchDamage: 5
+  touchDamage: 1
   playerLayer:
     serializedVersion: 2
     m_Bits: 512
@@ -989,7 +989,7 @@ MonoBehaviour:
   thirdWing: {fileID: 8756476002710257094}
   fourthWing: {fileID: 8756476002632365087}
   wingsRotationSpeed: 40
-  wingsExpandSpeed: 3
+  wingsExpandSpeed: 5
   moving: 0
   targetPosition: {x: 0, y: 0, z: 0}
   spawnMinionTimer: 8
