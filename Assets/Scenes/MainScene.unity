@@ -4661,7 +4661,7 @@ MonoBehaviour:
   sounds:
   - name: GameMenu
     clip: {fileID: 8300000, guid: 9301ada40d279854b9f35039740b5c6c, type: 3}
-    volume: 0.1
+    volume: 0.05
     pitch: 1
     loop: 1
     source: {fileID: 0}
@@ -4673,31 +4673,31 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Lvl2
     clip: {fileID: 8300000, guid: f00638a8dc6969c4ebffcc26b10ad38f, type: 3}
-    volume: 0.1
+    volume: 0.05
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: Lvl3
     clip: {fileID: 8300000, guid: db68ff39ff5048b4aaee6f4505acd121, type: 3}
-    volume: 0.1
+    volume: 0.05
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: Lvl4
     clip: {fileID: 8300000, guid: 89cd5fb421f8066479ab171994b5dd96, type: 3}
-    volume: 0.2
+    volume: 0.05
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: MiniBoss
     clip: {fileID: 8300000, guid: b90048af4a0321f4c934a74df1bde53a, type: 3}
-    volume: 0.1
+    volume: 0.05
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: FinalBoss
     clip: {fileID: 8300000, guid: 40fae13b837acff499c3f06b518cc08b, type: 3}
-    volume: 0.1
+    volume: 0.05
     pitch: 1
     loop: 1
     source: {fileID: 0}
@@ -4835,6 +4835,54 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: RoomClear4
     clip: {fileID: 8300000, guid: 719398e4fbc452b4ead0dd891dd0bebb, type: 3}
+    volume: 1
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
+  - name: HealthPickup
+    clip: {fileID: 8300000, guid: ac84579fcc8f564469f470e1c2a78036, type: 3}
+    volume: 1
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
+  - name: HealthPowerup1
+    clip: {fileID: 8300000, guid: 0567935018c92b247857d1a6d4875c1f, type: 3}
+    volume: 1
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
+  - name: HealthPowerup2
+    clip: {fileID: 8300000, guid: 539f91d5b1c015d4ebf6e699b3ff2d7d, type: 3}
+    volume: 0.05
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: AttackPowerup1
+    clip: {fileID: 8300000, guid: 1cb424e46a9f845478debb9e716144ba, type: 3}
+    volume: 1
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
+  - name: AttackPowerup2
+    clip: {fileID: 8300000, guid: e3a0f3117d09ba047945ba5011204075, type: 3}
+    volume: 1
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
+  - name: SpeedBoost1
+    clip: {fileID: 8300000, guid: a210b7b21f5b40b40a97f36174e01028, type: 3}
+    volume: 1
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
+  - name: SpeedBoost2
+    clip: {fileID: 8300000, guid: c10b24537c97ed74e963fcf8b3ba5a17, type: 3}
+    volume: 1
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
+  - name: ActivePickup
+    clip: {fileID: 8300000, guid: b174b5ce20225e7469b6fb5f5bd8abc7, type: 3}
     volume: 1
     pitch: 1.5
     loop: 0

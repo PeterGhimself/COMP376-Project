@@ -89,17 +89,17 @@ public class PlayerController : MonoBehaviour
     // idle checking
     private float lastAction = 0;
     private bool isIdle = false;
+    private static int IDLE_TIMEOUT = 20;
     
     private void ReportAction()
     {
         lastAction = Time.time;
-        print("REPORTING ACTION");
     }
 
     // updates and sets boolean for if player is considered idle
     private bool IsIdle()
     {
-        if (!isIdle && Time.time - lastAction > 20)
+        if (!isIdle && Time.time - lastAction > IDLE_TIMEOUT)
         {
             // its been 20 seconds
             isIdle = true;
@@ -458,20 +458,41 @@ public class PlayerController : MonoBehaviour
 
     public void ChangePlayerStat(Powerup.PowerupType type, float amount)
     {
+        System.Random random = new System.Random();
+        int select = 1;
+        string soundName = "";
         switch (type)
         {
             case Powerup.PowerupType.Attack:
+                soundName = "AttackPowerup";
+                select = random.Next(1, 3);
+                soundName += select;
+                audioManager.Play(soundName);
+
                 m_meleeDamageModifier += amount;
                 m_weapon.IncreaseByDamageMod(m_meleeDamageModifier);
                 m_rangedDamageModifier += amount;
                 break;
             case Powerup.PowerupType.Health:
+                soundName = "HealthPowerup";
+                select = random.Next(1, 3);
+                soundName += select;
+                audioManager.Play(soundName);
+
                 m_maxHealth += amount;
                 break;
             case Powerup.PowerupType.Speed:
+                soundName = "SpeedBoost";
+                select = random.Next(1, 3);
+                soundName += select;
+                audioManager.Play(soundName);
+                
                 m_walkSpeed += amount;
                 break;
             case Powerup.PowerupType.Heal:
+                soundName = "HealthPickup";
+                audioManager.Play(soundName);
+
                 m_currentHealth += amount;
                 if (m_currentHealth > m_maxHealth)
                     m_currentHealth = m_maxHealth;
@@ -483,6 +504,13 @@ public class PlayerController : MonoBehaviour
 
 	public void ChangePlayerAbility(EAbility type)
 	{
+        string soundName = "ActivePickup";
+        
+        // necessary guard, as this method gets called before audioManager is intialized
+        if (audioManager != null) {
+            audioManager.Play(soundName);
+        }
+
 		m_chosenAbility = m_playerAbilities[(int)type].Ability;
         
         switch(m_chosenAbility)
