@@ -4689,6 +4689,18 @@ MonoBehaviour:
     pitch: 1
     loop: 1
     source: {fileID: 0}
+  - name: MiniBoss
+    clip: {fileID: 8300000, guid: b90048af4a0321f4c934a74df1bde53a, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: FinalBoss
+    clip: {fileID: 8300000, guid: 40fae13b837acff499c3f06b518cc08b, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
 --- !u!1 &1847238080
 GameObject:
   m_ObjectHideFlags: 0

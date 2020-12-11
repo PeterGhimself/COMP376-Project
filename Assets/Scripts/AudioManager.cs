@@ -47,6 +47,14 @@ public class AudioManager : MonoBehaviour
         s.source.Stop();
 
     }
+
+    public void StopAll ()
+    {
+        foreach (Sound s in sounds)
+        {
+            s.source.Stop();
+        }
+    }
     // public IEnumerator FadeOut (string name)
     // {
     //     Sound s = Array.Find(sounds, sound => sound.name == name);

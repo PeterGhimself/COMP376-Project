@@ -85,23 +85,23 @@ public class GameManager : MonoBehaviour
         {
             case 1:
                 m_player.Initialize(chosenWeapon, chosenProjectile, m_onRestartLevel);
-                audioManager.Stop("GameMenu");
+                audioManager.StopAll();
                 audioManager.Play("Lvl1");
                 break;
             case 2:
-                audioManager.Stop("Lvl1");
+                audioManager.StopAll();
                 audioManager.Play("Lvl2");
                 break;
             case 3:
-                audioManager.Stop("Lvl2");
+                audioManager.StopAll();
                 audioManager.Play("Lvl3");
                 break;
             case 4:
-                audioManager.Stop("Lvl3");
+                audioManager.StopAll();
                 audioManager.Play("Lvl4");
                 break;
             case 5:
-                audioManager.Stop("Lvl4");
+                audioManager.StopAll();
                 audioManager.Play("FinalBoss");
                 break;
         }
@@ -223,7 +223,6 @@ public class GameManager : MonoBehaviour
 
     private void LoadNextLevel()
     {
-        print("NEXT LEVEL");
         if (m_currentLevel < m_floorInfos.Length - 1)
         {
             m_currentLevel++;
