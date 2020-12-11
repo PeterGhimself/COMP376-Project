@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WingAI : MonoBehaviour
 {
@@ -23,7 +24,7 @@ public class WingAI : MonoBehaviour
         wingRigidbody = GetComponent<Rigidbody2D>();
         amInOriginalPosition = true;
         expanding = false;
-        touchDamage = 3f;
+        touchDamage = 1f;
         invincibleToWing = false;
         invincibleToWingTimer = 2f;
 
