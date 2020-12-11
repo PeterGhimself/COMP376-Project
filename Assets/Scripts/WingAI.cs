@@ -30,7 +30,7 @@ public class WingAI : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if(expanding)
         {

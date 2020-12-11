@@ -55,6 +55,8 @@ public class ShootingOwlScript : Owl
             directionTimer = originalDirectionTimer;
         }
 
+        animator.SetBool(k_owlFlyAnim, owlRigidBody.velocity.magnitude > 0);
+
         shootTimer -= Time.deltaTime;
         
         // if shootTimer runs out, shoot a projectile towards the player
