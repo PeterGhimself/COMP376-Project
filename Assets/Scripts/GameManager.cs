@@ -19,6 +19,7 @@ public class FloorInfo
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private LoadingScreen m_loadingScreen = default;
+    [SerializeField] private GameObject m_victoryScreen = default;
     [SerializeField] private GameObject m_TitleScreen = default;
     [SerializeField] private GameObject m_readyScreen = default;
     [SerializeField] private FloorManager m_floorManager = default;
@@ -208,6 +209,12 @@ public class GameManager : MonoBehaviour
         GameObject randomPosition = m_items[randomIndex];
         m_items.RemoveAt(randomIndex);
         return randomPosition;
+    }
+
+    public void completeGame()
+    {
+        m_victoryScreen.SetActive(true);
+        Time.timeScale = 0;
     }
 
     public GameObject GetBoss()
