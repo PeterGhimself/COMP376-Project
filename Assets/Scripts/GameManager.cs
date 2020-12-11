@@ -34,9 +34,11 @@ public class GameManager : MonoBehaviour
     private Vector2 m_playerInitPosition = Vector2.zero;
     private PlayerController.Weapon chosenWeapon = PlayerController.Weapon.Dagger;
     private int chosenProjectile = 0;
+    private AudioManager audioManager = null;
 
     public GameObject normalBoss;
     public GameObject finalBoss;
+
     private void Awake()
     {
         m_onLevelComplete = new UnityEvent();
@@ -44,6 +46,12 @@ public class GameManager : MonoBehaviour
         m_onRestartLevel = new UnityEvent();
         m_onRestartLevel.AddListener(Restart);
         //Todo: send events to floor manager (or something) so they can be called when dying or finishing level
+    }
+
+    private void Start()
+    {
+        audioManager = FindObjectOfType<AudioManager>();
+        audioManager.Play("GameMenu");
     }
 
     void OnDestroy()
@@ -73,9 +81,29 @@ public class GameManager : MonoBehaviour
 
         m_player.gameObject.SetActive(true);
 
-        if (m_currentLevel == 1)
+        switch (m_currentLevel)
         {
-            m_player.Initialize(chosenWeapon, chosenProjectile, m_onRestartLevel); 
+            case 1:
+                m_player.Initialize(chosenWeapon, chosenProjectile, m_onRestartLevel);
+                audioManager.Stop("GameMenu");
+                audioManager.Play("Lvl1");
+                break;
+            case 2:
+                audioManager.Stop("Lvl1");
+                audioManager.Play("Lvl2");
+                break;
+            case 3:
+                audioManager.Stop("Lvl2");
+                audioManager.Play("Lvl3");
+                break;
+            case 4:
+                audioManager.Stop("Lvl3");
+                audioManager.Play("Lvl4");
+                break;
+            case 5:
+                audioManager.Stop("Lvl4");
+                audioManager.Play("FinalBoss");
+                break;
         }
 
         print("m_currentLevel: " + m_currentLevel);
@@ -121,6 +149,7 @@ public class GameManager : MonoBehaviour
         print("title screen loading started");
 
         m_rulesScreen.SetActive(false);
+        //m_readyScreen.SetActive(false); // uncommenting makes it disappear when hitting "back" but breaks UI behavior for choice highlighting..
         m_TitleScreen.SetActive(true);
         
 
@@ -167,6 +196,9 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1;
         SceneManager.LoadScene(0);
+        // print("GOING TO MAIN MENU");
+
+        // FindObjectOfType<AudioManager>().Play("GameMenu");
     }
 
     public void LoadRulesLevel() 
@@ -191,6 +223,7 @@ public class GameManager : MonoBehaviour
 
     private void LoadNextLevel()
     {
+        print("NEXT LEVEL");
         if (m_currentLevel < m_floorInfos.Length - 1)
         {
             m_currentLevel++;
