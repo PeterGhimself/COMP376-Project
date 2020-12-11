@@ -4815,6 +4815,30 @@ MonoBehaviour:
     pitch: 1.5
     loop: 0
     source: {fileID: 0}
+  - name: RoomClear1
+    clip: {fileID: 8300000, guid: 7635184deb5202b44af2372bd565f2f0, type: 3}
+    volume: 1
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
+  - name: RoomClear2
+    clip: {fileID: 8300000, guid: e5268fba6f5afbc439c5dd644e06012b, type: 3}
+    volume: 1
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
+  - name: RoomClear3
+    clip: {fileID: 8300000, guid: f245279b54d45c7469e197c10bf42525, type: 3}
+    volume: 1
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
+  - name: RoomClear4
+    clip: {fileID: 8300000, guid: 719398e4fbc452b4ead0dd891dd0bebb, type: 3}
+    volume: 1
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
 --- !u!1 &1847238080
 GameObject:
   m_ObjectHideFlags: 0

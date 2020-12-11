@@ -44,6 +44,8 @@ public class RoomManager : MonoBehaviour
 
     public MoveCameraScript m_cameraScript;
 
+    private AudioManager audioManager = null;
+
     public bool Spawnpoint
     {
         get => spawnpoint;
@@ -76,6 +78,8 @@ public class RoomManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audioManager = FindObjectOfType<AudioManager>();
+
         if (spawnpoint)
         {
             currentRoom = true;
@@ -100,6 +104,11 @@ public class RoomManager : MonoBehaviour
     {
         if (activeRoom && enemyCount <= 0)
         {
+            System.Random random = new System.Random();
+            int select = random.Next(1, 5);
+            string soundName = "RoomClear" + select;
+            audioManager.Play(soundName);
+
             activeRoom = false;
             //spawn health here. 
             if(Random.Range(0f, 1f) <= m_dropChance )
