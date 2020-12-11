@@ -37,10 +37,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PlayerProjectile[] m_projectiles = default;
     [SerializeField] private PlayerAbilityDefinition[] m_playerAbilities = default;
     [SerializeField] private TimeSpeedChanger m_timeSpeedChanger = default;
+    [SerializeField] private Image imageMeleeCooldown, imageRangedCooldown, imageAbilityCooldown;
 
     [Header("Player Attributes")]
     [SerializeField] private Weapon m_chosenWeapon = default;
-    [SerializeField] private EAbility chosenAbility = default;
+    [SerializeField] private EAbility m_chosenAbility = default;
     [SerializeField] private PlayerProjectile m_chosenProjectile = default;
     [SerializeField] private float m_meleeDamageModifier = 0f;
     [SerializeField] private float m_rangedDamageModifier = 0f;
@@ -81,6 +82,45 @@ public class PlayerController : MonoBehaviour
     private const string k_projectileButton = "FireRanged";
     private const string k_horizontalAxis = "Horizontal";
     private const string k_verticalAxis = "Vertical";
+
+    public PlayerWeapon GetChosenWeapon()
+    {
+        return this.m_weapons[(int)this.m_chosenWeapon];
+    }
+
+    public PlayerProjectile GetChosenProjectile()
+    {
+        return this.m_chosenProjectile;
+    }
+
+    public float GetCurrentHealth()
+    {
+        return this.m_currentHealth;
+    }
+
+    public float GetMaxHealth()
+    {
+        return this.m_maxHealth;
+    }
+
+    public float GetWalkSpeed() {
+        return this.m_walkSpeed;
+    }
+
+    public float GetAttackCooldownTime()
+    {
+        return this.attackCooldownTime;
+    }
+
+    public float GetProjectileCooldownTime()
+    {
+        return this.projectileCooldownTime;
+    }
+
+    public float GetAbilityCooldownTime()
+    {
+        return this.abilityCooldownTime;
+    }
 
     //UI
     private bool menuActive = false;
@@ -129,6 +169,9 @@ public class PlayerController : MonoBehaviour
     private void UpdatePlayerUI()
     {
         m_healthBar.fillAmount = m_currentHealth / m_maxHealth;
+        imageMeleeCooldown.fillAmount = attackCooldownTime / m_weapon.Cooldown;
+        imageRangedCooldown.fillAmount = projectileCooldownTime / m_chosenProjectile.Cooldown;
+        imageAbilityCooldown.fillAmount = abilityCooldownTime / m_playerAbilities[(int)m_chosenAbility].Cooldown;
     }
 
     private void UpdateCharacterStates()
@@ -255,9 +298,9 @@ public class PlayerController : MonoBehaviour
 
     private void PlayerAbility()
     {
-        if (Input.GetButtonDown("Ability") && abilityCooldownTime <= 0)
+        if (Input.GetButton("Ability") && abilityCooldownTime <= 0)
         {
-            PlayerAbilityDefinition ability = m_playerAbilities[(int)chosenAbility];
+            PlayerAbilityDefinition ability = m_playerAbilities[(int)m_chosenAbility];
             abilityCooldownTime = ability.Cooldown;
             if (ability.Ability == EAbility.Dash)
                 DashAbility();
@@ -352,7 +395,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+	public void ChangePlayerAbility(EAbility type)
+	{
+		m_chosenAbility = m_playerAbilities[(int)type].Ability;
+	}
+
+	public EAbility GetPlayerAbility()
+	{
+		return m_chosenAbility;
+	}
+
+	void OnCollisionEnter2D(Collision2D collision)
     {
         if (m_enemyProjectiles == (m_enemyProjectiles | (1 << collision.gameObject.layer)))
         {
