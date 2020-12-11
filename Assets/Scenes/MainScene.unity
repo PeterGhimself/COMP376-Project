@@ -4661,43 +4661,43 @@ MonoBehaviour:
   sounds:
   - name: GameMenu
     clip: {fileID: 8300000, guid: 9301ada40d279854b9f35039740b5c6c, type: 3}
-    volume: 0.25
+    volume: 0.1
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: Lvl1
     clip: {fileID: 8300000, guid: 0a603e904eab7184db4edcc85623d670, type: 3}
-    volume: 0.25
+    volume: 0.1
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: Lvl2
     clip: {fileID: 8300000, guid: f00638a8dc6969c4ebffcc26b10ad38f, type: 3}
-    volume: 0.3
+    volume: 0.1
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: Lvl3
     clip: {fileID: 8300000, guid: db68ff39ff5048b4aaee6f4505acd121, type: 3}
-    volume: 0.3
+    volume: 0.1
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: Lvl4
     clip: {fileID: 8300000, guid: 89cd5fb421f8066479ab171994b5dd96, type: 3}
-    volume: 0.25
+    volume: 0.2
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: MiniBoss
     clip: {fileID: 8300000, guid: b90048af4a0321f4c934a74df1bde53a, type: 3}
-    volume: 0.25
+    volume: 0.1
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: FinalBoss
     clip: {fileID: 8300000, guid: 40fae13b837acff499c3f06b518cc08b, type: 3}
-    volume: 0.25
+    volume: 0.1
     pitch: 1
     loop: 1
     source: {fileID: 0}
@@ -4783,6 +4783,36 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 4855f09379eaf5d49a6886e713644ad4, type: 3}
     volume: 1
     pitch: 0.5
+    loop: 0
+    source: {fileID: 0}
+  - name: Idle1
+    clip: {fileID: 8300000, guid: 3bc3bdfd3e5da0f499d677b039fa90d1, type: 3}
+    volume: 1
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
+  - name: Idle2
+    clip: {fileID: 8300000, guid: 0a566e2e0564aae4e9a0ced38c7c9921, type: 3}
+    volume: 1
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
+  - name: Idle3
+    clip: {fileID: 8300000, guid: c3e92722d45876745a02a0d548f3a8ee, type: 3}
+    volume: 1
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
+  - name: Idle4
+    clip: {fileID: 8300000, guid: 2550aef83db58a841bf76397cbbe59cd, type: 3}
+    volume: 1
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
+  - name: Idle5
+    clip: {fileID: 8300000, guid: 3ee0af474f61e264186915e3addb9207, type: 3}
+    volume: 1
+    pitch: 1.5
     loop: 0
     source: {fileID: 0}
 --- !u!1 &1847238080
