@@ -17,6 +17,9 @@ public class WingAI : MonoBehaviour
     private bool invincibleToWing;
     private float invincibleToWingTimer;
 
+    private float expansionTimer;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,10 +36,19 @@ public class WingAI : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if(expansionTimer > 2f)
+        {
+            wingRigidbody.velocity = Vector3.zero;
+            wingRigidbody.angularVelocity = 0;
+            expanding = false;
+            retracting = true;
+        }
+
         if(expanding)
         {
             Vector3 tempVect = (transform.position - transform.parent.transform.position).normalized;
             wingRigidbody.MovePosition(transform.position + tempVect * mainBody.transform.GetComponent<SpirowlAI>().wingsExpandSpeed * Time.deltaTime);
+            expansionTimer += Time.deltaTime;
         }
         if(retracting)
         {
@@ -48,6 +60,7 @@ public class WingAI : MonoBehaviour
                 transform.position = originalPosition;
                 wingRigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
                 retracting = false;
+                expansionTimer = 0;
             }
         }
 
