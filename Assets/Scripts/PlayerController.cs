@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
     [Header("References")]
     [SerializeField] private Image m_healthBar = default;
     [SerializeField] private GameObject m_menu = default;
+    [SerializeField] private GameObject m_gameOverMenu = default;
     [SerializeField] private LayerMask m_enemyProjectiles = default;
     [SerializeField] private PlayerWeapon[] m_weapons = default;
     [SerializeField] private PlayerProjectile[] m_projectiles = default;
@@ -363,7 +364,9 @@ public class PlayerController : MonoBehaviour
 
         if (m_currentHealth <= 0)
         {
-            restartEvent?.Invoke();
+            Time.timeScale = 0;
+            m_gameOverMenu.SetActive(true);
+            menuActive = true;
         }
     }
 
@@ -392,7 +395,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+	public void ChangePlayerAbility(EAbility type)
+	{
+		m_chosenAbility = m_playerAbilities[(int)type].Ability;
+	}
+
+	public EAbility GetPlayerAbility()
+	{
+		return m_chosenAbility;
+	}
+
+	void OnCollisionEnter2D(Collision2D collision)
     {
         if (m_enemyProjectiles == (m_enemyProjectiles | (1 << collision.gameObject.layer)))
         {
