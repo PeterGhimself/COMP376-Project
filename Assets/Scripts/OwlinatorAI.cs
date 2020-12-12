@@ -38,7 +38,18 @@ public class OwlinatorAI : Owl
     private float shootCooldown;
     private float shootTimer;
 
+    private GameManager m_gameManager = default;
+    private PlayerController m_playerController = default;
 
+    
+    private void Awake()
+    {
+        player = GameObject.FindWithTag("Player");
+        animator = GetComponent<Animator>();
+        m_gameManager = GameObject.FindObjectOfType<GameManager>();
+        m_playerController = GameObject.FindObjectOfType<PlayerController>();
+    }
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -59,13 +70,11 @@ public class OwlinatorAI : Owl
 
         bossHealthBar = player.transform.Find("UI").gameObject.transform.Find("BossHealth").gameObject;
         bossHealthBarImage = bossHealthBar.transform.Find("Fill").GetComponent<Image>();
-
     }
 
     // Update is called once per frame
     void Update()
     {
-
         if (!bossHealthBar.activeSelf)
         {
             bossHealthBar.SetActive(true);
@@ -82,7 +91,6 @@ public class OwlinatorAI : Owl
         {
             if (!bubble.GetComponent<OwlinatorBubbleScript>().stunned)
             {
-
                 chargeTimer -= Time.deltaTime;
                 if (chargeTimer < 0 && !charging)
                 {
@@ -113,7 +121,8 @@ public class OwlinatorAI : Owl
                         }
                         else
                         {
-                            transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed/2 * Time.deltaTime);
+                            transform.position = Vector3.MoveTowards(transform.position, targetPosition,
+                                moveSpeed / 2 * Time.deltaTime);
                         }
                     }
                     else
@@ -127,7 +136,8 @@ public class OwlinatorAI : Owl
                         }
                         else
                         {
-                            transform.position = Vector3.MoveTowards(transform.position, originalPosition, moveSpeed/3 * Time.deltaTime);
+                            transform.position = Vector3.MoveTowards(transform.position, originalPosition,
+                                moveSpeed / 3 * Time.deltaTime);
                         }
                     }
                 }
@@ -135,12 +145,13 @@ public class OwlinatorAI : Owl
         }
         else
         {
-            if(!burstShooting)
+            if (!burstShooting)
             {
-                transform.position = Vector3.MoveTowards(transform.position, player.transform.position, moveSpeed / 8 * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, player.transform.position,
+                    moveSpeed / 8 * Time.deltaTime);
                 burstShootCurrentTime -= Time.deltaTime;
 
-                if(burstShootCurrentTime < 0)
+                if (burstShootCurrentTime < 0)
                 {
                     burstShooting = true;
                 }
@@ -152,17 +163,20 @@ public class OwlinatorAI : Owl
                 // if shootTimer runs out, shoot a projectile towards the player
                 if (shootTimer < 0)
                 {
-                    GameObject bossBullet = Instantiate(projectilePrefab, transform.position, Quaternion.identity) as GameObject;
+                    GameObject bossBullet =
+                        Instantiate(projectilePrefab, transform.position, Quaternion.identity) as GameObject;
                     bossBullet.GetComponent<ProjectileScript>().damage = projectileDamage;
 
-                    bossBullet.GetComponent<Rigidbody2D>().AddForce((player.transform.position - transform.position).normalized * projectileSpeed, ForceMode2D.Impulse);
+                    bossBullet.GetComponent<Rigidbody2D>()
+                        .AddForce((player.transform.position - transform.position).normalized * projectileSpeed,
+                            ForceMode2D.Impulse);
 
                     shootTimer = shootCooldown;
                     shotCount += 1;
                     print(shotCount);
                 }
 
-                if(shotCount == 5)
+                if (shotCount == 5)
                 {
                     burstShooting = false;
                     burstShootCurrentTime = burstShootCooldown;
@@ -201,7 +215,8 @@ public class OwlinatorAI : Owl
     private void OnDestroy()
     {
         player.transform.Find("UI").gameObject.transform.Find("BossHealth").gameObject.SetActive(false);
-        //Add game complete code here i guess
+        m_gameManager.completeGame();
+        m_playerController.MenuActive = true;
     }
     
 }

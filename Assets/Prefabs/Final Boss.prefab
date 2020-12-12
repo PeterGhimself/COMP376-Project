@@ -1840,6 +1840,7 @@ MonoBehaviour:
   stunned: 0
   originalStunLength: 0
   stunLength: 0
+  stunnable: 0
 --- !u!70 &4758655151760572395
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -2839,6 +2840,8 @@ MonoBehaviour:
   projectileSpeed: 3
   bubble: {fileID: 5003651446001192089}
   chargeCooldown: 5
+  m_gameVictory: {fileID: 5159834982868892020, guid: eebd2aa809d264d9dbc8051bfc4d1a2a,
+    type: 3}
 --- !u!212 &6528863962867156749
 SpriteRenderer:
   m_ObjectHideFlags: 0
