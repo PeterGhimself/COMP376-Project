@@ -17,7 +17,7 @@ Sprite used for Owlinator Sprite:
 https://opengameart.org/content/2d-clouds-pack
 
 
-##Changes since mid-way presentation
+## Changes since mid-way presentation
 - Added power up pickups
 - Added 2 active power-ups (slow mo and bullet explosion)
 - Added multiple levels
