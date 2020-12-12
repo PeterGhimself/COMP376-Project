@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private Image m_healthBar = default;
+    [SerializeField] private Image m_cooldownReady = default;
     [SerializeField] private GameObject m_menu = default;
     [SerializeField] private GameObject m_gameOverMenu = default;
     [SerializeField] private LayerMask m_enemyProjectiles = default;
@@ -83,6 +84,32 @@ public class PlayerController : MonoBehaviour
     private const string k_horizontalAxis = "Horizontal";
     private const string k_verticalAxis = "Vertical";
 
+    private AudioManager audioManager = null;
+
+    // idle checking
+    private float lastAction = 0;
+    private bool isIdle = false;
+    private static int IDLE_TIMEOUT = 20;
+    
+    private void ReportAction()
+    {
+        lastAction = Time.time;
+    }
+
+    // updates and sets boolean for if player is considered idle
+    private bool IsIdle()
+    {
+        if (!isIdle && Time.time - lastAction > IDLE_TIMEOUT)
+        {
+            // its been 20 seconds
+            isIdle = true;
+            lastAction = Time.time; // for simplicity, reset the idle timer here
+        } else {
+            isIdle = false;
+        }
+        return isIdle;
+    }
+
     public PlayerWeapon GetChosenWeapon()
     {
         return this.m_weapons[(int)this.m_chosenWeapon];
@@ -122,6 +149,12 @@ public class PlayerController : MonoBehaviour
         return this.abilityCooldownTime;
     }
 
+    void Start ()
+    {
+        audioManager = FindObjectOfType<AudioManager>();
+        ReportAction();
+    }
+
     //UI
     private bool menuActive = false;
 
@@ -142,14 +175,25 @@ public class PlayerController : MonoBehaviour
             restartEvent = restart;
 
         m_currentHealth = m_maxHealth;
+
+        ChangePlayerAbility(m_chosenAbility);
     }
 
     #region Updates
 
     void Update()
     {
+        if (IsIdle())
+        {
+            System.Random random = new System.Random();
+            int select = random.Next(1, 6);
+            string soundName = "Idle" + select;
+            audioManager.Play(soundName);
+        }
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            ReportAction();
             menuActive = !menuActive;
             Time.timeScale = menuActive ? 0 : 1;
             m_menu.SetActive(menuActive);
@@ -203,6 +247,7 @@ public class PlayerController : MonoBehaviour
 
         if (Mathf.Abs(walkVector.magnitude) > 1)
         {
+            ReportAction();
             walkVector = walkVector.normalized;
         }
 
@@ -248,6 +293,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButton(k_fireButton))
         {
+            ReportAction();
             m_animator.SetTrigger(k_attackAnim);
             attackCooldownTime = m_weapon.Cooldown;
         }
@@ -262,8 +308,8 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButton(k_projectileButton))
         {
+            ReportAction();
             projectileCooldownTime = m_chosenProjectile.Cooldown;
-            //todo: choose projectile
 
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
@@ -300,6 +346,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetButton("Ability") && abilityCooldownTime <= 0)
         {
+            ReportAction();
             PlayerAbilityDefinition ability = m_playerAbilities[(int)m_chosenAbility];
             abilityCooldownTime = ability.Cooldown;
             if (ability.Ability == EAbility.Dash)
@@ -356,12 +403,51 @@ public class PlayerController : MonoBehaviour
 
     public void DamagePlayer(float damage)
     {
+        int select = 1;
+        string soundName = "";
+        System.Random random = new System.Random();
+
         if (invincibilityTime > 0 || dashInvincible)
             return;
 
         invincibilityTime = m_invincibilityCooldown;
         m_currentHealth -= damage;
 
+        
+        if (m_currentHealth > 2) {
+            select = random.Next(1,7);
+            soundName = "Injured";
+
+            if (select == 6) {
+                soundName += "NotReally";
+            } else {
+                soundName += select;
+            }
+
+            audioManager.Play(soundName);
+
+        } else if (m_currentHealth <= 2) {
+            select = random.Next(1,5);
+            soundName = "Flock";
+
+            switch(select) {
+                case 1:
+                    soundName += "Off";
+                    break;
+                case 2:
+                    soundName += "Me1";
+                    break;
+                case 3:
+                    soundName += "Me2";
+                    break;
+                case 4:
+                    soundName += "It";
+                    break;
+            }
+
+            audioManager.Play(soundName);
+        }
+        
         if (m_currentHealth <= 0)
         {
             Time.timeScale = 0;
@@ -372,20 +458,41 @@ public class PlayerController : MonoBehaviour
 
     public void ChangePlayerStat(Powerup.PowerupType type, float amount)
     {
+        System.Random random = new System.Random();
+        int select = 1;
+        string soundName = "";
         switch (type)
         {
             case Powerup.PowerupType.Attack:
+                soundName = "AttackPowerup";
+                select = random.Next(1, 3);
+                soundName += select;
+                audioManager.Play(soundName);
+
                 m_meleeDamageModifier += amount;
                 m_weapon.IncreaseByDamageMod(m_meleeDamageModifier);
                 m_rangedDamageModifier += amount;
                 break;
             case Powerup.PowerupType.Health:
+                soundName = "HealthPowerup";
+                select = random.Next(1, 3);
+                soundName += select;
+                audioManager.Play(soundName);
+
                 m_maxHealth += amount;
                 break;
             case Powerup.PowerupType.Speed:
+                soundName = "SpeedBoost";
+                select = random.Next(1, 3);
+                soundName += select;
+                audioManager.Play(soundName);
+                
                 m_walkSpeed += amount;
                 break;
             case Powerup.PowerupType.Heal:
+                soundName = "HealthPickup";
+                audioManager.Play(soundName);
+
                 m_currentHealth += amount;
                 if (m_currentHealth > m_maxHealth)
                     m_currentHealth = m_maxHealth;
@@ -397,7 +504,27 @@ public class PlayerController : MonoBehaviour
 
 	public void ChangePlayerAbility(EAbility type)
 	{
+        string soundName = "ActivePickup";
+        
+        // necessary guard, as this method gets called before audioManager is intialized
+        if (audioManager != null) {
+            audioManager.Play(soundName);
+        }
+
 		m_chosenAbility = m_playerAbilities[(int)type].Ability;
+        
+        switch(m_chosenAbility)
+		{
+			case PlayerController.EAbility.Dash:
+				m_cooldownReady.color = Color.blue;
+				break;
+			case PlayerController.EAbility.ProjectileExplosion:
+				m_cooldownReady.color = Color.red;
+				break;
+			case PlayerController.EAbility.Slowmo:
+				m_cooldownReady.color = Color.yellow;
+				break;
+		}
 	}
 
 	public EAbility GetPlayerAbility()

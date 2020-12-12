@@ -26,7 +26,6 @@ public class Player : MonoBehaviour
         }
 
     }
-
    
     void OnCollisionEnter2D(Collision2D collision)
     {

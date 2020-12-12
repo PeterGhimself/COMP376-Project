@@ -214,7 +214,12 @@ public class OwlinatorAI : Owl
     
     private void OnDestroy()
     {
-        player.transform.Find("UI").gameObject.transform.Find("BossHealth").gameObject.SetActive(false);
+        var ting = player.transform.Find("UI");
+
+        if (ting != null)
+        {
+            ting.gameObject.transform.Find("BossHealth").gameObject.SetActive(false);
+        }
         m_gameManager.completeGame();
         m_playerController.MenuActive = true;
     }

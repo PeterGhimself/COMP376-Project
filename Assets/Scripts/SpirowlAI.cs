@@ -45,6 +45,11 @@ public class SpirowlAI : Owl
     private float spawnMinionCooldown;
     [SerializeField] private GameObject _exit;
 
+    // helper objects for audio hooks
+    private AudioManager audioManager = null;
+    private GameManager gameManager = null;
+    private bool isFighting = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -63,6 +68,9 @@ public class SpirowlAI : Owl
         bossHealthBar = player.transform.Find("UI").gameObject.transform.Find("BossHealth").gameObject;
         bossHealthBarImage = bossHealthBar.transform.Find("Fill").GetComponent<Image>();
 
+        audioManager = FindObjectOfType<AudioManager>();
+        gameManager = FindObjectOfType<GameManager>();
+
         base.Start();
     }
 
@@ -73,12 +81,36 @@ public class SpirowlAI : Owl
 
         if (!IsActive())
         {
+            if (isFighting) {
+                audioManager.StopAll();
+                int currentLevel = gameManager.getLevel();
+
+                switch (currentLevel) {
+                    case 1:
+                        audioManager.Play("Lvl1");
+                        break;
+                    case 2:
+                        audioManager.Play("Lvl2");
+                        break;
+                    case 3:
+                        audioManager.Play("Lvl3");
+                        break;
+                    case 4:
+                        audioManager.Play("Lvl4");
+                        break;
+                }
+            }
+            isFighting = false;
             bossHealthBar.SetActive(false);
             return;
         }
 
         if(!bossHealthBar.activeSelf)
-        {
+        {   
+            isFighting = true;
+            audioManager.StopAll();
+            audioManager.Play("MiniBossLine"); // voice line
+            audioManager.Play("MiniBoss", 5); // music
             bossHealthBar.SetActive(true);
         }
 
@@ -154,7 +186,10 @@ public class SpirowlAI : Owl
     
     private void OnDestroy()
     {
-        player.transform.Find("UI").gameObject.transform.Find("BossHealth").gameObject.SetActive(false);
+        if (player != null)
+        {
+            player.transform.Find("UI").gameObject.transform.Find("BossHealth").gameObject.SetActive(false);
+        }
         var item = Instantiate(_exit, gameObject.transform.parent.transform, true);
         item.transform.localPosition = new Vector3(0,0);    
     }

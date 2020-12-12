@@ -28,17 +28,29 @@ public class Powerup : MonoBehaviour
         m_tooltip.gameObject.SetActive(false);
     }
 
-    void OnMouseEnter()
-    {
-        this.ShowTooltip();
-    }
+	Ray ray;
+	RaycastHit2D[] hits;
 
-    void OnMouseExit()
-    {
-        this.HideTooltip();
-    }
+	private void Update()
+	{
+		ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+		hits = Physics2D.RaycastAll(ray.origin, ray.direction, Mathf.Infinity);
+		if (hits.Length > 0)
+		{
+			foreach (RaycastHit2D hit in hits)
+			{
+				if (hit.collider.gameObject == gameObject)
+				{
+					ShowTooltip();
+					return;
+				}
+			}
+		}
 
-    private void OnTriggerEnter2D(Collider2D collider)
+		HideTooltip();
+	}
+
+	private void OnTriggerEnter2D(Collider2D collider)
     {
         if (m_playerLayer == (m_playerLayer | (1 << collider.gameObject.layer)))
         {
