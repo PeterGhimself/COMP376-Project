@@ -4197,8 +4197,8 @@ MonoBehaviour:
   - {fileID: 4255579195582350171, guid: d6fb57df2fa83a148ba11d6c01e1f31b, type: 3}
   - {fileID: 5929865147131231399, guid: dfb674a5772f398468baf83e7f8f465a, type: 3}
   - {fileID: 4255579195582350171, guid: d6fb57df2fa83a148ba11d6c01e1f31b, type: 3}
-  - {fileID: 4255579195582350171, guid: d6fb57df2fa83a148ba11d6c01e1f31b, type: 3}
-  - {fileID: 4255579195582350171, guid: d6fb57df2fa83a148ba11d6c01e1f31b, type: 3}
+  - {fileID: 5929865147131231399, guid: dfb674a5772f398468baf83e7f8f465a, type: 3}
+  - {fileID: 5929865147131231399, guid: f6a908bc83489bb4b8c013ff05018424, type: 3}
   healthDrop: {fileID: 8965331110802989222, guid: 0835245e7b797418f97e3d81cb224307,
     type: 3}
   floorTiles:
