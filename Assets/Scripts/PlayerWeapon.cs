@@ -29,6 +29,15 @@ public class PlayerWeapon : MonoBehaviour
             Owl owl = collider.gameObject.GetComponent<Owl>();
             if (owl)
             {
+                if(collider.gameObject.CompareTag("Owlinator"))
+                {
+                    if(collider.gameObject.GetComponent<OwlinatorAI>().bubble.activeSelf)
+                    {
+                        return;
+                    }
+                }
+
+
                 owl.ApplyDamage(m_damage);
             }
             else
