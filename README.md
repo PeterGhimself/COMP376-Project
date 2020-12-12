@@ -31,3 +31,7 @@ Sprite used for Owlinator Sprite:
 - Added death screen
 - Added Victory screen
 - Added Opening Cutscene with voice lines
+
+## Links to online video demos
+- https://drive.google.com/file/d/1maE_wFln1xwtVm6aqYuSDrxgnaYmejvy/view?usp=sharing
+- https://drive.google.com/file/d/1StlVI1LC8Wf8nIZ1LnqQO7SO6malSzgX/view?usp=sharing
