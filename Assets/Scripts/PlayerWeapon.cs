@@ -49,8 +49,9 @@ public class PlayerWeapon : MonoBehaviour
         }
         else if(collider.gameObject.CompareTag("OwlinatorBubble"))
         {
-            if(!collider.gameObject.GetComponent<OwlinatorBubbleScript>().stunned && collider.gameObject.GetComponent<OwlinatorBubbleScript>().bubbleVulnerable)
+            if(!collider.gameObject.GetComponent<OwlinatorBubbleScript>().stunned && collider.gameObject.GetComponent<OwlinatorBubbleScript>().bubbleVulnerable && collider.gameObject.GetComponent<OwlinatorBubbleScript>().stunnable)
             {
+                collider.gameObject.GetComponent<OwlinatorBubbleScript>().stunnable = false;
                 collider.gameObject.GetComponent<OwlinatorBubbleScript>().stunned = true;
                 collider.gameObject.GetComponent<OwlinatorBubbleScript>().stunLength = 3f; // hardcoded stun length
                 collider.gameObject.GetComponent<OwlinatorBubbleScript>().originalStunLength = 3f; // hardcoded stun length

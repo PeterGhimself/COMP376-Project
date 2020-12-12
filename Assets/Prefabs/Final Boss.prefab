@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5502449353930371017}
   - component: {fileID: 2050400526437720613}
   - component: {fileID: 8676625030109974045}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Turret (15)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,7 +100,7 @@ MonoBehaviour:
     type: 3}
   projectileDamage: 1
   projectileSpeed: 50
-  shootIntervalRange: 15
+  shootIntervalRange: 10
 --- !u!50 &2050400526437720613
 Rigidbody2D:
   serializedVersion: 4
@@ -186,7 +186,7 @@ GameObject:
   - component: {fileID: 7280162417859650655}
   - component: {fileID: 5490030067283599712}
   - component: {fileID: 1847033215293586203}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -273,7 +273,7 @@ MonoBehaviour:
     type: 3}
   projectileDamage: 1
   projectileSpeed: 50
-  shootIntervalRange: 15
+  shootIntervalRange: 10
 --- !u!50 &5490030067283599712
 Rigidbody2D:
   serializedVersion: 4
@@ -359,7 +359,7 @@ GameObject:
   - component: {fileID: 5223740793978801179}
   - component: {fileID: 8852811661319147695}
   - component: {fileID: 8916052883553617827}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Turret (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -446,7 +446,7 @@ MonoBehaviour:
     type: 3}
   projectileDamage: 1
   projectileSpeed: 50
-  shootIntervalRange: 15
+  shootIntervalRange: 10
 --- !u!50 &8852811661319147695
 Rigidbody2D:
   serializedVersion: 4
@@ -532,7 +532,7 @@ GameObject:
   - component: {fileID: 3067504899357799682}
   - component: {fileID: 7677117897371827013}
   - component: {fileID: 6209135753838060080}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Turret (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -619,7 +619,7 @@ MonoBehaviour:
     type: 3}
   projectileDamage: 1
   projectileSpeed: 50
-  shootIntervalRange: 15
+  shootIntervalRange: 10
 --- !u!50 &7677117897371827013
 Rigidbody2D:
   serializedVersion: 4
@@ -705,7 +705,7 @@ GameObject:
   - component: {fileID: 6017468965885161677}
   - component: {fileID: 7355505087721584634}
   - component: {fileID: 4051853738471317395}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Turret (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -792,7 +792,7 @@ MonoBehaviour:
     type: 3}
   projectileDamage: 1
   projectileSpeed: 50
-  shootIntervalRange: 15
+  shootIntervalRange: 10
 --- !u!50 &7355505087721584634
 Rigidbody2D:
   serializedVersion: 4
@@ -878,7 +878,7 @@ GameObject:
   - component: {fileID: 3880004108457673029}
   - component: {fileID: 1018940968595638476}
   - component: {fileID: 7011040318236703296}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Turret (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -965,7 +965,7 @@ MonoBehaviour:
     type: 3}
   projectileDamage: 1
   projectileSpeed: 50
-  shootIntervalRange: 15
+  shootIntervalRange: 10
 --- !u!50 &1018940968595638476
 Rigidbody2D:
   serializedVersion: 4
@@ -1051,7 +1051,7 @@ GameObject:
   - component: {fileID: 5738624396428787543}
   - component: {fileID: 9025794905612884842}
   - component: {fileID: 1073080381307659239}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Turret (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1138,7 +1138,7 @@ MonoBehaviour:
     type: 3}
   projectileDamage: 1
   projectileSpeed: 50
-  shootIntervalRange: 15
+  shootIntervalRange: 10
 --- !u!50 &9025794905612884842
 Rigidbody2D:
   serializedVersion: 4
@@ -1224,7 +1224,7 @@ GameObject:
   - component: {fileID: 2153942937244784393}
   - component: {fileID: 5272778042568317189}
   - component: {fileID: 4730214171972786200}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Turret (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1311,7 +1311,7 @@ MonoBehaviour:
     type: 3}
   projectileDamage: 1
   projectileSpeed: 50
-  shootIntervalRange: 15
+  shootIntervalRange: 10
 --- !u!50 &5272778042568317189
 Rigidbody2D:
   serializedVersion: 4
@@ -1555,7 +1555,7 @@ GameObject:
   - component: {fileID: 2445874407262555637}
   - component: {fileID: 7524513174196535822}
   - component: {fileID: 3282755607066965429}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Turret (16)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1642,7 +1642,7 @@ MonoBehaviour:
     type: 3}
   projectileDamage: 1
   projectileSpeed: 50
-  shootIntervalRange: 15
+  shootIntervalRange: 10
 --- !u!50 &7524513174196535822
 Rigidbody2D:
   serializedVersion: 4
@@ -1840,6 +1840,7 @@ MonoBehaviour:
   stunned: 0
   originalStunLength: 0
   stunLength: 0
+  stunnable: 0
 --- !u!70 &4758655151760572395
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -2097,7 +2098,7 @@ GameObject:
   - component: {fileID: 8252541538047025442}
   - component: {fileID: 780528612495403071}
   - component: {fileID: 8774250061853749274}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Turret (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2184,7 +2185,7 @@ MonoBehaviour:
     type: 3}
   projectileDamage: 1
   projectileSpeed: 50
-  shootIntervalRange: 15
+  shootIntervalRange: 10
 --- !u!50 &780528612495403071
 Rigidbody2D:
   serializedVersion: 4
@@ -2270,7 +2271,7 @@ GameObject:
   - component: {fileID: 5508546127539852632}
   - component: {fileID: 3789996147181652545}
   - component: {fileID: 4196458987708589117}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Turret (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2357,7 +2358,7 @@ MonoBehaviour:
     type: 3}
   projectileDamage: 1
   projectileSpeed: 50
-  shootIntervalRange: 15
+  shootIntervalRange: 10
 --- !u!50 &3789996147181652545
 Rigidbody2D:
   serializedVersion: 4
@@ -2443,7 +2444,7 @@ GameObject:
   - component: {fileID: 5843588736911750171}
   - component: {fileID: 8594385013769653215}
   - component: {fileID: 388697549211020039}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Turret (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2530,7 +2531,7 @@ MonoBehaviour:
     type: 3}
   projectileDamage: 1
   projectileSpeed: 50
-  shootIntervalRange: 15
+  shootIntervalRange: 10
 --- !u!50 &8594385013769653215
 Rigidbody2D:
   serializedVersion: 4
@@ -2616,7 +2617,7 @@ GameObject:
   - component: {fileID: 7472826766662882890}
   - component: {fileID: 3407945946935573896}
   - component: {fileID: 2135999606164969259}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Turret (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2703,7 +2704,7 @@ MonoBehaviour:
     type: 3}
   projectileDamage: 1
   projectileSpeed: 50
-  shootIntervalRange: 15
+  shootIntervalRange: 10
 --- !u!50 &3407945946935573896
 Rigidbody2D:
   serializedVersion: 4
@@ -2839,6 +2840,8 @@ MonoBehaviour:
   projectileSpeed: 3
   bubble: {fileID: 5003651446001192089}
   chargeCooldown: 5
+  m_gameVictory: {fileID: 5159834982868892020, guid: eebd2aa809d264d9dbc8051bfc4d1a2a,
+    type: 3}
 --- !u!212 &6528863962867156749
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2996,7 +2999,7 @@ GameObject:
   - component: {fileID: 7754492077535143506}
   - component: {fileID: 3626512171165013847}
   - component: {fileID: 548722316337602589}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Turret (13)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3083,7 +3086,7 @@ MonoBehaviour:
     type: 3}
   projectileDamage: 1
   projectileSpeed: 50
-  shootIntervalRange: 15
+  shootIntervalRange: 10
 --- !u!50 &3626512171165013847
 Rigidbody2D:
   serializedVersion: 4
@@ -3169,7 +3172,7 @@ GameObject:
   - component: {fileID: 8936993342713752689}
   - component: {fileID: 7779218298506304657}
   - component: {fileID: 6359430979988642773}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Turret (19)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3256,7 +3259,7 @@ MonoBehaviour:
     type: 3}
   projectileDamage: 1
   projectileSpeed: 50
-  shootIntervalRange: 15
+  shootIntervalRange: 10
 --- !u!50 &7779218298506304657
 Rigidbody2D:
   serializedVersion: 4
@@ -3342,7 +3345,7 @@ GameObject:
   - component: {fileID: 662983092322695673}
   - component: {fileID: 338273303096160019}
   - component: {fileID: 8518241542786303107}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Turret (20)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3429,7 +3432,7 @@ MonoBehaviour:
     type: 3}
   projectileDamage: 1
   projectileSpeed: 50
-  shootIntervalRange: 15
+  shootIntervalRange: 10
 --- !u!50 &338273303096160019
 Rigidbody2D:
   serializedVersion: 4
@@ -3515,7 +3518,7 @@ GameObject:
   - component: {fileID: 208871734575233034}
   - component: {fileID: 5618096957694975799}
   - component: {fileID: 8590039904038513795}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Turret (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3602,7 +3605,7 @@ MonoBehaviour:
     type: 3}
   projectileDamage: 1
   projectileSpeed: 50
-  shootIntervalRange: 15
+  shootIntervalRange: 10
 --- !u!50 &5618096957694975799
 Rigidbody2D:
   serializedVersion: 4
@@ -3688,7 +3691,7 @@ GameObject:
   - component: {fileID: 6729367163720322830}
   - component: {fileID: 473593491182623535}
   - component: {fileID: 2367812691152654386}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Turret (17)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3775,7 +3778,7 @@ MonoBehaviour:
     type: 3}
   projectileDamage: 1
   projectileSpeed: 50
-  shootIntervalRange: 15
+  shootIntervalRange: 10
 --- !u!50 &473593491182623535
 Rigidbody2D:
   serializedVersion: 4

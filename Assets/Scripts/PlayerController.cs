@@ -562,4 +562,10 @@ public class PlayerController : MonoBehaviour
         Time.timeScale = 1;
         UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
+
+    public bool MenuActive
+    {
+        get => menuActive;
+        set => menuActive = value;
+    }
 }

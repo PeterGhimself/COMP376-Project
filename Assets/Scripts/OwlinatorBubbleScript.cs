@@ -16,12 +16,15 @@ public class OwlinatorBubbleScript : MonoBehaviour
     public float originalStunLength;
     public float stunLength;
 
+    public bool stunnable;
+
 
     void Start()
     {
         currentBubbleHealth = bubbleHealth;
         bubbleVulnerable = false;
         stunned = false;
+        stunnable = true;
     }
 
     void Update()

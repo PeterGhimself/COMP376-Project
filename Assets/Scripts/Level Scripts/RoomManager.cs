@@ -220,9 +220,27 @@ public class RoomManager : MonoBehaviour
     
     private void SpawnBoss()
     {
+        
         Debug.Log("SpawnedBoss");
         var item = Instantiate(_gameManager.GetBoss(), gameObject.transform, true);
         item.transform.localPosition = new Vector3(0,0);
+        
+
+        // Modifying Mini boss' (Spirowl) parameters depending on the current floor
+
+        if(floor == 1)
+        {
+            item.GetComponent<SpirowlAI>().hitPoints = 10;
+        }
+        else if(floor == 2)
+        {
+            item.GetComponent<SpirowlAI>().hitPoints = 15;
+        }
+        else if(floor == 3)
+        {
+            item.GetComponent<SpirowlAI>().hitPoints = 20;
+        }
+
     }
 
 }
