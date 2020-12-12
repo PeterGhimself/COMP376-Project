@@ -201,7 +201,7 @@ public class GameManager : MonoBehaviour
     public void GoToMainMenu()
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
         // print("GOING TO MAIN MENU");
 
         // FindObjectOfType<AudioManager>().Play("GameMenu");

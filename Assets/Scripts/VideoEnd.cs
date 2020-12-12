@@ -17,6 +17,6 @@ public class VideoEnd : MonoBehaviour
 
     void Verify(VideoPlayer v)
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 }

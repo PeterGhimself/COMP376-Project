@@ -560,7 +560,7 @@ public class PlayerController : MonoBehaviour
     public void QuitToMenu()
     {
         Time.timeScale = 1;
-        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+        UnityEngine.SceneManagement.SceneManager.LoadScene(1);
     }
 
     public bool MenuActive
