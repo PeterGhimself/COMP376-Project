@@ -1,0 +1,274 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1903290964250910918
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1903290964250910919}
+  - component: {fileID: 1903290964250910912}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1903290964250910919
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1903290964250910918}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -42.662125, y: 2.1796763, z: -221.16992}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1903290964250910912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1903290964250910918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7e8d94d4a26bc44bbe1c7c7cd421eee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: GameMenu
+    clip: {fileID: 8300000, guid: 9301ada40d279854b9f35039740b5c6c, type: 3}
+    volume: 0.05
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: Lvl1
+    clip: {fileID: 8300000, guid: 0a603e904eab7184db4edcc85623d670, type: 3}
+    volume: 0.05
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: Lvl2
+    clip: {fileID: 8300000, guid: f00638a8dc6969c4ebffcc26b10ad38f, type: 3}
+    volume: 0.05
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: Lvl3
+    clip: {fileID: 8300000, guid: db68ff39ff5048b4aaee6f4505acd121, type: 3}
+    volume: 0.05
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: Lvl4
+    clip: {fileID: 8300000, guid: 89cd5fb421f8066479ab171994b5dd96, type: 3}
+    volume: 0.05
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: MiniBoss
+    clip: {fileID: 8300000, guid: b90048af4a0321f4c934a74df1bde53a, type: 3}
+    volume: 0.05
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: FinalBoss
+    clip: {fileID: 8300000, guid: 40fae13b837acff499c3f06b518cc08b, type: 3}
+    volume: 0.05
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: Injured1
+    clip: {fileID: 8300000, guid: 176c733bb2a98074dae02e400dddea10, type: 3}
+    volume: 1
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
+  - name: Injured2
+    clip: {fileID: 8300000, guid: 176c733bb2a98074dae02e400dddea10, type: 3}
+    volume: 1
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
+  - name: Injured3
+    clip: {fileID: 8300000, guid: ca4e83dd5cfe5504d9c210e15782d25d, type: 3}
+    volume: 1
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
+  - name: Injured4
+    clip: {fileID: 8300000, guid: 73f2fa58f5c2c80458b4e1aedf1a03a9, type: 3}
+    volume: 1
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
+  - name: Injured5
+    clip: {fileID: 8300000, guid: ebe0b178d60a55048b5b24f3e5dce819, type: 3}
+    volume: 1
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
+  - name: InjuredNotReally
+    clip: {fileID: 8300000, guid: bc74194849bb9244c89deeb611573699, type: 3}
+    volume: 0.6
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
+  - name: FlockOff
+    clip: {fileID: 8300000, guid: 5927223374ade4441a9e475a9d1d3aeb, type: 3}
+    volume: 1
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
+  - name: FlockMe1
+    clip: {fileID: 8300000, guid: 3046de3dbc360f84bbca4619381cd291, type: 3}
+    volume: 1
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
+  - name: FlockMe2
+    clip: {fileID: 8300000, guid: 80abcc2f17c5fb04599e575f38e295de, type: 3}
+    volume: 1
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
+  - name: FlockIt
+    clip: {fileID: 8300000, guid: 1c7731fdcf985474e8c796aad525ba56, type: 3}
+    volume: 1
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
+  - name: MiniBossLine
+    clip: {fileID: 8300000, guid: f5c47b242a9508d45a602efcff916b0f, type: 3}
+    volume: 1
+    pitch: 0.5
+    loop: 0
+    source: {fileID: 0}
+  - name: FinalBossLine1
+    clip: {fileID: 8300000, guid: 914a371a5976c2c46844bb5a4cb81ae3, type: 3}
+    volume: 1
+    pitch: 0.5
+    loop: 0
+    source: {fileID: 0}
+  - name: FinalBossLine2
+    clip: {fileID: 8300000, guid: cb4049be619d89647a329a53439f2557, type: 3}
+    volume: 1
+    pitch: 0.5
+    loop: 0
+    source: {fileID: 0}
+  - name: FinalBossLine3
+    clip: {fileID: 8300000, guid: 4855f09379eaf5d49a6886e713644ad4, type: 3}
+    volume: 1
+    pitch: 0.5
+    loop: 0
+    source: {fileID: 0}
+  - name: Idle1
+    clip: {fileID: 8300000, guid: 3bc3bdfd3e5da0f499d677b039fa90d1, type: 3}
+    volume: 1
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
+  - name: Idle2
+    clip: {fileID: 8300000, guid: 0a566e2e0564aae4e9a0ced38c7c9921, type: 3}
+    volume: 1
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
+  - name: Idle3
+    clip: {fileID: 8300000, guid: c3e92722d45876745a02a0d548f3a8ee, type: 3}
+    volume: 1
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
+  - name: Idle4
+    clip: {fileID: 8300000, guid: 2550aef83db58a841bf76397cbbe59cd, type: 3}
+    volume: 1
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
+  - name: Idle5
+    clip: {fileID: 8300000, guid: 3ee0af474f61e264186915e3addb9207, type: 3}
+    volume: 1
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
+  - name: RoomClear1
+    clip: {fileID: 8300000, guid: 7635184deb5202b44af2372bd565f2f0, type: 3}
+    volume: 1
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
+  - name: RoomClear2
+    clip: {fileID: 8300000, guid: e5268fba6f5afbc439c5dd644e06012b, type: 3}
+    volume: 1
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
+  - name: RoomClear3
+    clip: {fileID: 8300000, guid: f245279b54d45c7469e197c10bf42525, type: 3}
+    volume: 1
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
+  - name: RoomClear4
+    clip: {fileID: 8300000, guid: 719398e4fbc452b4ead0dd891dd0bebb, type: 3}
+    volume: 1
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
+  - name: HealthPickup
+    clip: {fileID: 8300000, guid: ac84579fcc8f564469f470e1c2a78036, type: 3}
+    volume: 1
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
+  - name: HealthPowerup1
+    clip: {fileID: 8300000, guid: 0567935018c92b247857d1a6d4875c1f, type: 3}
+    volume: 1
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
+  - name: HealthPowerup2
+    clip: {fileID: 8300000, guid: 539f91d5b1c015d4ebf6e699b3ff2d7d, type: 3}
+    volume: 0.05
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: AttackPowerup1
+    clip: {fileID: 8300000, guid: 1cb424e46a9f845478debb9e716144ba, type: 3}
+    volume: 1
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
+  - name: AttackPowerup2
+    clip: {fileID: 8300000, guid: e3a0f3117d09ba047945ba5011204075, type: 3}
+    volume: 1
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
+  - name: SpeedBoost1
+    clip: {fileID: 8300000, guid: a210b7b21f5b40b40a97f36174e01028, type: 3}
+    volume: 1
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
+  - name: SpeedBoost2
+    clip: {fileID: 8300000, guid: c10b24537c97ed74e963fcf8b3ba5a17, type: 3}
+    volume: 1
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
+  - name: ActivePickup
+    clip: {fileID: 8300000, guid: b174b5ce20225e7469b6fb5f5bd8abc7, type: 3}
+    volume: 1
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
